@@ -1,0 +1,10 @@
+@import "~@department-of-veterans-affairs/formation/sass/shared-variables";
+
+/* Adds additional extensions to .usa-button */
+.usa-button-darker {
+  background: var(--vads-color-primary-dark);
+  &:hover,
+  &:focus {
+    background: var(--vads-color-primary-darker);
+  }
+}

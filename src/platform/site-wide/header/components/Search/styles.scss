@@ -1,0 +1,20 @@
+.header-search {
+  input {
+    max-width: unset;
+  }
+}
+
+.search-input-container {
+  max-width: unset !important;
+}
+
+.search-input {
+  max-width: unset !important;
+}
+
+.search-button {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  height: 42px;
+  width: 45px;
+}
