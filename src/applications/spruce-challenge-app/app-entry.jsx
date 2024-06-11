@@ -1,4 +1,5 @@
 import 'platform/polyfills';
+import './sass/fry-dea.scss';
 
 import startApp from 'platform/startup';
 
@@ -10,5 +11,4 @@ startApp({
   url: manifest.rootUrl,
   reducer,
   routes,
-  entryName: manifest.entryName,
 });
