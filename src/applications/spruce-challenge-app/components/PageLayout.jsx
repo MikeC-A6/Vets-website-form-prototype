@@ -3,12 +3,12 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { MhvSecondaryNav } from '@department-of-veterans-affairs/mhv/exports';
 // import Breadcrumbs from '../../components/Breadcrumbs';
-// import NeedHelp from '../../components/NeedHelp';
+import NeedHelp from './NeedHelp';
 
 export default function PageLayout({
   children,
   // showBreadcrumbs,
-  // showNeedHelp,
+  showNeedHelp,
 }) {
   return (
     <>
@@ -20,7 +20,7 @@ export default function PageLayout({
             className={classNames('vads-l-col--12', 'vads-u-margin-bottom--2')}
           >
             {children}
-            {/* {showNeedHelp && <NeedHelp />} */}
+            {showNeedHelp && <NeedHelp />}
           </div>
         </div>
       </div>
