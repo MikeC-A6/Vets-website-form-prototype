@@ -19,7 +19,7 @@ class IntroductionPage extends React.Component {
     return (
       <div className="schemaform-intro">
         <FormTitle title="Apply for education benefits as an eligible dependent" />
-        <p className="vads-u-font-size--h3">Equal to VA Form 22-5490</p>
+        <p className="vads-u-font-size--h3">Equal to VA Form DD-217</p>
 
         <va-alert
           close-btn-aria-label="Close notification"
