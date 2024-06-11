@@ -20,7 +20,7 @@ import fullNameUI from 'platform/forms-system/src/js/definitions/fullName';
 // import monthYearUI from 'platform/forms-system/src/js/definitions/monthYear';
 // import * as personId from 'platform/forms/definitions/personId';
 // import phoneUI from 'platform/forms-system/src/js/definitions/phone';
-import { VA_FORM_IDS } from 'platform/forms/constants';
+// import { VA_FORM_IDS } from 'platform/forms/constants';
 // import {
 //   validateMonthYear,
 //   validateFutureDateIfExpectedGrad,
@@ -86,28 +86,19 @@ const formConfig = {
   rootUrl: manifest.rootUrl,
   urlPrefix: '/',
   submitUrl: '/v0/api',
-  trackingPrefix: 'fry-dea-',
+  trackingPrefix: 'spruce-challenge-app-',
   introduction: IntroductionPage,
   confirmation: ConfirmationPage,
-  formId: VA_FORM_IDS.FORM_22_5490E,
-  saveInProgress: {
-    // messages: {
-    //   inProgress: 'Your education benefits application (22-5490) is in progress.',
-    //   expired: 'Your saved education benefits application (22-5490) has expired. If you want to apply for education benefits, please start a new application.',
-    //   saved: 'Your education benefits application has been saved.',
-    // },
-  },
+  formId: '24-SPRUCE',
   version: 0,
   prefillEnabled: true,
   prefillTransformer,
   savedFormMessages: {
-    notFound: 'Please start over to apply for education benefits.',
-    noAuth:
-      'Please sign in again to continue your application for education benefits.',
+    notFound: 'Please start over to request your DD-217 frame.',
+    noAuth: 'Please sign in again to continue your application.',
   },
-  title: 'Apply for education benefits as an eligible dependent',
-  subTitle:
-    "Equal to VA Form 22-5490 (Dependents' Application for VA Education Benefits)",
+  title: 'Apply for your DD-217 frame',
+  subTitle: 'Equal to 24-Spruce, Application for DD-217 frame',
   footerContent: FormFooter,
   getHelp: GetFormHelp,
   defaultDefinitions: {
@@ -117,12 +108,12 @@ const formConfig = {
   preSubmitInfo: PreSubmitInfo,
   chapters: {
     applicantInformationChapter: {
-      title: 'Your information',
+      title: 'Biographical information',
       pages: {
         applicantInformation: {
-          title: 'Your information',
-          path: 'applicant/information',
-          subTitle: 'Your information',
+          title: 'Biographical information',
+          path: 'applicant/name-information',
+          subTitle: 'Biographical information',
           instructions:
             'This is the personal information we have on file for you.',
           uiSchema: {
@@ -220,6 +211,9 @@ const formConfig = {
             [formFields.dateOfBirth]: {
               ...currentOrPastDateUI('Your date of birth'),
             },
+            [formFields.dateOfDeath]: {
+              ...currentOrPastDateUI('Date of death'),
+            },
           },
           schema: {
             type: 'object',
@@ -244,6 +238,7 @@ const formConfig = {
                 type: 'object',
                 properties: {},
               },
+              [formFields.dateOfDeath]: date,
             },
           },
         },

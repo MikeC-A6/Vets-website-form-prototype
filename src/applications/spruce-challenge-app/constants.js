@@ -45,6 +45,7 @@ export const formFields = {
   contactMethod: 'contactMethod',
   confirmEmail: 'confirmEmail',
   dateOfBirth: 'dateOfBirth',
+  dateOfDeath: 'dateOfDeath',
   email: 'email',
   fullName: 'fullName',
   highSchoolDiploma: 'highSchoolDiploma',
