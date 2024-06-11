@@ -1,0 +1,104 @@
+openapi: 3.0.0
+info:
+  title: Sample United States Address Verification API
+  version: "1.0"
+servers:
+  - url: 'https://example.va.gov/vetsapi'
+paths:
+  /verifyAddress:
+    get:
+      summary: Verify a domestic US address
+      parameters:
+        - name: ApiVersion
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: AddressLine1
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: AddressLine2
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: City
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: State
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: ZipCode
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  AddressLine1:
+                    type: string
+                  AddressLine2:
+                    type: string
+                  City:
+                    type: string
+                  State:
+                    type: string
+                  Zip Code:
+                    type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'                
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        Error Message:
+          type: string
+        Error Code:
+          type: string
