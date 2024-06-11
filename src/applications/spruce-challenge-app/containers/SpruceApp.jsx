@@ -12,13 +12,13 @@ import formConfig from '../config/form';
 import { fetchVeterans } from '../actions';
 import { VETERANS_TYPE } from '../constants';
 
-function FryDeaApp({
+function SpruceApp({
   children,
   formData,
   getVeterans,
   location,
   setFormData,
-  showUpdatedFryDeaApp,
+  showUpdatedSpruceApp,
   user,
   veterans,
 }) {
@@ -36,12 +36,12 @@ function FryDeaApp({
       }
 
       if (
-        formData.showUpdatedFryDeaApp !== showUpdatedFryDeaApp ||
+        formData.showUpdatedSpruceApp !== showUpdatedSpruceApp ||
         formData.veterans !== veterans
       ) {
         setFormData({
           ...formData,
-          showUpdatedFryDeaApp,
+          showUpdatedSpruceApp,
           veterans,
         });
       }
@@ -52,7 +52,7 @@ function FryDeaApp({
       getVeterans,
       location.pathname,
       setFormData,
-      showUpdatedFryDeaApp,
+      showUpdatedSpruceApp,
       user.login.currentlyLoggedIn,
       veterans,
     ],
@@ -74,20 +74,20 @@ function FryDeaApp({
   );
 }
 
-FryDeaApp.propTypes = {
+SpruceApp.propTypes = {
   children: PropTypes.object,
   formData: PropTypes.object,
   getVeterans: PropTypes.func,
   location: PropTypes.object,
   setFormData: PropTypes.func,
-  showUpdatedFryDeaApp: PropTypes.bool,
+  showUpdatedSpruceApp: PropTypes.bool,
   veterans: VETERANS_TYPE,
 };
 
 const mapStateToProps = state => ({
   formData: state.form?.data || {},
-  showUpdatedFryDeaApp: toggleValues(state)[
-    FEATURE_FLAG_NAMES.showUpdatedFryDeaApp
+  showUpdatedSpruceApp: toggleValues(state)[
+    FEATURE_FLAG_NAMES.showUpdatedSpruceApp
   ],
   user: state?.user,
   veterans: state.data?.veterans,
@@ -101,4 +101,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(FryDeaApp);
+)(SpruceApp);

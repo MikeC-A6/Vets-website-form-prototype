@@ -201,8 +201,8 @@ class IntroductionPage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  // showUpdatedFryDeaApp: toggleValues(state)[
-  //   FEATURE_FLAG_NAMES.showUpdatedFryDeaApp
+  // showUpdatedSpruceApp: toggleValues(state)[
+  //   FEATURE_FLAG_NAMES.showUpdatedSpruceApp
   // ],
   user: state.user || {},
 });
