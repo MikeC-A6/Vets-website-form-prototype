@@ -18,8 +18,8 @@ class IntroductionPage extends React.Component {
 
     return (
       <div className="schemaform-intro">
-        <FormTitle title="Apply for education benefits as an eligible dependent" />
-        <p className="vads-u-font-size--h3">Equal to VA Form DD-217</p>
+        <FormTitle title="Apply for your DD-217 Discharge Certificate Frame" />
+        <p className="vads-u-font-size--h3">Equal to VA Form 24-SPRUCE</p>
 
         <p>
           New legislation allows Veterans to receive a complementary frame for
