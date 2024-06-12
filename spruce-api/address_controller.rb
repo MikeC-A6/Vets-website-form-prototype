@@ -17,16 +17,18 @@ class AddressController
       ]
     end
 
+    suggested_results = params.transform_values(&:upcase)
+
     [
       200,
       { 'Content-Type': 'application/json' },
       [
         {
-          AddressLine1: params['AddressLine1'],
-          AddressLine2: params['AddressLine2'],
-          City: params['City'],
-          State: params['State'],
-          'Zip Code': params['ZipCode'],
+          AddressLine1: suggested_results['AddressLine1'],
+          AddressLine2: suggested_results['AddressLine2'],
+          City: suggested_results['City'],
+          State: suggested_results['State'],
+          'Zip Code': suggested_results['ZipCode'],
         }.to_json
       ]
     ]
