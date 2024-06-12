@@ -16,6 +16,7 @@ import currentOrPastDateUI from 'platform/forms-system/src/js/definitions/curren
 import emailUI from 'platform/forms-system/src/js/definitions/email';
 import environment from 'platform/utilities/environment';
 import fullNameUI from 'platform/forms-system/src/js/definitions/fullName';
+import ssnUI from 'platform/forms-system/src/js/definitions/ssn';
 // import fullNameUi from 'platform/forms/definitions/fullName';
 // import monthYearUI from 'platform/forms-system/src/js/definitions/monthYear';
 // import * as personId from 'platform/forms/definitions/personId';
@@ -30,7 +31,6 @@ import manifest from '../manifest.json';
 
 import {
   AdditionalConsiderationTemplate,
-  addWhitespaceOnlyError,
   applicantIsChildOfVeteran,
   applicantIsSpouseOfVeteran,
   isAlphaNumeric,
@@ -44,12 +44,9 @@ import ConfirmationPage from '../containers/ConfirmationPage';
 import {
   // ELIGIBILITY,
   formFields,
-  RELATIONSHIP,
-  VETERAN_NOT_LISTED_VALUE,
 } from '../constants';
 import GetFormHelp from '../components/GetFormHelp';
 import GoToYourProfileLink from '../components/GoToYourProfileLink';
-import RelatedVeterans from '../components/RelatedVeterans';
 import { phoneSchema, phoneUISchema } from '../schema';
 import EmailViewField from '../components/EmailViewField';
 import {
@@ -60,8 +57,6 @@ import {
 import EmailReviewField from '../components/EmailReviewField';
 import YesNoReviewField from '../components/YesNoReviewField';
 import MailingAddressViewField from '../components/MailingAddressViewField';
-import VeteransRadioGroup from '../components/VeteransRadioGroup';
-import SelectedVeteranReviewPage from '../components/SelectedVeteranReviewPage';
 import FryDeaEligibilityCards from '../components/FryDeaEligibilityCards';
 import PreSubmitInfo from '../components/PreSubmitInfo';
 
@@ -244,184 +239,67 @@ const formConfig = {
         },
       },
     },
-    veteranServiceMember: {
-      title: 'Veteran and service member information',
+    veteranIdentifyingInformation: {
+      title: 'Veteran personal information',
       pages: {
-        selectVeteran: {
-          title: 'Veteran and service member information',
-          path: 'choose-veteran-or-service-member',
-          CustomPageReview: SelectedVeteranReviewPage,
-          depends: formData => formData.veterans?.length > 1,
+        identifyingInformation: {
+          title: 'Veteran personal information',
+          path: 'identifying-information',
           uiSchema: {
-            'view:selectedVeteranSubHeadings': {
+            'view:subHeadings': {
               'ui:description': (
                 <>
-                  <h3>Choose your Veteran or service member</h3>
+                  <h3>Review your personal information</h3>
                   <p>
-                    Based on Department of Defense records, these are the
-                    Veterans and service members we have on file related to you,
-                    as well as the associated education benefits you may be
-                    eligible for.
+                    This is the personal information we have on file for you. If
+                    you notice any errors, please correct them now. Any updates
+                    you make will change the information for your education
+                    benefits only.
                   </p>
-                  <RelatedVeterans />
+                  <p>
+                    <strong>Note:</strong> If you want to update your personal
+                    information for other VA benefits, you can do that from your
+                    profile.
+                  </p>
+                  <p className="vads-u-margin-bottom--3">
+                    <GoToYourProfileLink />
+                  </p>
                 </>
               ),
             },
-            [formFields.selectedVeteran]: {
+            veteranSocialSecurityNumber: {
+              ...ssnUI,
               'ui:title':
-                'Which Veteran or service member’s benefits would you like to use?',
-              'ui:widget': VeteransRadioGroup,
+                'Social Security number (must have this or a VA file number)',
+              'ui:required': form => !form.vaFileNumber,
+            },
+            dodIDNumber: {
+              'ui:title': 'Department of Defense ID number (DoD ID number)',
+              'ui:validations': [isAlphaNumeric],
+            },
+            dischargeDate: {
+              ...currentOrPastDateUI('Date of discharge'),
               'ui:errorMessages': {
-                required: 'Please select a Veteran or service member',
+                required: 'Please enter a discharge date',
               },
             },
           },
           schema: {
             type: 'object',
-            required: [formFields.selectedVeteran],
+            required: ['dischargeDate'],
             properties: {
-              'view:selectedVeteranSubHeadings': {
+              'view:subHeadings': {
                 type: 'object',
                 properties: {},
               },
-              [formFields.selectedVeteran]: {
+              veteranSocialSecurityNumber: {
+                type: 'string',
+                pattern: '^[0-9]{9}$',
+              },
+              dodIDNumber: {
                 type: 'string',
               },
-            },
-          },
-        },
-        veteranInformation: {
-          title: 'Enter Veteran or service member information',
-          path: 'veteran-service-member/information',
-          depends: formData =>
-            !formData.veterans?.length ||
-            formData[formFields.selectedVeteran] === VETERAN_NOT_LISTED_VALUE,
-          uiSchema: {
-            'view:veteranInformationHeading': {
-              'ui:description': (
-                <h3>Enter Veteran or service member information</h3>
-              ),
-            },
-            'view:noVeteranWarning': {
-              'ui:description': (
-                <va-alert
-                  close-btn-aria-label="Close notification"
-                  status="warning"
-                  visible
-                >
-                  <h3 slot="headline">
-                    We do not have any Veteran or service member information on
-                    file
-                  </h3>
-                  <p>
-                    If you think this is incorrect, you may still continue this
-                    application and enter their information manually.
-                  </p>
-                </va-alert>
-              ),
-              'ui:options': {
-                hideIf: formData => formData.veterans?.length,
-              },
-            },
-            'view:veteranNotOnFileWarning': {
-              'ui:description': (
-                <va-alert
-                  close-btn-aria-label="Close notification"
-                  status="info"
-                  visible
-                >
-                  <h3 slot="headline">
-                    Your selected Veteran or service member is not on file
-                  </h3>
-                  <p>
-                    You may still continue this application and enter their
-                    information manually.
-                  </p>
-                </va-alert>
-              ),
-              'ui:options': {
-                hideIf: formData => !formData.veterans?.length,
-              },
-            },
-            [formFields.relationshipToVeteran]: {
-              'ui:title':
-                'What’s your relationship to the Veteran or service member whose benefits you’d like to use?',
-              'ui:widget': 'radio',
-              'ui:errorMessages': {
-                required: 'Please select a relationship',
-              },
-            },
-            'view:veteranFullNameHeading': {
-              'ui:description': <h4>Veteran or service member information</h4>,
-            },
-            [formFields.veteranFullName]: {
-              ...fullNameUI,
-              first: {
-                ...fullNameUI.first,
-                'ui:validations': [
-                  (errors, field) =>
-                    addWhitespaceOnlyError(
-                      field,
-                      errors,
-                      'Please enter a first name',
-                    ),
-                ],
-              },
-              last: {
-                ...fullNameUI.last,
-                'ui:validations': [
-                  (errors, field) =>
-                    addWhitespaceOnlyError(
-                      field,
-                      errors,
-                      'Please enter a last name',
-                    ),
-                ],
-              },
-            },
-            [formFields.veteranDateOfBirth]: {
-              ...currentOrPastDateUI('Date of birth'),
-            },
-          },
-          schema: {
-            type: 'object',
-            required: [
-              formFields.relationshipToVeteran,
-              formFields.veteranDateOfBirth,
-            ],
-            properties: {
-              'view:veteranInformationHeading': {
-                type: 'object',
-                properties: {},
-              },
-              'view:noVeteranWarning': {
-                type: 'object',
-                properties: {},
-              },
-              'view:veteranNotOnFileWarning': {
-                type: 'object',
-                properties: {},
-              },
-              [formFields.relationshipToVeteran]: {
-                type: 'string',
-                enum: [RELATIONSHIP.SPOUSE, RELATIONSHIP.CHILD],
-              },
-              'view:veteranFullNameHeading': {
-                type: 'object',
-                properties: {},
-              },
-              [formFields.veteranFullName]: {
-                ...fullName,
-                required: ['first', 'last'],
-                properties: {
-                  ...fullName.properties,
-                  middle: {
-                    ...fullName.properties.middle,
-                    maxLength: 30,
-                  },
-                },
-              },
-              [formFields.veteranDateOfBirth]: date,
+              dischargeDate: date,
             },
           },
         },
