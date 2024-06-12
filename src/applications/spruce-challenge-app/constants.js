@@ -7,15 +7,6 @@ export const RELATIONSHIP = {
   SPOUSE: 'Spouse',
 };
 
-export const ELIGIBILITY = {
-  FRY: 'fry',
-  DEA: 'dea',
-};
-
-export const VETERAN_NOT_LISTED_LABEL = 'Someone not listed here';
-export const VETERAN_NOT_LISTED_VALUE = 'VETERAN_NOT_LISTED';
-export const VETERAN_VALUE_PREFIX = 'veteran-';
-
 export const VETERANS_TYPE = PropTypes.arrayOf(
   PropTypes.shape({
     dateOfBirth: PropTypes.string,
@@ -28,6 +19,10 @@ export const VETERANS_TYPE = PropTypes.arrayOf(
     relationship: PropTypes.string,
   }),
 );
+
+export const WOOD_CHOICES = ['Cedar', 'Cypress', 'Pine', 'Walnut'];
+
+export const MOUNT_CHOICES = ['Wall mount', 'Table top'];
 
 export const formFields = {
   accountNumber: 'accountNumber',
@@ -49,6 +44,8 @@ export const formFields = {
   departmentOfDefenseID: 'departmentOfDefenseID',
   dischargeDate: 'dischargeDate',
   email: 'email',
+  frameWood: 'frameWood',
+  frameMount: 'frameMount',
   fullName: 'fullName',
   highSchoolDiploma: 'highSchoolDiploma',
   highSchoolDiplomaDate: 'highSchoolDiplomaDate',

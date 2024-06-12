@@ -4,35 +4,21 @@ import { createSelector } from 'reselect';
 import fullSchema5490 from 'vets-json-schema/dist/22-5490-schema.json';
 import commonDefinitions from 'vets-json-schema/dist/definitions.json';
 
-import { vagovprod, VAGOVSTAGING } from 'site/constants/buckets';
-
 import * as address from 'platform/forms/definitions/address';
 import FormFooter from 'platform/forms/components/FormFooter';
-import bankAccountUI from 'platform/forms/definitions/bankAccount';
+// import bankAccountUI from 'platform/forms/definitions/bankAccount';
 // import createNonRequiredFullName from 'platform/forms/definitions/nonRequiredFullName';
 import currentOrPastDateUI from 'platform/forms-system/src/js/definitions/currentOrPastDate';
 // import dateRangeUi from 'platform/forms-system/src/js/definitions/dateRange';
 // import dateUI from 'platform/forms-system/src/js/definitions/date';
 import emailUI from 'platform/forms-system/src/js/definitions/email';
-import environment from 'platform/utilities/environment';
+// import environment from 'platform/utilities/environment';
 import fullNameUI from 'platform/forms-system/src/js/definitions/fullName';
 import ssnUI from 'platform/forms-system/src/js/definitions/ssn';
-// import fullNameUi from 'platform/forms/definitions/fullName';
-// import monthYearUI from 'platform/forms-system/src/js/definitions/monthYear';
-// import * as personId from 'platform/forms/definitions/personId';
-// import phoneUI from 'platform/forms-system/src/js/definitions/phone';
-// import { VA_FORM_IDS } from 'platform/forms/constants';
-// import {
-//   validateMonthYear,
-//   validateFutureDateIfExpectedGrad,
-// } from 'platform/forms-system/src/js/validation';
 
 import manifest from '../manifest.json';
 
 import {
-  AdditionalConsiderationTemplate,
-  applicantIsChildOfVeteran,
-  applicantIsSpouseOfVeteran,
   isAlphaNumeric,
   isOnlyWhitespace,
   prefillTransformer,
@@ -41,38 +27,24 @@ import {
 import IntroductionPage from '../containers/IntroductionPage';
 import ConfirmationPage from '../containers/ConfirmationPage';
 
-import {
-  // ELIGIBILITY,
-  formFields,
-} from '../constants';
+import { formFields, WOOD_CHOICES, MOUNT_CHOICES } from '../constants';
 import GetFormHelp from '../components/GetFormHelp';
 import GoToYourProfileLink from '../components/GoToYourProfileLink';
 import { phoneSchema, phoneUISchema } from '../schema';
 import EmailViewField from '../components/EmailViewField';
-import {
-  isValidPhoneField,
-  validateEmail,
-  validateReMarriageDate,
-} from '../validation';
+import { isValidPhoneField, validateEmail } from '../validation';
 import EmailReviewField from '../components/EmailReviewField';
 import YesNoReviewField from '../components/YesNoReviewField';
 import MailingAddressViewField from '../components/MailingAddressViewField';
-import FryDeaEligibilityCards from '../components/FryDeaEligibilityCards';
 import PreSubmitInfo from '../components/PreSubmitInfo';
 
 const { date, fullName } = fullSchema5490.definitions;
 const { /* fullName, date, dateRange, usaPhone, */ email } = commonDefinitions;
 const contactMethods = ['Email', 'Home Phone', 'Mobile Phone', 'Mail'];
-const checkImageSrc = environment.isStaging()
-  ? `${VAGOVSTAGING}/img/check-sample.png`
-  : `${vagovprod}/img/check-sample.png`;
-
-// const BENEFITS = [ELIGIBILITY.FRY, ELIGIBILITY.DEA];
 
 function isValidName(str) {
   return str && /^[A-Za-z][A-Za-z ']*$/.test(str);
 }
-
 function isValidLastName(str) {
   return str && /^[A-Za-z][A-Za-z '-]*$/.test(str);
 }
@@ -80,7 +52,7 @@ function isValidLastName(str) {
 const formConfig = {
   rootUrl: manifest.rootUrl,
   urlPrefix: '/',
-  submitUrl: '/v0/api',
+  submitUrl: '/v0/api-spruce', // should we tie this to our address api service? or just mock it?
   trackingPrefix: 'spruce-challenge-app-',
   introduction: IntroductionPage,
   confirmation: ConfirmationPage,
@@ -93,7 +65,7 @@ const formConfig = {
     noAuth: 'Please sign in again to continue your application.',
   },
   title: 'Apply for your DD-217 frame',
-  subTitle: 'Equal to 24-Spruce, Application for DD-217 frame',
+  subTitle: 'Equal to 24-SPRUCE, Application for DD-217 frame',
   footerContent: FormFooter,
   getHelp: GetFormHelp,
   defaultDefinitions: {
@@ -302,317 +274,6 @@ const formConfig = {
               dischargeDate: date,
             },
           },
-        },
-      },
-    },
-    benefitSelection: {
-      title: 'Benefit selection',
-      pages: {
-        benefitSelection: {
-          title: 'Benefit Selection',
-          path: 'benefit-selection',
-          // depends: formData =>
-          //   formData.veterans?.length &&
-          //   formData[formFields.selectedVeteran] !== VETERAN_NOT_LISTED_VALUE,
-          uiSchema: {
-            'view:benefitSelectionHeaderInfo': {
-              'ui:description': (
-                <>
-                  <h3>Choose the benefit you’d like to apply for</h3>
-                  <p>
-                    We estimated your benefit eligibility based on your chosen
-                    Veteran or service member’s service history. This isn’t an
-                    eligibility determination. An official determination won’t
-                    be made until you complete and submit this application.
-                  </p>
-                  <p>
-                    <strong>Note:</strong> If you are eligible for both the Fry
-                    Scholarship and Survivors’ and Dependents’ Educational
-                    Assistance benefits, you’ll need to choose which one to use.
-                    Once you make this choice, you can’t switch to the other
-                    program.
-                  </p>
-                  <FryDeaEligibilityCards />
-                  <va-additional-info trigger="Which benefit should I choose?">
-                    <p>
-                      For each benefit, you should consider the amount you can
-                      receive, how payments are made, and when they expire.
-                    </p>
-                  </va-additional-info>
-                </>
-              ),
-            },
-            [formFields.benefitSelection]: {
-              'ui:title': (
-                <>
-                  <span className="fry-dea-labels_label--main vads-u-padding-left--1">
-                    Which education benefit would you like to apply for?
-                  </span>
-                  <span className="fry-dea-labels_label--secondary fry-dea-input-message fry-dea-review-view-hidden vads-u-background-color--primary-alt-lightest vads-u-padding--1 vads-u-margin-top--1">
-                    <i
-                      className="fas fa-info-circle vads-u-margin-right--1"
-                      aria-hidden="true"
-                    />{' '}
-                    <span className="sr-only">information</span> If you’re the
-                    child of a veteran or service member who died in the line of
-                    duty before August 1, 2011 you can use both Fry Scholarship
-                    and DEA and get up to 81 months of benefits. You’ll need to
-                    apply separately and use one program at a time.
-                  </span>
-                </>
-              ),
-              'ui:errorMessages': {
-                required: 'Please select an education benefit',
-              },
-              'ui:widget': 'radio',
-              'ui:options': {
-                labels: {
-                  fry: 'Fry Scholarship (Chapter 33)',
-                  dea:
-                    'Survivors’ and Dependents’ Educational Assistance (DEA, Chapter 35)',
-                },
-                widgetProps: {
-                  fry: { 'data-info': 'fry' },
-                  dea: { 'data-info': 'dea' },
-                },
-                // Only added to the radio when it is selected
-                // a11y requirement: aria-describedby ID’s *must* exist on the page; and we
-                // conditionally add content based on the selection
-                selectedProps: {
-                  fry: { 'aria-describedby': 'fry' },
-                  dea: { 'aria-describedby': 'dea' },
-                },
-                // updateSchema: (() => {
-                //   const filterBenefits = createSelector(
-                //     state => state,
-                //     formData => {
-                //       const veteran = formData?.veterans?.find(
-                //         v => v.id === formData[formFields.selectedVeteran],
-                //       );
-
-                //       return {
-                //         enum: BENEFITS.filter(
-                //           benefit =>
-                //             (benefit === ELIGIBILITY.FRY &&
-                //               veteran?.fryEligibility) ||
-                //             (benefit === ELIGIBILITY.DEA &&
-                //               veteran?.deaEligibility),
-                //         ),
-                //       };
-                //     },
-                //   );
-                //   return (form, state) => filterBenefits(form, state);
-                // })(),
-              },
-            },
-          },
-          schema: {
-            type: 'object',
-            required: [formFields.benefitSelection],
-            properties: {
-              'view:benefitSelectionHeaderInfo': {
-                type: 'object',
-                properties: {},
-              },
-              [formFields.benefitSelection]: {
-                type: 'string',
-                enum: [
-                  'Fry Scholarship (Chapter 33)',
-                  'Survivors’ and Dependents’ Educational Assistance (DEA, Chapter 35)',
-                ],
-              },
-            },
-          },
-        },
-      },
-    },
-    additionalConsideration: {
-      title: 'Additional considerations',
-      pages: {
-        verifyHighSchool: {
-          title: 'High school education',
-          path: 'child/high-school-education',
-          depends: formData => applicantIsChildOfVeteran(formData),
-          uiSchema: {
-            'view:highSchoolDiplomaHeadings': {
-              'ui:description': <h3>High school education</h3>,
-            },
-            [formFields.highSchoolDiploma]: {
-              'ui:title':
-                'Did you earn a high school diploma or an equivalency certificate?',
-              'ui:widget': 'radio',
-            },
-          },
-          schema: {
-            type: 'object',
-            required: [formFields.highSchoolDiploma],
-            properties: {
-              'view:highSchoolDiplomaHeadings': {
-                type: 'object',
-                properties: {},
-              },
-              [formFields.highSchoolDiploma]: {
-                type: 'string',
-                enum: ['Yes', 'No'],
-              },
-            },
-          },
-        },
-        highSchool: {
-          title: 'Date received',
-          path: 'veteran-service-member/high-school-education',
-          depends: formData =>
-            applicantIsChildOfVeteran(formData) &&
-            formData[formFields.highSchoolDiploma] === 'Yes',
-          uiSchema: {
-            'view:highSchoolDiplomaDateHeading': {
-              'ui:description': <h3>Date received</h3>,
-            },
-            [formFields.highSchoolDiplomaDate]: {
-              ...currentOrPastDateUI(
-                'What date did you receive your high school diploma or equivalency certificate?',
-              ),
-            },
-          },
-          schema: {
-            type: 'object',
-            required: [formFields.highSchoolDiplomaDate],
-            properties: {
-              'view:highSchoolDiplomaDateHeading': {
-                type: 'object',
-                properties: {},
-              },
-              [formFields.highSchoolDiplomaDate]: date,
-            },
-          },
-        },
-        marriageDate: {
-          ...AdditionalConsiderationTemplate(
-            'Marriage date',
-            'additional/consideration/marriage/date',
-            formFields.additionalConsiderations.marriageDate,
-            {
-              ...currentOrPastDateUI(
-                'When did you get married to your chosen Veteran or service member?',
-              ),
-            },
-            { ...date },
-          ),
-          depends: formData => applicantIsSpouseOfVeteran(formData),
-        },
-        marriageInformation: {
-          ...AdditionalConsiderationTemplate(
-            'Marriage information',
-            'additional/consideration/marriage/information',
-            formFields.additionalConsiderations.marriageInformation,
-            {
-              'ui:title':
-                'What’s the status of your marriage with your chosen Veteran or service member?',
-              'ui:widget': 'radio',
-            },
-            {
-              type: 'string',
-              enum: [
-                'Married',
-                'Divorced (or a divorce is in progress)',
-                'Marriage was annulled (or annulment is in progress)',
-                'Widowed',
-              ],
-            },
-          ),
-          depends: formData => applicantIsSpouseOfVeteran(formData),
-        },
-        marriageInformationDivorced: {
-          ...AdditionalConsiderationTemplate(
-            'Remarriage',
-            'additional/consideration/remarriage/information/divorced',
-            formFields.additionalConsiderations.remarriage,
-            {
-              'ui:title': 'Have you been remarried?',
-              'ui:widget': 'yesNo',
-            },
-            {
-              type: 'boolean',
-            },
-          ),
-          depends: formData =>
-            applicantIsSpouseOfVeteran(formData) &&
-            formData[
-              formFields.additionalConsiderations.marriageInformation
-            ] === 'Divorced (or a divorce is in progress)',
-        },
-        marriageInformationAnnulled: {
-          ...AdditionalConsiderationTemplate(
-            'Remarriage',
-            'additional/consideration/remarriage/information/annulment',
-            formFields.additionalConsiderations.remarriage,
-            {
-              'ui:title': 'Have you been remarried since your annulment?',
-              'ui:widget': 'yesNo',
-            },
-            {
-              type: 'boolean',
-            },
-          ),
-          depends: formData =>
-            applicantIsSpouseOfVeteran(formData) &&
-            formData[
-              formFields.additionalConsiderations.marriageInformation
-            ] === 'Marriage was annulled (or annulment is in progress)',
-        },
-        marriageInformationWidowed: {
-          ...AdditionalConsiderationTemplate(
-            'Remarriage',
-            'additional/consideration/remarriage/information/widowed',
-            formFields.additionalConsiderations.remarriage,
-            {
-              'ui:title': 'Have you been remarried since being widowed?',
-              'ui:widget': 'yesNo',
-            },
-            {
-              type: 'boolean',
-            },
-          ),
-          depends: formData =>
-            applicantIsSpouseOfVeteran(formData) &&
-            formData[
-              formFields.additionalConsiderations.marriageInformation
-            ] === 'Widowed',
-        },
-        remarriageDate: {
-          ...AdditionalConsiderationTemplate(
-            'Remarriage date',
-            'additional/consideration/remarriage/date',
-            formFields.additionalConsiderations.remarriageDate,
-            {
-              ...currentOrPastDateUI('When did you get remarried?'),
-              'ui:validations': [validateReMarriageDate],
-            },
-            {
-              ...date,
-            },
-          ),
-          depends: formData =>
-            applicantIsSpouseOfVeteran(formData) &&
-            formData[
-              formFields.additionalConsiderations.marriageInformation
-            ] !== 'Married' &&
-            formData[formFields.additionalConsiderations.remarriage],
-        },
-        outstandingFelony: {
-          ...AdditionalConsiderationTemplate(
-            'Outstanding felony',
-            'new/additional/consideration/felony/status',
-            formFields.additionalConsiderations.outstandingFelony,
-            {
-              'ui:title':
-                'Do you or your chosen Veteran or service member have an outstanding felony or warrant?',
-              'ui:widget': 'yesNo',
-            },
-            {
-              type: 'boolean',
-            },
-          ),
         },
       },
     },
@@ -1077,83 +738,56 @@ const formConfig = {
         },
       },
     },
-    bankAccountInfoChapter: {
-      title: 'Direct deposit',
+    frameSelectionChapter: {
+      title: 'Complementary Frame',
       pages: {
-        directDeposit: {
-          path: 'direct-deposit',
-          title: 'Direct deposit',
+        frameOptions: {
+          title: 'Complementary Frame',
+          path: 'frame-options',
+          subTitle: 'Type of wood and display style',
           uiSchema: {
-            'ui:description': (
-              <>
-                <h3>Enter your direct deposit information</h3>
-                <p className="vads-u-margin-bottom--4">
-                  <strong>Note</strong>: VA makes payments only through direct
-                  deposit, also called electronic funds transfer (EFT).
-                </p>
-              </>
-            ),
-            [formFields.bankAccount]: {
-              ...bankAccountUI,
-              'ui:order': ['accountType', 'accountNumber', 'routingNumber'],
-              accountType: {
-                ...bankAccountUI.accountType,
-                'ui:errorMessages': {
-                  required: 'Please select an account type',
-                },
-              },
-              accountNumber: {
-                ...bankAccountUI.accountNumber,
-                'ui:validations': [
-                  (errors, field) => {
-                    if (!isAlphaNumeric(field)) {
-                      errors.addError('Please enter a valid account number');
-                    }
-                  },
-                ],
+            'view:subHeadings': {
+              'ui:description': (
+                <>
+                  <h3>Select options for the frame appearance</h3>
+                  <p>
+                    These choices will determine the appearance of the shipped
+                    frame. You can make selections for the type of wood used as
+                    well as the mounting style (wall-mounted or standing)
+                  </p>
+                </>
+              ),
+            },
+            [formFields.frameWood]: {
+              'ui:title': 'Choice of wood',
+              'ui:widget': 'radio',
+              'ui:options': {
+                labels: WOOD_CHOICES,
               },
             },
-            'view:directDepositLearnMore': {
-              'ui:description': (
-                <va-additional-info trigger="Where can I find these numbers?">
-                  <img
-                    key="check-image-src"
-                    src={checkImageSrc}
-                    alt="Example of a check showing where the account and routing numbers are"
-                  />
-                  <p>
-                    The bank routing number is the first 9 digits on the bottom
-                    left corner of a printed check. Your account number is the
-                    second set of numbers on the bottom of a printed check, just
-                    to the right of the bank routing number.
-                  </p>
-                </va-additional-info>
-              ),
+            [formFields.frameMount]: {
+              'ui:title': 'Frame display style',
+              'ui:widget': 'radio',
+              'ui:options': {
+                labels: MOUNT_CHOICES,
+              },
             },
           },
           schema: {
             type: 'object',
+            required: [formFields.frameWood, formFields.frameMount],
             properties: {
-              [formFields.bankAccount]: {
-                type: 'object',
-                required: ['accountType', 'routingNumber', 'accountNumber'],
-                properties: {
-                  accountType: {
-                    type: 'string',
-                    enum: ['checking', 'savings'],
-                  },
-                  routingNumber: {
-                    type: 'string',
-                    pattern: '^\\d{9}$',
-                  },
-                  accountNumber: {
-                    type: 'string',
-                  },
-                },
-              },
-              'view:directDepositLearnMore': {
+              'view:subHeadings': {
                 type: 'object',
                 properties: {},
+              },
+              [formFields.frameWood]: {
+                type: 'string',
+                enum: WOOD_CHOICES,
+              },
+              [formFields.frameMount]: {
+                type: 'string',
+                enum: MOUNT_CHOICES,
               },
             },
           },

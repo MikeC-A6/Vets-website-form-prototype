@@ -62,9 +62,11 @@ function SpruceApp({
     <>
       <va-breadcrumbs uswds="false">
         <a href="/">Home</a>
-        <a href="/education">Education and training</a>
+        <a href="/supporting-forms-for-claims">
+          Supporting forms for VA claims
+        </a>
         <a href="/fry-dea">
-          Apply for education benefits as an eligible dependent
+          Apply for a complimentary frame for a discharge certificate
         </a>
       </va-breadcrumbs>
       <RoutedSavableApp formConfig={formConfig} currentLocation={location}>

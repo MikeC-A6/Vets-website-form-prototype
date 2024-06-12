@@ -1,9 +1,4 @@
-import React from 'react';
-import {
-  formFields,
-  RELATIONSHIP,
-  VETERAN_NOT_LISTED_VALUE,
-} from './constants';
+import { formFields } from './constants';
 
 export function isAlphaNumeric(str) {
   const alphaNumericRegEx = new RegExp(/^[a-z0-9]+$/i);
@@ -64,56 +59,6 @@ export const formatReadableDate = rawDate => {
   }
 
   return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
-};
-
-const applicantMatchesVeteranRelationship = (formData, relationship) => {
-  const r =
-    !formData.veterans?.length ||
-    formData[formFields.selectedVeteran] === VETERAN_NOT_LISTED_VALUE
-      ? formData[formFields.relationshipToVeteran]
-      : formData.veterans?.find(
-          v => v.id === formData[formFields.selectedVeteran],
-        )?.relationship;
-
-  return r === relationship;
-};
-
-export const applicantIsChildOfVeteran = formData => {
-  return applicantMatchesVeteranRelationship(formData, RELATIONSHIP.CHILD);
-};
-
-export const applicantIsSpouseOfVeteran = formData => {
-  return applicantMatchesVeteranRelationship(formData, RELATIONSHIP.SPOUSE);
-};
-
-export const AdditionalConsiderationTemplate = (
-  title,
-  path,
-  formField,
-  UI,
-  SCHEMA,
-) => {
-  return {
-    title,
-    path,
-    uiSchema: {
-      'view:subHeadings': {
-        'ui:description': <h3>{title}</h3>,
-      },
-      [formField]: { ...UI },
-    },
-    schema: {
-      type: 'object',
-      required: [formField],
-      properties: {
-        'view:subHeadings': {
-          type: 'object',
-          properties: {},
-        },
-        [formField]: { ...SCHEMA },
-      },
-    },
-  };
 };
 
 export function prefillTransformer(pages, formData, metadata, state) {
