@@ -34,7 +34,6 @@ import { phoneSchema, phoneUISchema } from '../schema';
 import EmailViewField from '../components/EmailViewField';
 import { isValidPhoneField, validateEmail } from '../validation';
 import EmailReviewField from '../components/EmailReviewField';
-import YesNoReviewField from '../components/YesNoReviewField';
 import MailingAddressViewField from '../components/MailingAddressViewField';
 import PreSubmitInfo from '../components/PreSubmitInfo';
 
@@ -385,144 +384,6 @@ const formConfig = {
             },
           },
         },
-        mailingAddress: {
-          title: 'Mailing address',
-          path: 'contact-information/mailing-address',
-          uiSchema: {
-            'view:subHeadings': {
-              'ui:description': (
-                <>
-                  <h3>Review your mailing address</h3>
-                  <p>
-                    We’ll send any important information about your application
-                    to this address.
-                  </p>
-                  <p>
-                    This is the mailing address we have on file for you. If you
-                    notice any errors, please correct them now. Any updates you
-                    make will change the information for your education benefits
-                    only.
-                  </p>
-                  <p>
-                    <strong>Note:</strong> If you want to update your personal
-                    information for other VA benefits, you can do that from your
-                    profile.
-                  </p>
-                  <p className="vads-u-margin-bottom--4">
-                    <GoToYourProfileLink />
-                  </p>
-                </>
-              ),
-            },
-            [formFields.viewMailingAddress]: {
-              'ui:description': (
-                <>
-                  <h4 className="form-review-panel-page-header vads-u-font-size--h5 fry-dea-review-page-only">
-                    Mailing address
-                  </h4>
-                  <p className="fry-dea-review-page-only">
-                    If you’d like to update your mailing address, please edit
-                    the form fields below.
-                  </p>
-                </>
-              ),
-              livesOnMilitaryBase: {
-                'ui:title': (
-                  <span id="LiveOnMilitaryBaseTooltip">
-                    I live on a United States military base outside of the
-                    country
-                  </span>
-                ),
-                'ui:reviewField': YesNoReviewField,
-              },
-              livesOnMilitaryBaseInfo: {
-                'ui:description': (
-                  <va-additional-info
-                    trigger="Learn more about military base addresses"
-                    class="vads-u-margin-top--4"
-                  >
-                    <p>
-                      U.S. military bases are considered a domestic address and
-                      a part of the United States.
-                    </p>
-                  </va-additional-info>
-                ),
-              },
-              [formFields.address]: {
-                ...address.uiSchema(''),
-                street: {
-                  'ui:title': 'Street address',
-                  'ui:errorMessages': {
-                    required: 'Please enter your full street address',
-                  },
-                  'ui:validations': [
-                    (errors, field) => {
-                      if (isOnlyWhitespace(field)) {
-                        errors.addError(
-                          'Please enter your full street address',
-                        );
-                      }
-                    },
-                  ],
-                },
-                city: {
-                  'ui:title': 'City',
-                  'ui:errorMessages': {
-                    required: 'Please enter a valid city',
-                  },
-                  'ui:validations': [
-                    (errors, field) => {
-                      if (isOnlyWhitespace(field)) {
-                        errors.addError('Please enter a valid city');
-                      }
-                    },
-                  ],
-                },
-                state: {
-                  'ui:title': 'State/Province/Region',
-                  'ui:errorMessages': {
-                    required: 'State is required',
-                  },
-                },
-                postalCode: {
-                  'ui:title': 'Postal Code (5-digit)',
-                  'ui:errorMessages': {
-                    required: 'Zip code must be 5 digits',
-                  },
-                },
-              },
-              'ui:options': {
-                hideLabelText: true,
-                showFieldLabel: false,
-                viewComponent: MailingAddressViewField,
-              },
-            },
-          },
-          schema: {
-            type: 'object',
-            properties: {
-              'view:subHeadings': {
-                type: 'object',
-                properties: {},
-              },
-              'view:mailingAddress': {
-                type: 'object',
-                properties: {
-                  livesOnMilitaryBase: {
-                    type: 'boolean',
-                  },
-                  livesOnMilitaryBaseInfo: {
-                    type: 'object',
-                    properties: {},
-                  },
-                  [formFields.address]: {
-                    ...address.schema(fullSchema5490, true),
-                  },
-                },
-              },
-            },
-          },
-        },
         contactPreferences: {
           title: 'Contact preferences',
           path: 'contact-information/contact-preferences',
@@ -788,6 +649,115 @@ const formConfig = {
               [formFields.frameMount]: {
                 type: 'string',
                 enum: MOUNT_CHOICES,
+              },
+            },
+          },
+        },
+        mailingAddress: {
+          title: 'Mailing address',
+          path: 'contact-information/mailing-address',
+          uiSchema: {
+            'view:subHeadings': {
+              'ui:description': (
+                <>
+                  <h3>Review your mailing address</h3>
+                  <p>
+                    We’ll send any important information about your application
+                    to this address.
+                  </p>
+                  <p>
+                    This is the mailing address we have on file for you. If you
+                    notice any errors, please correct them now. Any updates you
+                    make will change the information for your education benefits
+                    only.
+                  </p>
+                  <p>
+                    <strong>Note:</strong> If you want to update your personal
+                    information for other VA benefits, you can do that from your
+                    profile.
+                  </p>
+                  <p className="vads-u-margin-bottom--4">
+                    <GoToYourProfileLink />
+                  </p>
+                </>
+              ),
+            },
+            [formFields.viewMailingAddress]: {
+              'ui:description': (
+                <>
+                  <h4 className="form-review-panel-page-header vads-u-font-size--h5 fry-dea-review-page-only">
+                    Mailing address
+                  </h4>
+                  <p className="fry-dea-review-page-only">
+                    If you’d like to update your mailing address, please edit
+                    the form fields below.
+                  </p>
+                </>
+              ),
+              [formFields.address]: {
+                ...address.uiSchema(''),
+                street: {
+                  'ui:title': 'Street address',
+                  'ui:errorMessages': {
+                    required: 'Please enter your full street address',
+                  },
+                  'ui:validations': [
+                    (errors, field) => {
+                      if (isOnlyWhitespace(field)) {
+                        errors.addError(
+                          'Please enter your full street address',
+                        );
+                      }
+                    },
+                  ],
+                },
+                city: {
+                  'ui:title': 'City',
+                  'ui:errorMessages': {
+                    required: 'Please enter a valid city',
+                  },
+                  'ui:validations': [
+                    (errors, field) => {
+                      if (isOnlyWhitespace(field)) {
+                        errors.addError('Please enter a valid city');
+                      }
+                    },
+                  ],
+                },
+                state: {
+                  'ui:title': 'State/Province/Region',
+                  'ui:errorMessages': {
+                    required: 'State is required',
+                  },
+                },
+                postalCode: {
+                  'ui:title': 'Postal Code (5-digit)',
+                  'ui:errorMessages': {
+                    required: 'Zip code must be 5 digits',
+                  },
+                },
+              },
+              'ui:options': {
+                hideLabelText: true,
+                showFieldLabel: false,
+                viewComponent: MailingAddressViewField,
+              },
+            },
+          },
+          schema: {
+            type: 'object',
+            properties: {
+              'view:subHeadings': {
+                type: 'object',
+                properties: {},
+              },
+              'view:mailingAddress': {
+                type: 'object',
+                properties: {
+                  [formFields.address]: {
+                    ...address.schema(fullSchema5490, true),
+                  },
+                },
               },
             },
           },
