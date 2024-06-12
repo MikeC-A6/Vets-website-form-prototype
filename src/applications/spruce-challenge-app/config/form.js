@@ -1,20 +1,18 @@
 import React from 'react';
-import { createSelector } from 'reselect';
 
 import fullSchema5490 from 'vets-json-schema/dist/22-5490-schema.json';
 import commonDefinitions from 'vets-json-schema/dist/definitions.json';
 
 import * as address from 'platform/forms/definitions/address';
 import FormFooter from 'platform/forms/components/FormFooter';
-// import bankAccountUI from 'platform/forms/definitions/bankAccount';
-// import createNonRequiredFullName from 'platform/forms/definitions/nonRequiredFullName';
 import currentOrPastDateUI from 'platform/forms-system/src/js/definitions/currentOrPastDate';
-// import dateRangeUi from 'platform/forms-system/src/js/definitions/dateRange';
-// import dateUI from 'platform/forms-system/src/js/definitions/date';
 import emailUI from 'platform/forms-system/src/js/definitions/email';
-// import environment from 'platform/utilities/environment';
 import fullNameUI from 'platform/forms-system/src/js/definitions/fullName';
 import ssnUI from 'platform/forms-system/src/js/definitions/ssn';
+import {
+  radioUI,
+  radioSchema,
+} from 'platform/forms-system/src/js/web-component-patterns/radioPattern';
 
 import manifest from '../manifest.json';
 
@@ -27,19 +25,21 @@ import {
 import IntroductionPage from '../containers/IntroductionPage';
 import ConfirmationPage from '../containers/ConfirmationPage';
 
+// splitting schema out like this may make it more readable + consistent with existing forms
+import servicePeriods from './chapters/servicePeriods';
+
 import { formFields, WOOD_CHOICES, MOUNT_CHOICES } from '../constants';
 import GetFormHelp from '../components/GetFormHelp';
 import GoToYourProfileLink from '../components/GoToYourProfileLink';
 import { phoneSchema, phoneUISchema } from '../schema';
 import EmailViewField from '../components/EmailViewField';
-import { isValidPhoneField, validateEmail } from '../validation';
+import { /* isValidPhoneField, */ validateEmail } from '../validation';
 import EmailReviewField from '../components/EmailReviewField';
 import MailingAddressViewField from '../components/MailingAddressViewField';
 import PreSubmitInfo from '../components/PreSubmitInfo';
 
-const { date, fullName } = fullSchema5490.definitions;
-const { /* fullName, date, dateRange, usaPhone, */ email } = commonDefinitions;
-const contactMethods = ['Email', 'Home Phone', 'Mobile Phone', 'Mail'];
+// const { date, fullName } = fullSchema5490.definitions;
+const { /* dateRange, usaPhone, */ date, fullName, email } = commonDefinitions;
 
 function isValidName(str) {
   return str && /^[A-Za-z][A-Za-z ']*$/.test(str);
@@ -208,80 +208,9 @@ const formConfig = {
             },
           },
         },
-      },
-    },
-    veteranIdentifyingInformation: {
-      title: 'Veteran personal information',
-      pages: {
-        identifyingInformation: {
-          title: 'Veteran personal information',
-          path: 'identifying-information',
-          uiSchema: {
-            'view:subHeadings': {
-              'ui:description': (
-                <>
-                  <h3>Review your personal information</h3>
-                  <p>
-                    This is the personal information we have on file for you. If
-                    you notice any errors, please correct them now. Any updates
-                    you make will change the information for your education
-                    benefits only.
-                  </p>
-                  <p>
-                    <strong>Note:</strong> If you want to update your personal
-                    information for other VA benefits, you can do that from your
-                    profile.
-                  </p>
-                  <p className="vads-u-margin-bottom--3">
-                    <GoToYourProfileLink />
-                  </p>
-                </>
-              ),
-            },
-            veteranSocialSecurityNumber: {
-              ...ssnUI,
-              'ui:title':
-                'Social Security number (must have this or a VA file number)',
-              'ui:required': form => !form.vaFileNumber,
-            },
-            dodIDNumber: {
-              'ui:title': 'Department of Defense ID number (DoD ID number)',
-              'ui:validations': [isAlphaNumeric],
-            },
-            dischargeDate: {
-              ...currentOrPastDateUI('Date of discharge'),
-              'ui:errorMessages': {
-                required: 'Please enter a discharge date',
-              },
-            },
-          },
-          schema: {
-            type: 'object',
-            required: ['dischargeDate'],
-            properties: {
-              'view:subHeadings': {
-                type: 'object',
-                properties: {},
-              },
-              veteranSocialSecurityNumber: {
-                type: 'string',
-                pattern: '^[0-9]{9}$',
-              },
-              dodIDNumber: {
-                type: 'string',
-              },
-              dischargeDate: date,
-            },
-          },
-        },
-      },
-    },
-    contactInformationChapter: {
-      title: 'Contact information',
-      pages: {
         phoneEmail: {
           title: 'Phone numbers and email address',
-          path: 'contact-information/email-phone',
+          path: 'applicant/contact-information',
           uiSchema: {
             'view:subHeadings': {
               'ui:description': (
@@ -384,218 +313,77 @@ const formConfig = {
             },
           },
         },
-        contactPreferences: {
-          title: 'Contact preferences',
-          path: 'contact-information/contact-preferences',
+      },
+    },
+    veteranIdentifyingInformation: {
+      title: 'Veteran personal information',
+      pages: {
+        identifyingInformation: {
+          title: 'Veteran personal information',
+          path: 'identifying-information',
           uiSchema: {
-            'view:contactMethodIntro': {
+            'view:subHeadings': {
               'ui:description': (
                 <>
-                  <h3 className="fry-dea-form-page-only">
-                    Choose your contact method for follow-up questions
-                  </h3>
+                  <h3>Review your personal information</h3>
+                  <p>
+                    This is the personal information we have on file for you. If
+                    you notice any errors, please correct them now. Any updates
+                    you make will change the information for your education
+                    benefits only.
+                  </p>
+                  <p>
+                    <strong>Note:</strong> If you want to update your personal
+                    information for other VA benefits, you can do that from your
+                    profile.
+                  </p>
+                  <p className="vads-u-margin-bottom--3">
+                    <GoToYourProfileLink />
+                  </p>
                 </>
               ),
             },
-            [formFields.contactMethod]: {
+            veteranSocialSecurityNumber: {
+              ...ssnUI,
               'ui:title':
-                'How should we contact you if we have questions about your application?',
-              'ui:widget': 'radio',
+                'Social Security number (must have this or a VA file number)',
+              'ui:required': form => !form.vaFileNumber,
+            },
+            dodIDNumber: {
+              'ui:title': 'Department of Defense ID number (DoD ID number)',
+              'ui:validations': [isAlphaNumeric],
+            },
+            dischargeDate: {
+              ...currentOrPastDateUI('Date of discharge'),
               'ui:errorMessages': {
-                required: 'Please select at least one way we can contact you.',
-              },
-              'ui:options': {
-                updateSchema: (() => {
-                  const filterContactMethods = createSelector(
-                    form =>
-                      form[formFields.viewPhoneNumbers][
-                        formFields.mobilePhoneNumber
-                      ]?.phone,
-                    form =>
-                      form[formFields.viewPhoneNumbers][formFields.phoneNumber]
-                        ?.phone,
-                    (mobilePhoneNumber, homePhoneNumber) => {
-                      const invalidContactMethods = [];
-                      if (!mobilePhoneNumber) {
-                        invalidContactMethods.push('Mobile Phone');
-                      }
-                      if (!homePhoneNumber) {
-                        invalidContactMethods.push('Home Phone');
-                      }
-
-                      return {
-                        enum: contactMethods.filter(
-                          method => !invalidContactMethods.includes(method),
-                        ),
-                      };
-                    },
-                  );
-                  return form => filterContactMethods(form);
-                })(),
-              },
-            },
-            'view:receiveTextMessages': {
-              'ui:description': (
-                <>
-                  <div className="fry-dea-form-page-only">
-                    <h3>Choose how you want to get notifications</h3>
-                    <p>
-                      We recommend that you opt in to text message notifications
-                      about your benefits. These include notifications that
-                      prompt you to verify your enrollment so you’ll receive
-                      your education payments. This is an easy way to verify
-                      your monthly enrollment.
-                    </p>
-                    <va-alert status="info">
-                      <>
-                        If you choose to get text message notifications from
-                        VA’s GI Bill program, message and data rates may apply.
-                        Two messages per month. At this time, we can only send
-                        text messages to U.S. mobile phone numbers. Text STOP to
-                        opt out or HELP for help.{' '}
-                        <a
-                          href="https://benefits.va.gov/gibill/isaksonroe/verification_of_enrollment.asp"
-                          rel="noopener noreferrer"
-                          target="_blank"
-                        >
-                          View Terms and Conditions and Privacy Policy.
-                        </a>
-                      </>
-                    </va-alert>
-                  </div>
-                </>
-              ),
-              [formFields.receiveTextMessages]: {
-                'ui:title':
-                  'Would you like to receive text message notifications on your education benefits?',
-                'ui:widget': 'radio',
-                'ui:validations': [
-                  (errors, field, formData) => {
-                    const isYes = field?.slice(0, 4).includes('Yes');
-                    if (!isYes) {
-                      return;
-                    }
-
-                    const { phone, isInternational } = formData[
-                      formFields.viewPhoneNumbers
-                    ][formFields.mobilePhoneNumber];
-
-                    if (!phone) {
-                      errors.addError(
-                        'You can’t select that response because we don’t have a mobile phone number on file for you.',
-                      );
-                    } else if (isInternational) {
-                      errors.addError(
-                        'You can’t select that response because you have an international mobile phone number',
-                      );
-                    }
-                  },
-                ],
-                'ui:options': {
-                  widgetProps: {
-                    Yes: { 'data-info': 'yes' },
-                    No: { 'data-info': 'no' },
-                  },
-                  selectedProps: {
-                    Yes: { 'aria-describedby': 'yes' },
-                    No: { 'aria-describedby': 'no' },
-                  },
-                },
-              },
-            },
-            'view:noMobilePhoneAlert': {
-              'ui:description': (
-                <va-alert status="warning">
-                  <>
-                    You can’t choose to get text message notifications because
-                    we don’t have a mobile phone number on file for you.
-                  </>
-                </va-alert>
-              ),
-              'ui:options': {
-                hideIf: formData =>
-                  (formData[formFields.viewReceiveTextMessages][
-                    formFields.receiveTextMessages
-                  ] &&
-                    !formData[formFields.viewReceiveTextMessages][
-                      formFields.receiveTextMessages
-                    ]
-                      .slice(0, 4)
-                      .includes('Yes')) ||
-                  isValidPhoneField(
-                    formData[formFields.viewPhoneNumbers][
-                      formFields.mobilePhoneNumber
-                    ],
-                  ),
-              },
-            },
-            'view:internationalTextMessageAlert': {
-              'ui:description': (
-                <va-alert status="warning">
-                  <>
-                    You can’t choose to get text notifications because you have
-                    an international mobile phone number. At this time, we can
-                    send text messages about your education benefits only to
-                    U.S. mobile phone numbers.
-                  </>
-                </va-alert>
-              ),
-              'ui:options': {
-                hideIf: formData =>
-                  (formData[formFields.viewReceiveTextMessages][
-                    formFields.receiveTextMessages
-                  ] &&
-                    !formData[formFields.viewReceiveTextMessages][
-                      formFields.receiveTextMessages
-                    ]
-                      .slice(0, 4)
-                      .includes('Yes')) ||
-                  !isValidPhoneField(
-                    formData[formFields.viewPhoneNumbers][
-                      formFields.mobilePhoneNumber
-                    ],
-                  ) ||
-                  !formData[formFields.viewPhoneNumbers][
-                    formFields.mobilePhoneNumber
-                  ]?.isInternational,
+                required: 'Please enter a discharge date',
               },
             },
           },
           schema: {
             type: 'object',
+            required: ['dischargeDate'],
             properties: {
-              'view:contactMethodIntro': {
+              'view:subHeadings': {
                 type: 'object',
                 properties: {},
               },
-              [formFields.contactMethod]: {
+              veteranSocialSecurityNumber: {
                 type: 'string',
-                enum: contactMethods,
+                pattern: '^[0-9]{9}$',
               },
-              [formFields.viewReceiveTextMessages]: {
-                type: 'object',
-                required: [formFields.receiveTextMessages],
-                properties: {
-                  [formFields.receiveTextMessages]: {
-                    type: 'string',
-                    enum: [
-                      'Yes, send me text message notifications',
-                      'No, just send me email notifications',
-                    ],
-                  },
-                },
+              dodIDNumber: {
+                type: 'string',
               },
-              'view:noMobilePhoneAlert': {
-                type: 'object',
-                properties: {},
-              },
-              'view:internationalTextMessageAlert': {
-                type: 'object',
-                properties: {},
-              },
+              dischargeDate: date,
             },
-            required: [formFields.contactMethod],
           },
+        },
+        servicePeriods: {
+          title: 'Service periods',
+          path: 'military-history/service-periods',
+          uiSchema: servicePeriods.uiSchema,
+          schema: servicePeriods.schema,
         },
       },
     },
@@ -619,20 +407,30 @@ const formConfig = {
                 </>
               ),
             },
-            [formFields.frameWood]: {
-              'ui:title': 'Choice of wood',
-              'ui:widget': 'radio',
-              'ui:options': {
-                labels: WOOD_CHOICES,
+            [formFields.frameWood]: radioUI({
+              title: 'Choice of wood',
+              labels: {
+                cypress: 'Cypress',
+                cedar: 'Cedar',
+                pine: 'Pine',
+                walnut: 'Walnut',
               },
-            },
-            [formFields.frameMount]: {
-              'ui:title': 'Frame display style',
-              'ui:widget': 'radio',
-              'ui:options': {
-                labels: MOUNT_CHOICES,
+              required: () => true,
+              errorMessages: {
+                required: 'Please select a type of wood',
               },
-            },
+            }),
+            [formFields.frameMount]: radioUI({
+              title: 'Choice of mount',
+              labels: {
+                wall: 'Wall mounted',
+                table: 'Table top',
+              },
+              required: () => true,
+              errorMessages: {
+                required: 'Please select a mounting style for your frame',
+              },
+            }),
           },
           schema: {
             type: 'object',
@@ -642,20 +440,19 @@ const formConfig = {
                 type: 'object',
                 properties: {},
               },
-              [formFields.frameWood]: {
-                type: 'string',
-                enum: WOOD_CHOICES,
-              },
-              [formFields.frameMount]: {
-                type: 'string',
-                enum: MOUNT_CHOICES,
-              },
+              [formFields.frameWood]: radioSchema(WOOD_CHOICES),
+              [formFields.frameMount]: radioSchema(MOUNT_CHOICES),
             },
           },
         },
+      },
+    },
+    shippingAddressChapter: {
+      title: 'Mailing Address',
+      pages: {
         mailingAddress: {
           title: 'Mailing address',
-          path: 'contact-information/mailing-address',
+          path: 'shipping-information/mailing-address',
           uiSchema: {
             'view:subHeadings': {
               'ui:description': (
