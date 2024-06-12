@@ -24,6 +24,24 @@ docker compose up spruce-api
 1. Browse to http://localhost:6543/address_api
 
 # API Endpoint usage
-## verify Address endpoint usage example
+## verifyAddress endpoint usage example
 1. http://localhost:6543/verifyAddress?AddressLine1=123%20Test%20Lane&City=Test&ZipCode=12345&State=CA&AddressLine2=%231259
-2. Any missing required parameters will return a `400` HTTP Response along with a list of missing required parameters.
+2. Any missing required parameters will return a `400` HTTP response along with a list of missing required parameters.
+
+### Forcing error responses
+The verifyAddress endpoint can be coerced to send back an error HTTP response status
+by sending any of the following text values into **_any_** of the params, required or not:
+```
+401-unauthorized
+403-forbidden
+404-not-found
+500-internal-server-error
+503-service-unavailable
+```
+
+#### Forcing error responses example usage:
+1. browse to http://localhost:6543/verifyAddress?SomeParam=401-unauthorized
+2. even the required fields will be checked for error messages 
+3. i.e. http://localhost:6543/verifyAddress?AddressLine1=401-unauthorized
+
+This is to mimic a service sending back errors for the client to handle.
