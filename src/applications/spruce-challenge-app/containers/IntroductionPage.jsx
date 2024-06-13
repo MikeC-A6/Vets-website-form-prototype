@@ -22,7 +22,7 @@ class IntroductionPage extends React.Component {
         <p className="vads-u-font-size--h3">Equal to VA Form 24-SPRUCE</p>
 
         <p>
-          New legislation allows Veterans to receive a complementary frame for
+          New legislation allows Veterans to receive a complimentary frame for
           their DD-217 Discharge Certificate.
         </p>
 
@@ -89,7 +89,7 @@ class IntroductionPage extends React.Component {
 
         {user?.login?.currentlyLoggedIn && (
           <h2 className="vads-u-font-size--h3 vads-u-margin-top--0">
-            Begin your request for a complementary discharge certificate frame.
+            Begin your request for a complimentary discharge certificate frame.
           </h2>
         )}
 

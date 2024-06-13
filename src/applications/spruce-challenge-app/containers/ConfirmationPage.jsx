@@ -8,8 +8,11 @@ import { Approved } from '../components/ConfirmationResponses';
 
 function createConfirmationPage(form) {
   const { data } = form;
-  let name = data.veteranFullName;
+  let name = data.userFullName;
 
+  if (typeof name.first !== 'undefined') {
+    return Approved(name);
+  }
   name = {
     first: 'John',
     middle: 'J',

@@ -55,12 +55,58 @@ function handleErrorCases(params) {
 
 const responses = {
   ...commonResponses,
-  'PUT /v0/in_progress_forms/24-SPRUCE': (req, res) => {
-    return res.json(req.body.formData);
+
+  // check for in progress
+  'OPTIONS /v0/in_progress_forms/24-SPRUCE': 'OK',
+  'GET /v0/in_progress_forms/24-SPRUCE': {
+    formData: {
+      // prefill data goes here
+    },
+    metadata: {
+      version: 0,
+      prefill: true,
+      returnUrl: '/applicant/name-information',
+    },
   },
-  'POST /check_in/v0/travel_claims/': (req, res) => {
-    return res.json({ data: req.body });
+
+  // submit form data
+  'PUT /v0/in_progress_forms/24-SPRUCE': {
+    data: {
+      id: '10661',
+      type: 'in_progress_forms',
+      attributes: {
+        formId: '24-SPRUCE',
+        createdAt: '2024-06-13T00:00:00.000Z',
+        updatedAt: '2024-06-13T00:00:00.000Z',
+        metadata: {
+          version: 1,
+          returnUrl: '/review-and-submit',
+          savedAt: 1593500000000,
+          lastUpdated: 1593500000000,
+          expiresAt: 99999999999,
+          submission: {
+            status: false,
+            errorMessage: false,
+            id: false,
+            timestamp: false,
+            hasAttemptedSubmit: false,
+          },
+          inProgressFormId: 1234,
+        },
+      },
+    },
   },
+
+  // successful form submission
+  'POST /v0/24-SPRUCE/submit': {
+    data: {
+      attributes: {
+        guid: '123fake-submission-id-567',
+      },
+    },
+  },
+
+  // mock address verification
   'GET /vetsapi/verifyAddress': (req, res) => {
     const params = req.query;
 

@@ -21,7 +21,7 @@ import PreSubmitInfo from '../components/PreSubmitInfo';
 const formConfig = {
   rootUrl: manifest.rootUrl,
   urlPrefix: '/',
-  submitUrl: '/v0/api-spruce', // mock this endpoint
+  submitUrl: 'http://localhost:3000/v0/24-SPRUCE/submit', // endpoint mocked in ../mocks/index.js
   trackingPrefix: 'spruce-challenge-app-',
 
   formId: '24-SPRUCE',
@@ -37,12 +37,23 @@ const formConfig = {
     notFound: 'Please start over to request your DD-217 frame.',
     noAuth: 'Please sign in again to continue your application.',
   },
+  saveInProgress: {
+    messages: {
+      inProgress:
+        'Your discharge certificate frame request (24-SPRUCE) is in progress.',
+      expired:
+        'Your saved discharge certificate frame request (24-SPRUCE) has expired. If you want to apply for a complimentary frame, please start a new application.',
+      saved: 'Your discharge certificate frame reques has been saved.',
+    },
+  },
 
   footerContent: FormFooter,
   getHelp: GetFormHelp,
 
   introduction: IntroductionPage,
   confirmation: ConfirmationPage,
+
+  v3SegmentedProgressBar: true,
 
   chapters: {
     applicantInformationChapter: {
