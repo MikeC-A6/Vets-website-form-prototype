@@ -305,7 +305,7 @@ export default {
         type: 'object',
         properties: {},
       },
-      'view:mailingAddress': {
+      [formFields.viewMailingAddress]: {
         type: 'object',
         properties: {
           [formFields.address]: {

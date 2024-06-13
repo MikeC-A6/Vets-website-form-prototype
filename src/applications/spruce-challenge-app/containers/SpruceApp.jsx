@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -9,52 +9,34 @@ import RoutedSavableApp from 'platform/forms/save-in-progress/RoutedSavableApp';
 import { setData } from 'platform/forms-system/src/js/actions';
 import { toggleValues } from 'platform/site-wide/feature-toggles/selectors';
 import formConfig from '../config/form';
-import { fetchVeterans } from '../actions';
-import { VETERANS_TYPE } from '../constants';
 
 function SpruceApp({
   children,
   formData,
-  getVeterans,
   location,
   setFormData,
   showUpdatedSpruceApp,
   user,
-  veterans,
 }) {
-  const [fetchedVeterans, setFetchedVeterans] = useState(false);
-
   useEffect(
     () => {
       if (!user.login.currentlyLoggedIn) {
         return;
       }
 
-      if (!fetchedVeterans) {
-        setFetchedVeterans(true);
-        getVeterans();
-      }
-
-      if (
-        formData.showUpdatedSpruceApp !== showUpdatedSpruceApp ||
-        formData.veterans !== veterans
-      ) {
+      if (formData.showUpdatedSpruceApp !== showUpdatedSpruceApp) {
         setFormData({
           ...formData,
           showUpdatedSpruceApp,
-          veterans,
         });
       }
     },
     [
-      fetchedVeterans,
       formData,
-      getVeterans,
       location.pathname,
       setFormData,
       showUpdatedSpruceApp,
       user.login.currentlyLoggedIn,
-      veterans,
     ],
   );
 
@@ -65,8 +47,8 @@ function SpruceApp({
         <a href="/supporting-forms-for-claims">
           Supporting forms for VA claims
         </a>
-        <a href="/fry-dea">
-          Apply for a complimentary frame for a discharge certificate
+        <a href="/supporting-forms-for-claims/frame-for-certificate-form-24-spruce">
+          Apply for a complimentary frame for a DD-217 discharge certificate
         </a>
       </va-breadcrumbs>
       <RoutedSavableApp formConfig={formConfig} currentLocation={location}>
@@ -79,11 +61,10 @@ function SpruceApp({
 SpruceApp.propTypes = {
   children: PropTypes.object,
   formData: PropTypes.object,
-  getVeterans: PropTypes.func,
   location: PropTypes.object,
   setFormData: PropTypes.func,
   showUpdatedSpruceApp: PropTypes.bool,
-  veterans: VETERANS_TYPE,
+  user: PropTypes.object,
 };
 
 const mapStateToProps = state => ({
@@ -92,12 +73,10 @@ const mapStateToProps = state => ({
     FEATURE_FLAG_NAMES.showUpdatedSpruceApp
   ],
   user: state?.user,
-  veterans: state.data?.veterans,
 });
 
 const mapDispatchToProps = {
   setFormData: setData,
-  getVeterans: fetchVeterans,
 };
 
 export default connect(

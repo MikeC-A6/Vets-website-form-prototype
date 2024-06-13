@@ -6,6 +6,7 @@ import {
   VaTextInputField,
   VaSelectField,
 } from 'platform/forms-system/src/js/web-component-fields';
+import { formFields } from '../../constants';
 
 const toursOfDuty = {
   type: 'array',
@@ -65,7 +66,7 @@ export default {
     'ui:options': {
       pageClass: 'service-period-view',
     },
-    toursOfDuty: {
+    [formFields.toursOfDuty]: {
       'ui:options': {
         itemName: 'Service period',
         viewField: ServicePeriodView,
@@ -110,7 +111,7 @@ export default {
   schema: {
     type: 'object',
     properties: {
-      toursOfDuty,
+      [formFields.toursOfDuty]: toursOfDuty,
     },
   },
 };

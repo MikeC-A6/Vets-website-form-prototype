@@ -6,6 +6,7 @@ import commonDefinitions from 'vets-json-schema/dist/definitions.json';
 import currentOrPastDateUI from 'platform/forms-system/src/js/definitions/currentOrPastDate';
 import ssnUI from 'platform/forms-system/src/js/definitions/ssn';
 
+import { formFields } from '../../constants';
 import GoToYourProfileLink from '../../components/GoToYourProfileLink';
 import { isAlphaNumeric } from '../../helpers';
 
@@ -31,16 +32,16 @@ export default {
         </>
       ),
     },
-    veteranSocialSecurityNumber: {
+    [formFields.veteranSocialSecurityNumber]: {
       ...ssnUI,
       'ui:title': 'Social Security number (must have this or a VA file number)',
       'ui:required': form => !form.vaFileNumber,
     },
-    dodIDNumber: {
+    [formFields.departmentOfDefenseID]: {
       'ui:title': 'Department of Defense ID number (DoD ID number)',
       'ui:validations': [isAlphaNumeric],
     },
-    dischargeDate: {
+    [formFields.dischargeDate]: {
       ...currentOrPastDateUI('Date of discharge'),
       'ui:errorMessages': {
         required: 'Please enter a discharge date',
@@ -55,14 +56,14 @@ export default {
         type: 'object',
         properties: {},
       },
-      veteranSocialSecurityNumber: {
+      [formFields.veteranSocialSecurityNumber]: {
         type: 'string',
         pattern: '^[0-9]{9}$',
       },
-      dodIDNumber: {
+      [formFields.departmentOfDefenseID]: {
         type: 'string',
       },
-      dischargeDate: commonDefinitions.date,
+      [formFields.dischargeDate]: commonDefinitions.date,
     },
   },
 };
