@@ -11,63 +11,54 @@
 }
 
 // Form content
-.fry-dea-veterans {
-  list-style-type: none;
-}
-
-.fry-dea-form-featured-content {
-	background-color: var(--vads-color-base-lightest);
-	padding: 24px;
-}
-
-.fry-dea-definition-list {
+.spruce-definition-list {
 	margin: 0;
 }
-.fry-dea-definition-list:after {
+.spruce-definition-list:after {
 	clear: both;
 	content: "";
 	display: table;
 }
-.fry-dea-definition-list_term,
-.fry-dea-definition-list_definition {
+.spruce-definition-list_term,
+.spruce-definition-list_definition {
 	float: left;
 }
-.fry-dea-definition-list_term {
+.spruce-definition-list_term {
 	clear: left;
 	font-weight: bold;
 	margin-top: 0;
 }
-legend.legend-label.fry-dea-veterans-checkboxes_legend + .form-radio-buttons {
+legend.legend-label.spruce-veterans-checkboxes_legend + .form-radio-buttons {
   margin-top: 0;
 }
-.fry-dea-content-break {
+.spruce-content-break {
   display: block;
   border: 0;
   border-top: 1px solid var(--vads-color-base-dark);
 }
-.fry-dea-benefits-list {
+.spruce-benefits-list {
   list-style-type: none;
 }
-.fry-dea-benefit-selection-icon {
+.spruce-benefit-selection-icon {
   min-width: 28px;
 }
 
 // Review Page
-.fry-dea-review-page-only {
+.spruce-review-page-only {
   display: none;
 }
-.form-review-panel-page .fry-dea-review-page-only {
+.form-review-panel-page .spruce-review-page-only {
   display: block;
 }
-.review-row .fry-dea-review-page_selected-sponsors {
+.review-row .spruce-review-page_selected-sponsors {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-.review .fry-dea-sponsors-labels_label--secondary {
+.review .spruce-sponsors-labels_label--secondary {
   display: none;
 }
-.review-row .fry-dea-review-view-hidden {
+.review-row .spruce-review-view-hidden {
 	display: none;
 }
 
@@ -89,24 +80,24 @@ $error-left-padding-width: 1.5rem;
 .usa-input-error #root_benefitSelection-label {
   padding-left: $error-left-padding-width;
 }
-.fry-dea-labels_label--main {
+.spruce-labels_label--main {
 	flex: 0 1 auto;
   margin-right: 0.35em;
 	order: 0;
 }
-.usa-input-error .fry-dea-labels_label--main,
+.usa-input-error .spruce-labels_label--main,
 .usa-input-error .schemaform-required-span {
   font-weight: bold;
 }
-.usa-input-error .fry-dea-labels_label--main,
-.review-row .fry-dea-labels_label--main {
+.usa-input-error .spruce-labels_label--main,
+.review-row .spruce-labels_label--main {
   padding-left: 0 !important; // Override VADS spacing units
 }
-.usa-input-error .fry-dea-input-message {
+.usa-input-error .spruce-input-message {
   margin-left: -$error-left-padding-width;
   padding-left: $error-left-padding-width !important; // Override VADS spacing units
 }
-.fry-dea-labels_label--secondary {
+.spruce-labels_label--secondary {
 	flex: 1 1 100%;
 	order: 2;
 }
@@ -130,7 +121,7 @@ $error-left-padding-width: 1.5rem;
 // END - Benefit Selection Page
 
 // Confirmation Page: Under Review
-.custom-fry-hr {
+.custom-spruce-hr {
   margin: 1rem 0;
   width: 62/16 + 0em;
 }

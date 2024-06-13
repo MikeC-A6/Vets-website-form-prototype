@@ -1,5 +1,5 @@
 import 'platform/polyfills';
-import './sass/fry-dea.scss';
+import './sass/spruce.scss';
 
 import startApp from 'platform/startup';
 

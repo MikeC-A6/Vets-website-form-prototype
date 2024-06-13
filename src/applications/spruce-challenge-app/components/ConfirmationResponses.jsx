@@ -33,13 +33,11 @@ const ConfirmationReceiptBox = ({ name }) => {
         <dd>{format(new Date(), 'MMMM d, yyyy')}</dd>
       </dl>
 
-      <button
+      <va-button
         type="button"
         onClick={() => window.print()}
-        className="usa-button vads-u-margin-bottom--0"
-      >
-        Print this page
-      </button>
+        text="Print this page"
+      />
       {/*  </> */}
       {/* ) : null} */}
     </div>
@@ -82,12 +80,12 @@ export function UnderReview(response, name) {
         >
           <div>
             <h2 className="vads-u-margin-y--0">In 1 month</h2>
-            <hr className="custom-fry-hr" />
+            <hr className="custom-spruce-hr" />
             If more than a month has passed since you gave us your application
             and you haven’t heard back, please don’t apply again. Call our
             toll-free Education Call Center at{' '}
-            <a href="tel:888-442-4551">1-888-442-4551</a> or{' '}
-            <a href="tel:001-918-781-5678">001-918-781-5678</a> if you are
+            <va-telephone contact="8884424551" /> or{' '}
+            <va-telephone contact="9187815678" international /> if you are
             outside the U.S.
           </div>
         </va-alert>
@@ -180,10 +178,7 @@ export function Approved(name) {
               rel="noopener noreferrer"
               target="_blank"
             >
-              <i
-                className="fa fa-download vads-u-margin-right--1"
-                aria-hidden="true"
-              />
+              <va-icon icon="file_download" size={4} />
               <span className="vads-u-margin-left--0p25 vads-u-font-weight--bold">
                 Download your decision letter (PDF)
               </span>
@@ -294,10 +289,7 @@ export function NotEligible(name) {
               rel="noopener noreferrer"
               target="_blank"
             >
-              <i
-                className="fa fa-download vads-u-margin-right--1"
-                aria-hidden="true"
-              />
+              <va-icon icon="file_download" size={4} />
               <span className="vads-u-margin-left--0p25 vads-u-font-weight--bold">
                 Download your decision letter (PDF)
               </span>

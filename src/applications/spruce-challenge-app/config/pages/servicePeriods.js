@@ -40,6 +40,9 @@ const toursOfDuty = {
       duty: {
         type: 'string',
       },
+      command: {
+        type: 'string',
+      },
     },
   },
 };
@@ -94,7 +97,12 @@ export default {
           'ui:required': () => true,
         },
         duty: {
-          'ui:title': 'Duty assignment and major command',
+          'ui:title': 'Duty assignment',
+          'ui:webComponentField': VaTextInputField,
+          'ui:required': () => true,
+        },
+        command: {
+          'ui:title': 'Major command',
           'ui:webComponentField': VaTextInputField,
           'ui:required': () => true,
         },

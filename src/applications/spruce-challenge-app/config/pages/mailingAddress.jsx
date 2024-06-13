@@ -241,10 +241,10 @@ export default {
     [formFields.viewMailingAddress]: {
       'ui:description': (
         <>
-          <h4 className="form-review-panel-page-header vads-u-font-size--h5 fry-dea-review-page-only">
+          <h4 className="form-review-panel-page-header vads-u-font-size--h5 spruce-review-page-only">
             Mailing address
           </h4>
-          <p className="fry-dea-review-page-only">
+          <p className="spruce-review-page-only">
             If you’d like to update your mailing address, please edit the form
             fields below.
           </p>
