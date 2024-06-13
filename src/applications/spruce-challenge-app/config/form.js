@@ -19,6 +19,10 @@ import formAddress, { ReviewAddress } from './pages/reviewAddress';
 import GetFormHelp from '../components/GetFormHelp';
 import PreSubmitInfo from '../components/PreSubmitInfo';
 
+// for a real form, this would likely come from vets-json-schema.
+// for the purposes of this challenge, ours is located at the root of our app
+import fullSchema from '../schema';
+
 const formConfig = {
   rootUrl: manifest.rootUrl,
   urlPrefix: '/',
@@ -48,13 +52,16 @@ const formConfig = {
     },
   },
 
+  introduction: IntroductionPage,
+  confirmation: ConfirmationPage,
   footerContent: FormFooter,
   getHelp: GetFormHelp,
 
-  introduction: IntroductionPage,
-  confirmation: ConfirmationPage,
-
   v3SegmentedProgressBar: true,
+
+  defaultDefinitions: {
+    ...fullSchema.definitions,
+  },
 
   chapters: {
     applicantInformationChapter: {

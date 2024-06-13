@@ -4,18 +4,14 @@ import commonDefinitions from 'vets-json-schema/dist/definitions.json';
 
 import fullNameUI from 'platform/forms-system/src/js/definitions/fullName';
 import currentOrPastDateUI from 'platform/forms-system/src/js/definitions/currentOrPastDate';
+import { isValidName } from 'platform/forms/validations';
+import { validateCurrentOrPastDate } from 'platform/forms-system/src/js/validation';
+import { isDateWithinTenYearsOfToday } from '../../validation';
 
 import { formFields } from '../../constants';
 import GoToYourProfileLink from '../../components/GoToYourProfileLink';
 
 const { date, fullName } = commonDefinitions;
-
-function isValidName(str) {
-  return str && /^[A-Za-z][A-Za-z ']*$/.test(str);
-}
-function isValidLastName(str) {
-  return str && /^[A-Za-z][A-Za-z '-]*$/.test(str);
-}
 
 export default {
   uiSchema: {
@@ -46,10 +42,11 @@ export default {
         'ui:title': 'Your first name',
         'ui:validations': [
           (errors, field) => {
+            if (field.length < 3) {
+              errors.addError('Please enter your first name');
+            }
             if (!isValidName(field)) {
-              if (field.length === 0) {
-                errors.addError('Please enter your first name');
-              } else if (field[0] === ' ' || field[0] === "'") {
+              if (field[0] === ' ' || field[0] === "'") {
                 errors.addError(
                   'First character must be a letter with no leading space.',
                 );
@@ -67,14 +64,11 @@ export default {
         'ui:title': 'Your last name',
         'ui:validations': [
           (errors, field) => {
-            if (!isValidLastName(field)) {
-              if (field.length === 0) {
-                errors.addError('Please enter your last name');
-              } else if (
-                field[0] === ' ' ||
-                field[0] === "'" ||
-                field[0] === '-'
-              ) {
+            if (field.length < 3) {
+              errors.addError('Please enter your last name');
+            }
+            if (!isValidName(field)) {
+              if (field[0] === ' ' || field[0] === "'" || field[0] === '-') {
                 errors.addError(
                   'First character must be a letter with no leading space.',
                 );
@@ -93,9 +87,7 @@ export default {
         'ui:validations': [
           (errors, field) => {
             if (!isValidName(field)) {
-              if (field.length === 0) {
-                errors.addError('Please enter your middle name');
-              } else if (field[0] === ' ' || field[0] === "'") {
+              if (field[0] === ' ' || field[0] === "'") {
                 errors.addError(
                   'First character must be a letter with no leading space.',
                 );
@@ -111,10 +103,15 @@ export default {
     },
     [formFields.dateOfBirth]: {
       ...currentOrPastDateUI('Your date of birth'),
+      // need to include the standard date validation in addition to our custom check
+      'ui:validations': [
+        validateCurrentOrPastDate,
+        isDateWithinTenYearsOfToday,
+      ],
     },
-    [formFields.dateOfDeath]: {
-      ...currentOrPastDateUI('Date of death'),
-    },
+    // [formFields.dateOfDeath]: {
+    //   ...currentOrPastDateUI('Date of death'),
+    // },
   },
   schema: {
     type: 'object',
@@ -139,7 +136,7 @@ export default {
         type: 'object',
         properties: {},
       },
-      [formFields.dateOfDeath]: date,
+      // [formFields.dateOfDeath]: date,
     },
   },
 };
