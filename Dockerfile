@@ -59,7 +59,7 @@ RUN chown -R vets-website:$(id -gn vets-website) /vagov-content
 RUN mkdir -p /application
 WORKDIR /application
 
-
+COPY . .
 RUN chown -R vets-website:$(id -gn vets-website) /application
 
 USER vets-website
