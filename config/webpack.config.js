@@ -253,7 +253,7 @@ module.exports = async (env = {}) => {
   const buildOptions = {
     api: '',
     buildtype,
-    host: LOCALHOST,
+    host: '0.0.0.0',
     port: 3001,
     scaffold: false,
     watch: false,

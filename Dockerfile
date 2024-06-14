@@ -8,7 +8,7 @@ RUN groupadd -g $userid vets-website \
   && useradd -u $userid -r -m -d /application -g vets-website vets-website
 
 ENV YARN_VERSION 1.19.1
-ENV NODE_ENV production
+ENV NODE_ENV development
 
 RUN apt-get update
 
@@ -44,10 +44,26 @@ ADD https://raw.githubusercontent.com/department-of-veterans-affairs/platform-va
 RUN openssl x509 -inform DER -in /usr/local/share/ca-certificates/VA-Internal-S2-RCA1-v1.cer -out /usr/local/share/ca-certificates/VA-Internal-S2-RCA1-v1.crt
 RUN update-ca-certificates
 
+
+#let's download some content-build
+RUN git clone https://github.com/department-of-veterans-affairs/vagov-content.git
+
+RUN git clone https://github.com/department-of-veterans-affairs/content-build.git
+
+RUN mv /app/content-build /content-build
+RUN mv /app/vagov-content /vagov-content
+RUN chown -R vets-website:$(id -gn vets-website) /content-build
+RUN chown -R vets-website:$(id -gn vets-website) /vagov-content
+
+
 RUN mkdir -p /application
 WORKDIR /application
 
+COPY . .
+RUN chown -R vets-website:$(id -gn vets-website) /application
+
 USER vets-website
 ENV NODE_EXTRA_CA_CERTS /etc/ssl/certs/ca-certificates.crt
+
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
