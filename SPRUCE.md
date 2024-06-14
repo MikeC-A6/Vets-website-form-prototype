@@ -12,10 +12,11 @@
 - [Git - Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 ## 3. Get the source code
-- Clone the agilesix copy of the VA.gov website provided by the VWO
-
+- Clone the agilesix copy of the VA.gov website provided by the VWO, and VA.gov git repos <strong>as sibling directories</strong>:
 ```sh
 git clone git@github.com:agilesix/vets-website.git
+git clone git@github.com:department-of-veterans-affairs/vagov-content.git
+git clone git@github.com:department-of-veterans-affairs/content-build.git
 ```
 
 ## 4. Build the container
