@@ -1,9 +1,13 @@
 version: '3'
 services:
   vets-website:
+    platform: linux/amd64
     image: vets-website:${IMAGE_TAG:-latest}
     build:
       context: .
+      additional_contexts:
+        - content-build-context=../content-build
+        - vagov-content-context=../vagov-content
     environment:
       WEB_HOST: 'vets-website'
       WEB_PORT: 3001

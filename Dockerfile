@@ -44,17 +44,12 @@ ADD https://raw.githubusercontent.com/department-of-veterans-affairs/platform-va
 RUN openssl x509 -inform DER -in /usr/local/share/ca-certificates/VA-Internal-S2-RCA1-v1.cer -out /usr/local/share/ca-certificates/VA-Internal-S2-RCA1-v1.crt
 RUN update-ca-certificates
 
+# Copy content directories and set permissions for building
+COPY --from=content-build-context . /content-build
+COPY --from=vagov-content-context . /vagov-content
 
-#let's download some content-build
-RUN git clone https://github.com/department-of-veterans-affairs/vagov-content.git
-
-RUN git clone https://github.com/department-of-veterans-affairs/content-build.git
-
-RUN mv /app/content-build /content-build
-RUN mv /app/vagov-content /vagov-content
 RUN chown -R vets-website:$(id -gn vets-website) /content-build
 RUN chown -R vets-website:$(id -gn vets-website) /vagov-content
-
 
 RUN mkdir -p /application
 WORKDIR /application
