@@ -12,8 +12,6 @@ export const formFields = {
 
   // contactInfo
   email: 'email',
-  confirmEmail: 'confirmEmail',
-  mobilePhoneNumber: 'mobilePhoneNumber',
   phoneNumber: 'phoneNumber',
   viewPhoneNumbers: 'view:phoneNumbers',
 

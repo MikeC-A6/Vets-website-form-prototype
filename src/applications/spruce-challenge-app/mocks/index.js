@@ -2,7 +2,6 @@
 const delay = require('mocker-api/lib/delay');
 // const dateFns = require('date-fns');
 const commonResponses = require('../../../platform/testing/local-dev-mock-api/common');
-// const checkInData = require('./mocks/v2/check-in-data/index');
 
 function requiredParams() {
   return ['AddressLine1', 'City', 'State', 'ZipCode'];

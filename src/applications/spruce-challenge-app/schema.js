@@ -1,4 +1,4 @@
-// In a real form this wouldn't be imported here. We'd pull the real schema
+// In a real form this wouldn't be imported here. We'd pull the real schema that has this included.
 import commonDefinitions from 'vets-json-schema/dist/definitions.json';
 
 const fullSchema = {

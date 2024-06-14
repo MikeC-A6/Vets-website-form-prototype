@@ -54,7 +54,7 @@ export const formatReadableDate = rawDate => {
     );
   }
 
-  if (!date) {
+  if (!date || Number.isNaN(date.getDate())) {
     return '';
   }
 
