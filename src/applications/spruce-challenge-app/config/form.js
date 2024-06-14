@@ -14,8 +14,9 @@ import veteranIdentifyingInfo from './pages/veteranIdentifyingInfo';
 import servicePeriods from './pages/servicePeriods';
 import framePreferences from './pages/framePreferences';
 import mailingAddress from './pages/mailingAddress';
-import formAddress, { ReviewAddress } from './pages/reviewAddress';
+import formAddress from './pages/reviewAddress';
 
+import { ReviewAddress } from '../components/ReviewAddress';
 import GetFormHelp from '../components/GetFormHelp';
 import PreSubmitInfo from '../components/PreSubmitInfo';
 
@@ -127,8 +128,8 @@ const formConfig = {
           path: 'shipping-information/review-address',
           uiSchema: {
             'ui:description': ReviewAddress,
-            receiveAtAddress: formAddress.uiSchema.receiveAtAddress,
             saveAddress: formAddress.uiSchema.saveAddress,
+            receiveAtAddress: formAddress.uiSchema.receiveAtAddress,
           },
           schema: formAddress.schema,
         },

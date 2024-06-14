@@ -10,6 +10,14 @@
   margin-bottom: 0 !important; // Override .process ul
 }
 
+.green-checkmark {
+  color: var(--vads-color-success-dark);
+}
+
+.warning-icon {
+  color: var(--vads-color-warning-dark);
+}
+
 // Form content
 .spruce-definition-list {
 	margin: 0;
