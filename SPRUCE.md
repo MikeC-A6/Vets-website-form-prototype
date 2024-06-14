@@ -30,7 +30,7 @@ docker compose build
 ```sh
 docker compose up
 ```
- note this will take a few minutes to build the application. The command line will indicate that the container is completly ready with the terminal output:
+ note this will take a few minutes to build the application. The command line will indicate that the container is completely ready with the terminal output:
 
 ```
 vets-website-1  | webpack compiled successfully in ___ ms
