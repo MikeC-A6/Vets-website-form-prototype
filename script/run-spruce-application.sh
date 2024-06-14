@@ -5,4 +5,4 @@ cp /application/script/spruce-application-registry.json /content-build/src/appli
 yarn install
 yarn build --entry=spruce-challenge-app
 yarn mock-api --responses src/applications/spruce-challenge-app/mocks/index.js &
-yarn --cwd $( git rev-parse --show-toplevel ) watch --env entry=spruce-challenge-app
+yarn watch --env entry=spruce-challenge-app
