@@ -32,8 +32,8 @@ const formConfig = {
 
   formId: '24-SPRUCE',
   version: 0,
-  title: 'Apply for your DD-217 discharge certificate frame',
-  subTitle: 'VA Form 24-SPRUCE (Order a DD-217 discharge certificate frame)',
+  title: 'Apply for a frame to display your DD-217 certificate',
+  subTitle: 'Free frame application (VA Form 24-SPRUCE)',
 
   prefillEnabled: true,
   prefillTransformer,
@@ -71,12 +71,12 @@ const formConfig = {
 
   chapters: {
     applicantInformationChapter: {
-      title: 'Biographical information',
+      title: 'Personal information',
       pages: {
         applicantInformation: {
-          title: 'Biographical information',
+          title: 'Personal information',
           path: 'applicant/name-information',
-          subTitle: 'Biographical information',
+          subTitle: 'Personal information',
           instructions:
             'This is the personal information we have on file for you.',
           uiSchema: applicantInfo.uiSchema,

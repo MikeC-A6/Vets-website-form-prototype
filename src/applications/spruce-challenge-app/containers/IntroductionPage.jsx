@@ -8,6 +8,8 @@ import FormTitle from 'platform/forms-system/src/js/components/FormTitle';
 import SaveInProgressIntro from 'platform/forms/save-in-progress/SaveInProgressIntro';
 // import { toggleValues } from 'platform/site-wide/feature-toggles/selectors';
 
+import IntroSignInAlert from '../components/IntroSignInAlert';
+
 class IntroductionPage extends React.Component {
   componentDidMount() {
     focusElement('.va-nav-breadcrumbs-list');
@@ -18,98 +20,54 @@ class IntroductionPage extends React.Component {
 
     return (
       <div className="schemaform-intro">
-        <FormTitle title="Apply for your DD-217 Discharge Certificate Frame" />
-        <p className="vads-u-font-size--h3">Equal to VA Form 24-SPRUCE</p>
-
+        <FormTitle title="Apply for a frame to display your DD-217 certificate" />
+        <p className="vads-u-font-size--h3">
+          Free frame application (VA Form 24-SPRUCE)
+        </p>
         <p>
-          New legislation allows Veterans to receive a complimentary frame for
-          their DD-217 Discharge Certificate.
+          Complete this form if you want a free frame to display your
+          certificate of honorable service (DD-217). If you’re found eligible,
+          we’ll ship the free frame of your choice directly to you.
         </p>
 
         <h2 className="vads-u-font-size--h3">
-          Follow these steps to get started
+          What to know before you start this form
         </h2>
+        <p>
+          To complete the form, you’ll need access to your military service
+          information including:
+        </p>
 
-        <va-process-list uswds="false">
-          <li>
-            <h3 className="vads-u-font-size--h4">Check your eligibility</h3>
-            <p>
-              Make sure you meet our eligibility requirements before you apply.
-            </p>
-            <va-additional-info
-              class="vads-u-margin-bottom--2"
-              trigger="What are the 24-SPRUCE eligibility requirements?"
-            >
-              <p>
-                <strong>
-                  You are a veteran with honorable discharge status.
-                </strong>
-              </p>
-              <p>or</p>
-              <p>
-                You are related to a deceased veteran with honorable discharge
-                status.
-              </p>
-            </va-additional-info>
-          </li>
-          <li>
-            <h3 className="vads-u-font-size--h4">Gather your information</h3>
-            <p>
-              <strong>Here’s what you’ll need to apply</strong>:
-            </p>
-            <ul className="vads-u-margin-bottom--0">
-              <li>
-                Knowledge of your chosen Veteran of service member's military
-                service history
-              </li>
-              <li>Your contact information and shipping address</li>
-              <li>Your SSN or DoD ID number</li>
-              <li>Your Discharge Papers and Separation Documents (DD-214) .</li>
-            </ul>
-          </li>
-          <li>
-            <h3 className="vads-u-font-size--h4">Start your application</h3>
-            <p>
-              We’ll take you through each step of the process. It should take
-              about 15 minutes.
-            </p>
-
-            <va-additional-info trigger="What happens after I apply?">
-              <p>
-                After you apply, a frame will be mailed to the provided shipping
-                address within 14-21 days.
-              </p>
-              <p className="vads-u-margin-bottom--0">
-                <strong>Note</strong>: If a valid shipping address is not
-                provided, the frame may be shipped and held at local USPS office
-                for the provided zip code.
-              </p>
-            </va-additional-info>
-          </li>
-        </va-process-list>
-
-        {user?.login?.currentlyLoggedIn && (
-          <h2 className="vads-u-font-size--h3 vads-u-margin-top--0">
-            Begin your request for a complimentary discharge certificate frame.
-          </h2>
-        )}
-
+        <ul>
+          <li>Date of discharge</li>
+          <li>Dates of service</li>
+          <li>Duty assignment</li>
+          <li>Major command</li>
+        </ul>
+        <p>
+          Your DD-214 is sufficient to fulfill submission requirements for this
+          form.{' '}
+          <a href="https://www.va.gov/records/get-military-service-records/">
+            If your DD-214 is lost or damaged, learn how to order a new copy of
+            your DD-214.
+          </a>
+        </p>
         <SaveInProgressIntro
           prefillEnabled={route.formConfig.prefillEnabled}
           messages={route.formConfig.savedFormMessages}
           pageList={route.pageList}
-          startText="Start your application"
+          verifiedPrefillAlert={IntroSignInAlert()}
+          startText="Start the application for a free frame"
         />
-
         <div
           className={`omb-info--container vads-u-padding--0 vads-u-margin-top--${
             user?.login?.currentlyLoggedIn ? '4' : '2p5'
           } vads-u-margin-bottom--2`}
         >
           <va-omb-info
-            res-burden={15}
-            omb-number="24-SPRUCE"
-            exp-date="06/17/2024"
+            res-burden={10}
+            omb-number="12-3456"
+            exp-date="12/34/56"
           />
         </div>
       </div>

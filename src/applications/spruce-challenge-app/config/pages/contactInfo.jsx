@@ -8,7 +8,6 @@ import {
   emailUI,
   emailSchema,
 } from 'platform/forms-system/src/js/web-component-patterns/emailPattern';
-import GoToYourProfileLink from '../../components/GoToYourProfileLink';
 
 import { formFields } from '../../constants';
 
@@ -17,21 +16,14 @@ export default {
     'view:subHeadings': {
       'ui:description': (
         <>
-          <h3>Review your phone numbers and email address</h3>
+          <h3>Your contact information</h3>
           <div className="meb-list-label">
             <strong>We’ll use this information to:</strong>
           </div>
           <ul>
             <li>Contact you if we have questions about your application</li>
+            <li>Notify you when your frame has shipped</li>
           </ul>
-          <p>
-            <strong>Note:</strong> If you want to update your contact
-            information for other VA benefits, you can do that from your
-            profile.
-          </p>
-          <p>
-            <GoToYourProfileLink />
-          </p>
         </>
       ),
     },

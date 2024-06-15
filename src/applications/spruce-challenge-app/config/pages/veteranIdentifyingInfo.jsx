@@ -6,7 +6,6 @@ import ssnUI from 'platform/forms-system/src/js/definitions/ssn';
 // In a real form this wouldn't be imported here. We'd pull the real schema
 import fullSchema from '../../schema';
 import { formFields } from '../../constants';
-import GoToYourProfileLink from '../../components/GoToYourProfileLink';
 import { isAlphaNumeric } from '../../validation';
 
 export default {
@@ -14,30 +13,17 @@ export default {
     'view:subHeadings': {
       'ui:description': (
         <>
-          <h3>Review your personal information</h3>
-          <p>
-            This is the personal information we have on file for you. If you
-            notice any errors, please correct them now. Any updates you make
-            will change the information for your education benefits only.
-          </p>
-          <p>
-            <strong>Note:</strong> If you want to update your personal
-            information for other VA benefits, you can do that from your
-            profile.
-          </p>
-          <p className="vads-u-margin-bottom--3">
-            <GoToYourProfileLink />
-          </p>
+          <h3>Your identity information</h3>
         </>
       ),
     },
     [formFields.veteranSocialSecurityNumber]: {
       ...ssnUI,
-      'ui:title': 'Social Security number (must have this or a VA file number)',
+      'ui:title': 'Social Security number',
       'ui:required': form => !form.vaFileNumber,
     },
     [formFields.departmentOfDefenseID]: {
-      'ui:title': 'Department of Defense ID number (DoD ID number)',
+      'ui:title': 'Department of Defense ID number',
       'ui:validations': [isAlphaNumeric],
     },
     [formFields.dischargeDate]: {

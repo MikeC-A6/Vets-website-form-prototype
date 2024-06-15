@@ -48,7 +48,7 @@ function SpruceApp({
           Supporting forms for VA claims
         </a>
         <a href="/supporting-forms-for-claims/frame-for-certificate-form-24-spruce">
-          Apply for a complimentary frame for a DD-217 discharge certificate
+          Apply for a frame to display your DD-217 certificate
         </a>
       </va-breadcrumbs>
       <RoutedSavableApp formConfig={formConfig} currentLocation={location}>
