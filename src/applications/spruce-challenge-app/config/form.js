@@ -111,7 +111,7 @@ const formConfig = {
       title: 'Frame Type',
       pages: {
         frameOptions: {
-          title: 'DD-217 Discharge Certificate Complementary Frame Options',
+          title: 'Frame Type',
           path: 'frame-options',
           subTitle: 'Type of wood and display style',
           uiSchema: framePreferences.uiSchema,
