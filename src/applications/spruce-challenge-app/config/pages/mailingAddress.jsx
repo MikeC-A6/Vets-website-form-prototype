@@ -3,7 +3,7 @@ import * as address from 'platform/forms/definitions/address';
 import GoToYourProfileLink from '../../components/GoToYourProfileLink';
 import MailingAddressViewField from '../../components/MailingAddressViewField';
 import { formFields } from '../../constants';
-import { isOnlyWhitespace } from '../../helpers';
+import { isOnlyWhitespace } from '../../validation';
 
 const addressSchema = {
   $schema: 'http://json-schema.org/draft-04/schema#',

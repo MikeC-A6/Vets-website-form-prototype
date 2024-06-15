@@ -1,6 +1,4 @@
 import React from 'react';
-// In a real form this wouldn't be imported here. We'd pull the real schema
-import commonDefinitions from 'vets-json-schema/dist/definitions.json';
 
 import fullNameUI from 'platform/forms-system/src/js/definitions/fullName';
 import currentOrPastDateUI from 'platform/forms-system/src/js/definitions/currentOrPastDate';
@@ -11,7 +9,10 @@ import { isDateWithinTenYearsOfToday } from '../../validation';
 import { formFields } from '../../constants';
 import GoToYourProfileLink from '../../components/GoToYourProfileLink';
 
-const { date, fullName } = commonDefinitions;
+// In a real form this wouldn't be imported here. We'd pull the real schema
+import fullSchema from '../../schema';
+
+const { date, fullName } = fullSchema.definitions;
 
 export default {
   uiSchema: {

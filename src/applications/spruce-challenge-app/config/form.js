@@ -1,8 +1,7 @@
 import FormFooter from 'platform/forms/components/FormFooter';
+import preSubmitInfo from 'platform/forms/preSubmitInfo';
 
-import manifest from '../manifest.json';
-
-import { prefillTransformer } from '../helpers';
+import prefillTransformer from './prefill-transformer';
 
 import IntroductionPage from '../containers/IntroductionPage';
 import ConfirmationPage from '../containers/ConfirmationPage';
@@ -18,11 +17,12 @@ import formAddress from './pages/reviewAddress';
 
 import { ReviewAddress } from '../components/ReviewAddress';
 import GetFormHelp from '../components/GetFormHelp';
-import PreSubmitInfo from '../components/PreSubmitInfo';
 
 // for a real form, this would likely come from vets-json-schema.
 // for the purposes of this challenge, ours is located at the root of our app
 import fullSchema from '../schema';
+
+import manifest from '../manifest.json';
 
 const formConfig = {
   rootUrl: manifest.rootUrl,
@@ -37,7 +37,11 @@ const formConfig = {
 
   prefillEnabled: true,
   prefillTransformer,
-  preSubmitInfo: PreSubmitInfo,
+  preSubmitInfo,
+
+  downtime: {
+    requiredForPrefill: true,
+  },
 
   savedFormMessages: {
     notFound: 'Please start over to request your DD-217 frame.',
@@ -58,6 +62,7 @@ const formConfig = {
   footerContent: FormFooter,
   getHelp: GetFormHelp,
 
+  // Fix double headers (only show v3)
   v3SegmentedProgressBar: true,
 
   defaultDefinitions: {

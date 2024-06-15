@@ -1,14 +1,13 @@
 import React from 'react';
 
-// In a real form this wouldn't be imported here. We'd pull the real schema
-import commonDefinitions from 'vets-json-schema/dist/definitions.json';
-
 import currentOrPastDateUI from 'platform/forms-system/src/js/definitions/currentOrPastDate';
 import ssnUI from 'platform/forms-system/src/js/definitions/ssn';
 
+// In a real form this wouldn't be imported here. We'd pull the real schema
+import fullSchema from '../../schema';
 import { formFields } from '../../constants';
 import GoToYourProfileLink from '../../components/GoToYourProfileLink';
-import { isAlphaNumeric } from '../../helpers';
+import { isAlphaNumeric } from '../../validation';
 
 export default {
   uiSchema: {
@@ -63,7 +62,7 @@ export default {
       [formFields.departmentOfDefenseID]: {
         type: 'string',
       },
-      [formFields.dischargeDate]: commonDefinitions.date,
+      [formFields.dischargeDate]: fullSchema.definitions.date,
     },
   },
 };

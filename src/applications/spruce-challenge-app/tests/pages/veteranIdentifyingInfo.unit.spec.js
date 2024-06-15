@@ -88,4 +88,25 @@ describe('Applicant Info', () => {
     expect(onSubmit.called).to.be.false;
     form.unmount();
   });
+
+  it('discharge date should not be in the future', () => {
+    const onSubmit = sinon.spy();
+    const form = mount(
+      <DefinitionTester
+        definitions={formConfig.defaultDefinitions}
+        schema={schema}
+        uiSchema={uiSchema}
+        onSubmit={onSubmit}
+        data={{
+          [formFields.veteranSocialSecurityNumber]: '411411414',
+          [formFields.departmentOfDefenseID]: '',
+          [formFields.dischargeDate]: '2050-01-25',
+        }}
+      />,
+    );
+    form.find('form').simulate('submit');
+    expect(form.find('.usa-input-error-message').length).to.equal(1);
+    expect(onSubmit.called).to.be.false;
+    form.unmount();
+  });
 });

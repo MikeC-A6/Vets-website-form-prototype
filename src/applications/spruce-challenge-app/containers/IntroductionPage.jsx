@@ -64,6 +64,7 @@ class IntroductionPage extends React.Component {
               </li>
               <li>Your contact information and shipping address</li>
               <li>Your SSN or DoD ID number</li>
+              <li>Your Discharge Papers and Separation Documents (DD-214) .</li>
             </ul>
           </li>
           <li>
