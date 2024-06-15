@@ -3,7 +3,6 @@ import * as address from 'platform/forms/definitions/address';
 import GoToYourProfileLink from '../../components/GoToYourProfileLink';
 import MailingAddressViewField from '../../components/MailingAddressViewField';
 import { formFields } from '../../constants';
-import { isOnlyWhitespace } from '../../validation';
 
 const addressSchema = {
   $schema: 'http://json-schema.org/draft-04/schema#',
@@ -257,26 +256,12 @@ export default {
           'ui:errorMessages': {
             required: 'Please enter your full street address',
           },
-          'ui:validations': [
-            (errors, field) => {
-              if (isOnlyWhitespace(field)) {
-                errors.addError('Please enter your full street address');
-              }
-            },
-          ],
         },
         city: {
           'ui:title': 'City',
           'ui:errorMessages': {
             required: 'Please enter a valid city',
           },
-          'ui:validations': [
-            (errors, field) => {
-              if (isOnlyWhitespace(field)) {
-                errors.addError('Please enter a valid city');
-              }
-            },
-          ],
         },
         state: {
           'ui:title': 'State/Province/Region',
@@ -300,7 +285,6 @@ export default {
   },
   schema: {
     type: 'object',
-    required: [formFields.address],
     properties: {
       'view:subHeadings': {
         type: 'object',

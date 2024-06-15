@@ -16,7 +16,6 @@ const formConfig = {
         yes: 'Yes, I can',
         no: 'No, I cannot',
       },
-      required: () => true,
       errorMessages: {
         required:
           'Please select whether you can receive a package at this address',

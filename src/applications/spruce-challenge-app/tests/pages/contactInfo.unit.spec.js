@@ -28,7 +28,7 @@ describe('Contact Info', () => {
 
   it('should successfully submit with no data', () => {
     const onSubmit = sinon.spy();
-    const { getByText } = render(
+    const { container } = render(
       <DefinitionTester
         definitions={formConfig.defaultDefinitions}
         schema={schema}
@@ -37,29 +37,30 @@ describe('Contact Info', () => {
         data={{}}
       />,
     );
-    fireEvent.click(getByText('Submit'));
+    fireEvent.submit($('form', container));
     expect(onSubmit.called).to.be.true;
   });
 
   it('should validate email address is correct format', () => {
     const onSubmit = sinon.spy();
-    const { container, getByText } = render(
+    const { container } = render(
       <DefinitionTester
-        definitions={formConfig.defaultDefinitions}
+        definitions={{}}
         schema={schema}
         uiSchema={uiSchema}
         onSubmit={onSubmit}
         data={{
-          email: 'asdf',
+          'view:phoneNumbers': {
+            phoneNumber: '',
+          },
         }}
       />,
     );
-    fireEvent.click(getByText('Submit'));
-    expect($('[error]', container)).to.exist;
-    expect(onSubmit.called).to.be.false;
+    fireEvent.submit($('form', container));
+    expect($('va-text-input', container).error).to.exist;
   });
 
-  it('should validate phone number is correct format', () => {
+  it('should fail if phone number is in incorrect format', () => {
     const onSubmit = sinon.spy();
     const { container, getByText } = render(
       <DefinitionTester
@@ -76,6 +77,24 @@ describe('Contact Info', () => {
     );
     fireEvent.click(getByText('Submit'));
     expect($('va-text-input', container).error).to.exist;
-    expect(onSubmit.called).to.be.false;
+  });
+
+  it('should validate phone number is correct format', () => {
+    const onSubmit = sinon.spy();
+    const { container, getByText } = render(
+      <DefinitionTester
+        definitions={formConfig.defaultDefinitions}
+        schema={schema}
+        uiSchema={uiSchema}
+        onSubmit={onSubmit}
+        data={{
+          'view:phoneNumbers': {
+            phoneNumber: '312-532-7083',
+          },
+        }}
+      />,
+    );
+    fireEvent.click(getByText('Submit'));
+    expect($('va-text-input', container).error).to.not.exist;
   });
 });

@@ -18,10 +18,10 @@ describe('<IntroductionPage/>', () => {
       </Provider>,
     );
     expect($('h1', container).textContent).to.eq(
-      'Apply for your DD-217 Discharge Certificate Frame',
+      'Apply for a frame to display your DD-217 certificate',
     );
     expect($$('h2', container)[0].textContent).to.eq(
-      'Follow these steps to get started',
+      'What to know before you start this form',
     );
   });
 
