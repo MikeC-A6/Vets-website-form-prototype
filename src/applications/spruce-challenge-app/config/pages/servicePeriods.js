@@ -89,7 +89,6 @@ export default {
             'Service end date',
             'End of service must be after start of service',
           ),
-          'ui:required': () => true,
         },
         serviceBranch: {
           'ui:title': 'Branch of service',

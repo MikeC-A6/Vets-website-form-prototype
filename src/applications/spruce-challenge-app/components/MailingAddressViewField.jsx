@@ -11,11 +11,15 @@ export default function MailingAddressViewField({ formData }) {
   } = formData.address;
   return (
     <>
-      {country}
+      <span>{country}</span>
       <br />
-      {street} {street2 && `${street2}`}
+      <span>
+        {street} {street2 && `${street2}`}
+      </span>
       <br />
-      {city}, {state} {postalCode}
+      <span>
+        {city}, {state} {postalCode}
+      </span>
     </>
   );
 }

@@ -16,7 +16,7 @@ const mapAddress = address => {
 };
 
 // Mock async request
-const verifyAddress = async address => {
+export const verifyAddress = async address => {
   const params = new URLSearchParams(address).toString();
   const res = await fetch(
     `http://localhost:3000/vetsapi/verifyAddress?${params}`,

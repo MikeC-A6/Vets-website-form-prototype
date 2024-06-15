@@ -300,6 +300,7 @@ export default {
   },
   schema: {
     type: 'object',
+    required: [formFields.address],
     properties: {
       'view:subHeadings': {
         type: 'object',
