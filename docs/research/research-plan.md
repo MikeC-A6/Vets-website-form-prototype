@@ -31,7 +31,9 @@ This research will be conducted as a moderated study using Zoom. After some init
 
 ### Research materials 
 
-Conversation guide 
+- [Conversation guide round 1](https://github.com/agilesix/vets-website/blob/main/docs/research/conversation-guide-round-1.md)
+- [Conversation guide round 2](https://github.com/agilesix/vets-website/blob/main/docs/research/conversation-guide-round-2.md)
+- [Figma prototype](https://www.figma.com/proto/YPy7EusTFLgZOWCs0VKjJB/DD-217-discharge-certificate-frame?page-id=6%3A66&node-id=18-2599&viewport=604%2C343%2C0.2&t=UrxBCkXkJqXMvAp9-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=18%3A2599&show-proto-sidebar=1)
 
 ## Timeline 
 
