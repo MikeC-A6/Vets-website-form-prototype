@@ -1,0 +1,34 @@
+{
+  "data": {
+    "userFullName": {
+      "first": "Mark",
+      "last": "Tux"
+    },
+    "dateOfBirth": "1950-10-04",
+    "veteranSocialSecurityNumber": "564987123",
+    "dischargeDate": "1982-06-06",
+    "primaryPhone": "4445551212",
+    "emailAddress": "test2@test1.net",
+    "address": {
+      "city": "SAN DIEGO",
+      "state": "CA",
+      "zipCode": "09028",
+      "street": "123 MAIN ST",
+      "street2": "BEN FRANKLIN VILLAGE"
+    },
+    "toursOfDuty": [
+      {
+        "serviceBranch": "Air Force",
+        "dateRange": {
+          "from": "2001-03-21",
+          "to": "2014-07-21"
+        },
+        "duty": "Air Battle Manager",
+        "command": "Major"
+      }
+    ],
+    "frameWood": "Cypress",
+    "frameMount": "Table top",
+    "receiveAtAddress": "yes"
+  }
+}
