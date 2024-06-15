@@ -108,7 +108,7 @@ const formConfig = {
       },
     },
     frameSelectionChapter: {
-      title: 'Complementary Frame',
+      title: 'Frame Type',
       pages: {
         frameOptions: {
           title: 'DD-217 Discharge Certificate Complementary Frame Options',
