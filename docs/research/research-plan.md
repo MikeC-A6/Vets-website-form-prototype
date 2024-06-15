@@ -27,7 +27,7 @@ Ease of use: Do Veterans have any concerns about the data required to complete t
 
 ## Methodology
 
-This research will be conducted as a moderated study using Zoom. After some initial questions around service history and use of VA.gov, we will have participants navigate through the application (remotely from one of the challenge participants' machines). The moderator will then ask follow-on questions related to overall ease of use and opportunities for improvement. 
+This research will be conducted as a moderated study using Zoom. After some initial questions around service history and use of VA.gov, we will have participants navigate through a Figma prototype or the application (remotely from one of the challenge participants' machines). The moderator will then ask follow-on questions related to overall ease of use and opportunities for improvement. 
 
 ### Research materials 
 
@@ -37,21 +37,21 @@ Conversation guide
 
 ### Round 1
 
-Initial application release. 
+[Figma prototype](https://www.figma.com/proto/YPy7EusTFLgZOWCs0VKjJB/DD-217-discharge-certificate-frame?page-id=6%3A66&node-id=18-2599&viewport=604%2C343%2C0.2&t=UrxBCkXkJqXMvAp9-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=18%3A2599&show-proto-sidebar=1). 
 
 - Participant 1: 3:00-3:30 pm ET, Wednesday, 12, 2024, Veteran, female, sighted, mobile device
 - Participant 2: 5:00-5:30 pm ET, Wednesday, 12, 2024, Veteran, male, sighted, mobile device 
 
 ### Round 2
 
-Latest application release. 
+Initial application release. 
 
 - Participant 1: 6:00-6:45 pm ET, Thursday, 13, 2024, Veteran, male, sighted, desktop device
 - Participant 2: 5:00-5:45 pm ET, Friday, 14, 2024, Veteran, male, sighted, desktop device, multiple service terms
 
 ### Round 3
 
-Final application release. 
+Latest application release. 
 
 - Participant 1: Veteran, male, assistive technology user, cognitive disability, mobile device 
 
