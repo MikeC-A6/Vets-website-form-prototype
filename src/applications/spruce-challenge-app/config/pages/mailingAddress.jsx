@@ -1,6 +1,5 @@
 import React from 'react';
 import * as address from 'platform/forms/definitions/address';
-import GoToYourProfileLink from '../../components/GoToYourProfileLink';
 import MailingAddressViewField from '../../components/MailingAddressViewField';
 import { formFields } from '../../constants';
 
@@ -216,24 +215,8 @@ export default {
     'view:subHeadings': {
       'ui:description': (
         <>
-          <h3>Review your mailing address</h3>
-          <p>
-            We’ll send any important information about your application to this
-            address.
-          </p>
-          <p>
-            This is the mailing address we have on file for you. If you notice
-            any errors, please correct them now. Any updates you make will
-            change the information for your education benefits only.
-          </p>
-          <p>
-            <strong>Note:</strong> If you want to update your personal
-            information for other VA benefits, you can do that from your
-            profile.
-          </p>
-          <p className="vads-u-margin-bottom--4">
-            <GoToYourProfileLink />
-          </p>
+          <h3>Tell us where to ship your frame</h3>
+          <p>We'll send your frame of choice to this address.</p>
         </>
       ),
     },
