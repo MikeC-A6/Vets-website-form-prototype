@@ -28,7 +28,7 @@ The purpose of this research is to get feedback from Veterans on the Discharge C
 
 ## Recommendations
 
-- Keep the progress bar - segmented component as is, with chapters and steps, knowing that Veterans thought the form flow was simple and easy after any initial confusion about what step of the form they were on. Having each page of the form represent a segment could have a negative impact on Veterans with cognitive disabilities.
+- Keep the progress bar - segmented component as is, with chapters and steps, knowing that Veterans thought the form flow was simple and easy after any initial confusion about what step of the form they were on. Having each page of the form represent a segment could have a negative impact on Veterans with cognitive disabilities, especially when using mobile devices. 
 - Make it very clear to Veterans using hint text, citing specific examples, what "save to VA Profile" means. If needed, remind them multiple times.
 - Make sure that the combination of the form title and form name includes both plain language and reference to DD-217. E.g., following [VA Forms Introduction guidance](https://design.va.gov/templates/forms/introduction#title).
 - If time permits, utilize known VA patterns to help Veterans with confirming their mailing address. E.g., using the [VA address confirmation pattern](https://design.va.gov/patterns/ask-users-for/addresses#address-confirmation). 
