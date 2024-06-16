@@ -101,11 +101,11 @@ export const AddressVerification = ({ formData }) => {
             </>
           )}
           {USPSaddress?.Country && (
-          <>
-            <span>{USPSaddress.Country}</span>
-            <br />
-          </>
-        )}
+            <>
+              <span>{USPSaddress.Country}</span>
+              <br />
+            </>
+          )}
         </va-alert>
       )}
 

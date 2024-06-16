@@ -5,7 +5,9 @@ import { Provider } from 'react-redux';
 
 import { $, $$ } from 'platform/forms-system/src/js/utilities/ui';
 
-import IntroductionPage from '../../containers/IntroductionPage';
+import IntroductionPage, {
+  mapStateToProps,
+} from '../../containers/IntroductionPage';
 
 import { getData } from '../fixtures/data/mock-form-data';
 
@@ -33,5 +35,11 @@ describe('<IntroductionPage/>', () => {
       </Provider>,
     );
     expect($$('va-omb-info', container).length).to.equal(1);
+  });
+
+  it('when using mapStateToProps and not have a state.user, should set user to {}', () => {
+    const state = {};
+    const props = mapStateToProps(state);
+    expect(props.user).to.deep.equal({});
   });
 });

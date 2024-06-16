@@ -75,7 +75,7 @@ class IntroductionPage extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   // showUpdatedSpruceApp: toggleValues(state)[
   //   FEATURE_FLAG_NAMES.showUpdatedSpruceApp
   // ],

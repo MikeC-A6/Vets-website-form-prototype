@@ -30,6 +30,8 @@ const ConfirmationReceiptBox = ({ name }) => {
 
       <va-button
         type="button"
+        id="print-button"
+        data-testid="print-button"
         onClick={() => window.print()}
         text="Print this page"
       />
