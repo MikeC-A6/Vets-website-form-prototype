@@ -21,7 +21,7 @@ The purpose of this research is to get feedback from Veterans on the Discharge C
 - Overall, form flow was simple, very easy to complete, and would be even easier when Veteran's information is prefilled
 - Veterans liked the visual cues of the progress bar - segmented component, but had initial confusion when multiple pages represented one segment
 - Provide specific examples on what impact "save to VA Profile" would have on Veterans. E.g., receiving information about benefits, prescriptions, payments, etc.
-- Some Veterans were familiar with their DD-217 and preferred to have it referenced in the form flow, while others preferred more plain language, such as "honorable discharge certificate." E.g., having their DD-217 or DD-217 documents would make filling out the form easier.
+- Some Veterans were familiar with their DD-217 and preferred to have it referenced in the form flow, while others preferred more plain language, such as "honorable discharge certificate." E.g., having their DD-217 or DD-214 documents would make filling out the form easier.
 - Veterans were confused on the term "verified" when paired with their mailing address. E.g., who has done the verification?
 - Veterans did not know what information the service history fields were looking for. E.g., what is duty assignment and major command referring to?
 - Veterans weren't immediately clear if they'd be receiving the same frame selection for each service period that was added.
