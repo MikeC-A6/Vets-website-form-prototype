@@ -5,7 +5,8 @@
 - [Research plan](#research-plan)
 - [VA Form 24-SPRUCE personas](#va-form-24-spruce-personas)
 - [Conversation guides](#conversation-guides)
-- [Synthesis & findings](#synthesis--findings)
+- [Research synthesis](#research-synthesis)
+- [Research findings](#research-findings)
   
 ## Research plan 
 
@@ -24,11 +25,14 @@ Sample:
 - [Conversation Guide - Discharge Certificate Frame Form Usability Study - Round 1](https://github.com/agilesix/vets-website/blob/main/docs/research/conversation-guide-round-1.md)
 - [Conversation Guide - Discharge Certificate Frame Form Usability Study - Round 2](https://github.com/agilesix/vets-website/blob/main/docs/research/conversation-guide-round-2.md)
 
-## Synthesis & findings 
+## Research synthesis 
 
 - [Research Synthesis & Findings Round 1 - Discharge Certificate Frame Form Usability Study](https://github.com/agilesix/vets-website/blob/main/docs/research/research-synthesis-findings-round-1.md)
 - [Research Synthesis & Findings Round 2 - Discharge Certificate Frame Form Usability Study](https://github.com/agilesix/vets-website/blob/main/docs/research/research-synthesis-findings-round-2.md)
 
+## Research findings
+
+- [Research findings](https://github.com/agilesix/vets-website/blob/main/docs/research/research-findings.md)
 
 
 
