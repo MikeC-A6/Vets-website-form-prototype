@@ -11,7 +11,7 @@ The new legislation allows Veterans to receive a complementary frame for their D
 
 This research aligns with the following Veteran personas: 
 
-VA Form 24-SPRUCE Peronas
+[VA Form 24-SPRUCE Peronas](https://github.com/agilesix/vets-website/tree/main/docs/research#va-form-24-spruce-personas)
 
 ## Research goals 
 
@@ -19,11 +19,11 @@ The purpose of this research is to get feedback from Veterans on the Discharge C
 
 ### Research questions
 
-Background: What background or scaffolding do Veterans need to motivate them to complete the form? How much explanation of the new feature is needed to get started?
-Usability: Are Veterans able to easily complete the form with little to no confusion?
-How easily are Veterans able to choose a shipping address?
-Are Veterans able to easily modify prefilled service history data?
-Ease of use: Do Veterans have any concerns about the data required to complete the form?
+- **Background:** What background or scaffolding do Veterans need to motivate them to complete the form? How much explanation of the new feature is needed to get started?
+- **Usability:** Are Veterans able to easily complete the form with little to no confusion?
+     - How easily are Veterans able to choose a shipping address?
+     - Are Veterans able to easily modify prefilled service history data?
+- **Ease of use:** Do Veterans have any concerns about the data required to complete the form?
 
 ## Methodology
 
