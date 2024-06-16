@@ -16,7 +16,7 @@ export default {
     'view:subHeadings': {
       'ui:description': (
         <>
-          <h3>Your contact information</h3>
+          <h2 className="vads-u-font-size--h3">Your contact information</h2>
           <div className="meb-list-label">
             <strong>We’ll use this information to:</strong>
           </div>

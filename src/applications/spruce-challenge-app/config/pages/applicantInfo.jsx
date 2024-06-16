@@ -18,7 +18,7 @@ export default {
     'view:subHeadings': {
       'ui:description': (
         <>
-          <h3>Your personal information</h3>
+          <h2 className="vads-u-font-size--h3">Your personal information</h2>
           <va-alert status="info" uswds visible>
             <div className="usa-alert-body">
               <p className="vads-u-margin-y--0">
@@ -128,10 +128,6 @@ export default {
         },
       },
       [formFields.dateOfBirth]: date,
-      'view:dateOfBirthUnder18Alert': {
-        type: 'object',
-        properties: {},
-      },
       // [formFields.dateOfDeath]: date,
     },
   },

@@ -43,7 +43,7 @@ describe('<ConfirmationPage>', () => {
     );
     expect(
       getByText(
-        'You’ve submitted your form to order a frame to display your discharge certificate DD-217',
+        'You’ve submitted your application for a free frame to display your DD-217 certificate',
       ),
     ).to.exist;
     expect(getByText('Josie Henrietta Smith')).to.exist;

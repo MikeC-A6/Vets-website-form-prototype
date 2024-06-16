@@ -1,12 +1,19 @@
+import React from 'react';
+
 import { currentOrPastDateUI } from 'platform/forms-system/src/js/web-component-patterns';
 import { validateDateRange } from '@department-of-veterans-affairs/platform-forms-system/validation';
 import ServicePeriodView from 'platform/forms/components/ServicePeriodView';
-
 import {
   VaTextInputField,
   VaSelectField,
 } from 'platform/forms-system/src/js/web-component-fields';
+
+import { nonBlockingWarning } from '../../components/NonBlockingWarning';
 import { formFields } from '../../constants';
+import {
+  missingServicePeriodRank,
+  overlappingServicePeriodDates,
+} from '../../helpers';
 
 const toursOfDuty = {
   type: 'array',
@@ -40,9 +47,6 @@ const toursOfDuty = {
       duty: {
         type: 'string',
       },
-      command: {
-        type: 'string',
-      },
     },
   },
 };
@@ -65,7 +69,13 @@ export function dateRangeUI(
 
 export default {
   uiSchema: {
-    'ui:title': 'Service periods',
+    'view:subHeadings': {
+      'ui:description': (
+        <>
+          <h2 className="vads-u-font-size--h3">Service periods</h2>
+        </>
+      ),
+    },
     'ui:options': {
       pageClass: 'service-period-view',
     },
@@ -77,7 +87,7 @@ export default {
         classNames: 'vads-u-margin--0',
         reviewTitle: 'Service periods',
         keepInPageOnReview: true,
-        customTitle: ' ',
+        // showSave: true,
         confirmRemove: true,
         useDlWrap: true,
         itemAriaLabel: entry => entry.serviceBranch,
@@ -96,12 +106,7 @@ export default {
           'ui:required': () => true,
         },
         duty: {
-          'ui:title': 'Duty assignment',
-          'ui:webComponentField': VaTextInputField,
-          'ui:required': () => true,
-        },
-        command: {
-          'ui:title': 'Major command',
+          'ui:title': 'Duty assignment and major command',
           'ui:webComponentField': VaTextInputField,
           'ui:required': () => true,
         },
@@ -114,11 +119,39 @@ export default {
         },
       },
     },
+    'view:noRankWarning': {
+      'ui:description': nonBlockingWarning(
+        'Your rank was not entered for one or more service periods',
+      ),
+      'ui:options': {
+        hideIf: form => missingServicePeriodRank(form),
+      },
+    },
+    'view:overlappingServiceDatesWarning': {
+      'ui:description': nonBlockingWarning(
+        'Service periods have overlapping start and end dates',
+      ),
+      'ui:options': {
+        hideIf: form => overlappingServicePeriodDates(form),
+      },
+    },
   },
   schema: {
     type: 'object',
     properties: {
+      'view:subHeadings': {
+        type: 'object',
+        properties: {},
+      },
       [formFields.toursOfDuty]: toursOfDuty,
+      'view:noRankWarning': {
+        type: 'object',
+        properties: {},
+      },
+      'view:overlappingServiceDatesWarning': {
+        type: 'object',
+        properties: {},
+      },
     },
   },
 };

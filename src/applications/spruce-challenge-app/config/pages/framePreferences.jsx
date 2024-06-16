@@ -10,7 +10,7 @@ export default {
     'view:subHeadings': {
       'ui:description': (
         <>
-          <h3>Choose your frame type</h3>
+          <h2>Choose your frame type</h2>
           <p>
             These choices will determine the appearance of the shipped frame.
             You can make selections for the type of wood used as well as the

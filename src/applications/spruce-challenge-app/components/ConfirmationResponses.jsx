@@ -51,8 +51,8 @@ export function Approved(name) {
           visible
         >
           <h2 slot="headline">
-            You’ve submitted your form to order a frame to display your
-            discharge certificate DD-217
+            You’ve submitted your application for a free frame to display your
+            DD-217 certificate
           </h2>
           <div className="vads-u-margin-top--1p5">
             <p className="vads-u-margin-top--0 vads-u-margin-bottom--3">
@@ -71,8 +71,16 @@ export function Approved(name) {
           your mailing address, it could take up to 4 weeks to receive your
           frame.
         </p>
+        {/* this web component link is not rendering for some reason */}
+        {/* <va-link-action href="https://va.gov/" text="Go back to VA.gov" /> */}
+
+        <a
+          className="vads-c-action-link--green vads-u-margin-bottom-2"
+          href="https://va.gov/"
+        >
+          Go back to VA.gov
+        </a>
       </div>
-      <va-link-action href="https://va.gov/" text="Go back to VA.gov" />
     </>
   );
 }

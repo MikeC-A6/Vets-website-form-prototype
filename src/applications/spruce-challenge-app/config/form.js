@@ -13,9 +13,9 @@ import veteranIdentifyingInfo from './pages/veteranIdentifyingInfo';
 import servicePeriods from './pages/servicePeriods';
 import framePreferences from './pages/framePreferences';
 import mailingAddress from './pages/mailingAddress';
-import formAddress from './pages/reviewAddress';
+// import reviewAddress from './pages/reviewAddress';
+import AddressVerificationPage from '../components/AddressVerificationPage';
 
-import { ReviewAddress } from '../components/ReviewAddress';
 import GetFormHelp from '../components/GetFormHelp';
 
 // for a real form, this would likely come from vets-json-schema.
@@ -75,8 +75,8 @@ const formConfig = {
       pages: {
         applicantInformation: {
           title: 'Personal information',
-          path: 'applicant/name-information',
-          subTitle: 'Personal information',
+          path: 'personal-information',
+          // subTitle: 'Personal information',
           instructions:
             'This is the personal information we have on file for you.',
           uiSchema: applicantInfo.uiSchema,
@@ -84,13 +84,13 @@ const formConfig = {
         },
         identifyingInformation: {
           title: 'Veteran personal information',
-          path: 'identifying-information',
+          path: 'identity-information',
           uiSchema: veteranIdentifyingInfo.uiSchema,
           schema: veteranIdentifyingInfo.schema,
         },
         phoneEmail: {
           title: 'Phone numbers and email address',
-          path: 'applicant/contact-information',
+          path: 'contact-information',
           uiSchema: contactInfo.uiSchema,
           schema: contactInfo.schema,
         },
@@ -101,7 +101,7 @@ const formConfig = {
       pages: {
         servicePeriods: {
           title: 'Service periods',
-          path: 'military-history/service-periods',
+          path: 'service-periods',
           uiSchema: servicePeriods.uiSchema,
           schema: servicePeriods.schema,
         },
@@ -112,8 +112,7 @@ const formConfig = {
       pages: {
         frameOptions: {
           title: 'Frame Type',
-          path: 'frame-options',
-          subTitle: 'Type of wood and display style',
+          path: 'choose-frame-type',
           uiSchema: framePreferences.uiSchema,
           schema: framePreferences.schema,
         },
@@ -124,20 +123,30 @@ const formConfig = {
       pages: {
         mailingAddress: {
           title: 'Mailing address',
-          path: 'shipping-information/mailing-address',
+          path: 'where-to-ship-frame',
           uiSchema: mailingAddress.uiSchema,
           schema: mailingAddress.schema,
         },
-        reviewAddress: {
-          title: 'Review Address',
-          path: 'shipping-information/review-address',
-          uiSchema: {
-            'ui:description': ReviewAddress,
-            saveAddress: formAddress.uiSchema.saveAddress,
-            receiveAtAddress: formAddress.uiSchema.receiveAtAddress,
+        reviewAddressSchemaless: {
+          title: 'Verify mailing address',
+          path: 'verify-address',
+          CustomPage: AddressVerificationPage,
+          CustomPageReview: null,
+          // This does still need to be here or it'll throw an error
+          schema: {
+            type: 'object',
+            // props available to page via data
+            // can be empty
+            properties: {},
           },
-          schema: formAddress.schema,
+          uiSchema: {},
         },
+        // reviewAddress: {
+        //   title: 'Review Address',
+        //   path: 'verify-address',
+        //   uiSchema: reviewAddress.uiSchema,
+        //   schema: reviewAddress.schema,
+        // },
       },
     },
   },
