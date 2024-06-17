@@ -4,6 +4,7 @@ import { formFields } from '../constants';
 export default function prefillTransformer(pages, formData, metadata) {
   const {
     userFullName = {},
+    dateOfBirth = null,
     toursOfDuty = [],
     mailingAddress = {
       country: null,
@@ -19,6 +20,7 @@ export default function prefillTransformer(pages, formData, metadata) {
 
   const newFormData = {
     [formFields.userFullName]: userFullName,
+    [formFields.dateOfBirth]: dateOfBirth,
     [formFields.toursOfDuty]: toursOfDuty,
     [formFields.viewMailingAddress]: {
       [formFields.address]: {
