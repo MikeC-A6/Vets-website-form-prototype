@@ -70,7 +70,7 @@ const formConfig = {
 
   chapters: {
     applicantInformationChapter: {
-      title: 'Personal information',
+      title: 'Personal Information',
       pages: {
         applicantInformation: {
           title: 'Personal information',
@@ -107,7 +107,7 @@ const formConfig = {
       title: 'Frame Type',
       pages: {
         frameOptions: {
-          title: 'Frame Type',
+          title: 'Frame selection',
           path: 'choose-frame-type',
           uiSchema: framePreferences.uiSchema,
           schema: framePreferences.schema,
