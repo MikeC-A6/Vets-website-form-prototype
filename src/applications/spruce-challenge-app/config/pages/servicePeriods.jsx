@@ -40,6 +40,7 @@ const toursOfDuty = {
             type: 'string',
           },
         },
+        required: ['from', 'to'],
       },
       rank: {
         type: 'string',
@@ -86,6 +87,7 @@ export default {
         uswds: true,
         classNames: 'vads-u-margin--0',
         reviewTitle: 'Service periods',
+        customTitle: ' ',
         keepInPageOnReview: true,
         // showSave: true,
         confirmRemove: true,
