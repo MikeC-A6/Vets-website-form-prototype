@@ -17,8 +17,8 @@ export const setup = cy => {
         city: 'SAN DIEGO',
         state: 'CA',
         zipCode: '09028',
-        addressLine1: '123 MAIN ST',
-        addressLine2: 'BEN FRANKLIN VILLAGE',
+        AddressLine1: '123 MAIN ST',
+        AddressLine2: 'BEN FRANKLIN VILLAGE',
       },
       toursOfDuty: [
         {

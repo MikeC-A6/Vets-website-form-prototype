@@ -23,8 +23,8 @@ export default function prefillTransformer(pages, formData, metadata) {
     [formFields.viewMailingAddress]: {
       [formFields.address]: {
         country: mailingAddress.country,
-        street: mailingAddress.addressLine1,
-        street2: mailingAddress.addressLine2,
+        street: mailingAddress.AddressLine1,
+        street2: mailingAddress.AddressLine2,
         city: mailingAddress.city,
         state: mailingAddress.state,
         postalCode: mailingAddress.zipCode,

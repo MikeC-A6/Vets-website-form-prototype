@@ -108,6 +108,7 @@ export const mapAddress = (address, toUSPS = true) => {
     if (address.city) mappedAddress.City = address.city;
     if (address.state) mappedAddress.State = address.state;
     if (address.postalCode) mappedAddress.ZipCode = address.postalCode;
+    if (address.country) mappedAddress.Country = address.country;
     // mappedAddress = {
     //   AddressLine1: address.street,
     //   AddressLine2: address.street2,
@@ -121,6 +122,7 @@ export const mapAddress = (address, toUSPS = true) => {
     if (address.City) mappedAddress.city = address.City;
     if (address.State) mappedAddress.state = address.State;
     if (address.ZipCode) mappedAddress.postalCode = address.ZipCode;
+    if (address.Country) mappedAddress.country = address.Country;
     // mappedAddress = {
     //   street: address.AddressLine1,
     //   street2: address.AddressLine2,

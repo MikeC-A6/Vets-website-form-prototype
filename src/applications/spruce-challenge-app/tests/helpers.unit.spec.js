@@ -34,6 +34,7 @@ describe('mapAddress', () => {
       AddressLine1: '123 Main St',
       AddressLine2: 'Apt 4B',
       City: 'Anytown',
+      Country: 'USA',
       State: 'NY',
       ZipCode: '12345',
     });
@@ -43,6 +44,7 @@ describe('mapAddress', () => {
       AddressLine1: '123 MAIN ST',
       AddressLine2: 'APT 4B',
       City: 'ANYTOWN',
+      Country: 'USA',
       State: 'NY',
       ZipCode: '12345',
     };
@@ -53,6 +55,7 @@ describe('mapAddress', () => {
       street: '123 MAIN ST',
       street2: 'APT 4B',
       city: 'ANYTOWN',
+      country: 'USA',
       state: 'NY',
       postalCode: '12345',
     });

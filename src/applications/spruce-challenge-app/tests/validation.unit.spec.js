@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
 
-import { isDateWithinTenYearsOfToday } from '../validation';
+import { isDateWithinTenYearsOfToday, isOnlyWhitespace } from '../validation';
 
 describe('Schemaform validations', () => {
   describe('isDateWithinTenYearsOfToday', () => {
@@ -15,6 +15,14 @@ describe('Schemaform validations', () => {
       expect(errors.addError.firstCall.args[0]).to.equal(
         'This birth date is too soon for you to have been discharged from the military. Please enter a valid birth date.',
       );
+    });
+
+    it('should detect when text is not only whitespace', () => {
+      expect(isOnlyWhitespace('asdfasdf')).to.be.false;
+    });
+
+    it('should detect when there is whitespace', () => {
+      expect(isOnlyWhitespace(' ')).to.be.true;
     });
   });
 });

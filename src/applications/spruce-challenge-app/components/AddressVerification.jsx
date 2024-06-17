@@ -4,7 +4,7 @@ import { isEqual } from 'lodash';
 import AddressViewField from 'platform/forms-system/src/js/components/AddressViewField';
 
 // Adjust form data into shape that validation API expects
-const mapAddress = address => {
+export const mapAddress = address => {
   const mappedAddress = {};
 
   if (address.street) mappedAddress.AddressLine1 = address.street;
@@ -12,6 +12,7 @@ const mapAddress = address => {
   if (address.city) mappedAddress.City = address.city;
   if (address.state) mappedAddress.State = address.state;
   if (address.postalCode) mappedAddress.ZipCode = address.postalCode;
+  if (address.country) mappedAddress.Country = address.country;
 
   return mappedAddress;
 };
@@ -25,7 +26,6 @@ export const verifyAddress = async address => {
       method: 'GET',
     },
   ).then(response => response.json());
-  // console.log(res);
   if (res.errorCode) return false;
 
   // If no error from API + result matches input, verified

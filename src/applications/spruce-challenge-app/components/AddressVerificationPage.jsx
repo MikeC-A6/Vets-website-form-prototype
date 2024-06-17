@@ -19,14 +19,19 @@ export const verifyAddress = async address => {
       method: 'GET',
     },
   ).then(response => response.json());
-  // console.log(res);
   if (res.errorCode) return false;
 
   // If no error from API + result matches input, verified
   return { USPSVerifiedAddress: res, equal: isEqual(res, address) };
 };
 
-const AddressVerificationPage = ({
+export const onAddressChange = (event, setaddressObj) => {
+  if (event.target?.value) {
+    setaddressObj({ value: JSON.parse(event.target.value), dirty: true });
+  }
+};
+
+export const AddressVerificationPage = ({
   title,
   data,
   onReviewPage,
@@ -34,6 +39,7 @@ const AddressVerificationPage = ({
   goToPath,
   updatePage,
   setFormData, // setData
+  defaultLoading = true,
 }) => {
   const address = data['view:mailingAddress'].mailingAddress;
 
@@ -44,7 +50,7 @@ const AddressVerificationPage = ({
   });
   const [isVerified, setIsVerified] = useState(false);
   const [USPSaddress, setUSPSaddress] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(defaultLoading);
   const [isError, setIsError] = useState(false);
 
   useEffect(
@@ -88,11 +94,11 @@ const AddressVerificationPage = ({
   };
 
   // should fire when a checkbox is selected
-  const onAddressChange = event => {
-    if (event.target?.value) {
-      setaddressObj({ value: JSON.parse(event.target.value), dirty: true });
-    }
-  };
+  // const onAddressChange = event => {
+  //   if (event.target?.value) {
+  //     setaddressObj({ value: JSON.parse(event.target.value), dirty: true });
+  //   }
+  // };
 
   const navButtons = <FormNavButtons goBack={goBack} submitToContinue />;
   const updateButton = (
@@ -104,7 +110,7 @@ const AddressVerificationPage = ({
         <h2 className="vads-u-font-size--h3">{title}</h2>
 
         {isError && (
-          <va-alert status="info">
+          <va-alert data-id="unable-to-verify" status="info">
             We were unable to verify your address with the United States Postal
             Service due to technical issues. You can submit your address as
             entered without this verification.
@@ -133,7 +139,7 @@ const AddressVerificationPage = ({
             error={null}
             hint={null}
             label="Select which address to use"
-            onClick={e => onAddressChange(e)}
+            onClick={e => onAddressChange(e, setaddressObj)}
           >
             {USPSaddress && (
               <va-radio-option

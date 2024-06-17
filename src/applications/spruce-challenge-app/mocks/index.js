@@ -96,6 +96,7 @@ const responses = {
     });
 
     return res.json({
+      Country: suggestedResults.Country,
       AddressLine1: suggestedResults.AddressLine1,
       AddressLine2: suggestedResults.AddressLine2,
       City: suggestedResults.City,
