@@ -36,7 +36,7 @@ describe('Applicant Info', () => {
         onSubmit={onSubmit}
         data={{
           [formFields.veteranSocialSecurityNumber]: '411411414',
-          [formFields.departmentOfDefenseID]: '',
+          [formFields.departmentOfDefenseID]: null,
           [formFields.dischargeDate]: '1990-01-25',
         }}
       />,
@@ -63,7 +63,7 @@ describe('Applicant Info', () => {
       />,
     );
     form.find('form').simulate('submit');
-    expect(form.find('.usa-input-error-message').length).to.equal(1);
+    expect(form.find('.usa-input-error-message').length).to.equal(2);
     expect(onSubmit.called).to.be.false;
     form.unmount();
   });
@@ -78,7 +78,7 @@ describe('Applicant Info', () => {
         onSubmit={onSubmit}
         data={{
           [formFields.veteranSocialSecurityNumber]: '411411414',
-          [formFields.departmentOfDefenseID]: '',
+          [formFields.departmentOfDefenseID]: null,
           [formFields.dischargeDate]: null,
         }}
       />,
@@ -99,7 +99,7 @@ describe('Applicant Info', () => {
         onSubmit={onSubmit}
         data={{
           [formFields.veteranSocialSecurityNumber]: '411411414',
-          [formFields.departmentOfDefenseID]: '',
+          [formFields.departmentOfDefenseID]: null,
           [formFields.dischargeDate]: '2050-01-25',
         }}
       />,
