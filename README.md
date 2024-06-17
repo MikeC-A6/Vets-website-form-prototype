@@ -220,3 +220,23 @@ docker compose up
 | I have read and accept the privacy policy. | Leave unselected | Blocks progress with "You must accept the privacy policy before continuing."
 | I have read and accept the privacy policy. | Check box | Validation passes for this field
 
+
+## Testing the Alpha End-to-End
+
+### 1. Setup development environment
+ - Follow the [VA Platform setup instructions for local frontend environment](https://depo-platform-documentation.scrollhelp.site/developer-docs/setting-up-your-local-frontend-environment)
+
+ ### 2. Run Alpha
+ ```sh
+cp ./script/spruce-application-registry.json ../content-build/src/applications/registry.json
+yarn install
+yarn watch --env entry=spruce-challenge-app 
+```
+
+### 3. Run End to End test
+ - In a separate terminal
+  ```sh
+yarn cy:run --spec "src/applications/spruce-challenge-app/tests/spruce.cypress.spec.js"
+```
+
+
