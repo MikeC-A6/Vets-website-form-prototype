@@ -1,5 +1,9 @@
 import { expect } from 'chai';
-import { formatReadableDate, mapAddress } from '../helpers';
+import {
+  formatReadableDate,
+  mapAddress,
+  formatAddressString,
+} from '../helpers';
 
 describe('formatReadableDate', () => {
   it('should transform a raw date string to a human readable string', () => {
@@ -59,5 +63,23 @@ describe('mapAddress', () => {
       state: 'NY',
       postalCode: '12345',
     });
+  });
+});
+
+describe('formatAddressString', () => {
+  it('should format an address object into a single string with newlines for display', () => {
+    const formAddress = {
+      country: 'USA',
+      street: '123 Main St',
+      street2: 'Apt 4B',
+      city: 'Anytown',
+      state: 'NY',
+      postalCode: '12345',
+    };
+
+    const formatted = formatAddressString(formAddress);
+    expect(formatted).to.equal(
+      '123 Main St \nApt 4B \nAnytown, NY 12345 \nUSA',
+    );
   });
 });

@@ -134,3 +134,13 @@ export const mapAddress = (address, toUSPS = true) => {
 
   return mappedAddress;
 };
+
+export const formatAddressString = address => {
+  let string = '';
+  if (address.street) string += `${address.street} \n`;
+  if (address.street2) string += `${address.street2} \n`;
+  if (address.city)
+    string += `${address.city}, ${address.state} ${address.postalCode} \n`;
+  if (address.country) string += `${address.country}`;
+  return string;
+};

@@ -58,8 +58,8 @@ export function Approved(name) {
           </h2>
           <div className="vads-u-margin-top--1p5">
             <p className="vads-u-margin-top--0 vads-u-margin-bottom--3">
-              After we review and process your form, we’ll send you your frame
-              of choice.
+              We'll review and process your form. If you are found eligible,
+              we’ll send your frame of choice to your shipping address.
             </p>
           </div>
         </va-alert>
