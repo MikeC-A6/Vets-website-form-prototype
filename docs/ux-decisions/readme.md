@@ -1,1 +1,6 @@
 # UX Decisions
+
+| Challenge &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | Decision &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |
+| ------------------- | ----------  | 
+| The DD-214 does not contain relevant data for all service periods for a Veteran. For example, it only contains their last duty assignment and major command. Veteran research indicated that each service periods forms would be readily available for some Veterans, but not all.<br/><br/> | Hint text was not working for these form fields in the VA Form Library, otherwise our implementation would have used the hint text fields to help Veterans understand what type or format of information is needed for the duty assignment and major command fields, and potentially reference that having their DD-217 or DD-214 documents would make filling out this information easier. |
+| Our research from Veterans indicated that it wasn't clear which service periods they would be receiving a frame for.<br/><br/> | Our intention was to include information on the Service Periods page to let Veterans know that their last service period would be used when creating the certificate and frame, as well as reinforced on the Choose Your Frame page.<br/><br/> |
