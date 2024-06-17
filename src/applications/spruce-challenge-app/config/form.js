@@ -13,7 +13,6 @@ import veteranIdentifyingInfo from './pages/veteranIdentifyingInfo';
 import servicePeriods from './pages/servicePeriods';
 import framePreferences from './pages/framePreferences';
 import mailingAddress from './pages/mailingAddress';
-// import reviewAddress from './pages/reviewAddress';
 import AddressVerificationPage from '../components/AddressVerificationPage';
 
 import GetFormHelp from '../components/GetFormHelp';
@@ -76,9 +75,6 @@ const formConfig = {
         applicantInformation: {
           title: 'Personal information',
           path: 'personal-information',
-          // subTitle: 'Personal information',
-          instructions:
-            'This is the personal information we have on file for you.',
           uiSchema: applicantInfo.uiSchema,
           schema: applicantInfo.schema,
         },
@@ -141,12 +137,6 @@ const formConfig = {
           },
           uiSchema: {},
         },
-        // reviewAddress: {
-        //   title: 'Review Address',
-        //   path: 'verify-address',
-        //   uiSchema: reviewAddress.uiSchema,
-        //   schema: reviewAddress.schema,
-        // },
       },
     },
   },

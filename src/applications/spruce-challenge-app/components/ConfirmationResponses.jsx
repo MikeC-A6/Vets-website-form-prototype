@@ -43,10 +43,31 @@ ConfirmationReceiptBox.propTypes = {
   name: PropTypes.object,
 };
 
-export function Approved(name) {
+export function Approved(name, addressAlert) {
   return (
     <>
       <div>
+        {addressAlert && (
+          <>
+            <va-alert
+              close-btn-aria-label="Close notification"
+              status="success"
+              visible
+            >
+              <h2 slot="headline">Your mailing address has been updated</h2>
+              <div className="vads-u-margin-top--1p5">
+                <p className="vads-u-margin-top--0 vads-u-margin-bottom--3">
+                  The address we use to mail you letters, bills, and
+                  prescriptions has changed.
+                </p>
+                <a href="/profile">
+                  View and/or edit your mailing address in your VA profile.
+                </a>
+              </div>
+            </va-alert>
+            <br />
+          </>
+        )}
         <va-alert
           close-btn-aria-label="Close notification"
           status="success"
@@ -89,5 +110,6 @@ export function Approved(name) {
 
 Approved.prototype = {
   name: PropTypes.object,
+  addressAlert: PropTypes.bool,
   response: PropTypes.object || PropTypes.bool,
 };

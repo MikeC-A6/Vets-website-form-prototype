@@ -111,6 +111,7 @@ export const AddressVerificationPage = ({
       [formFields.viewMailingAddress]: {
         mailingAddress: addressObj.value,
       },
+      [formFields.updateProfileAddress]: saveAddress,
     });
 
     // Redirect to page using goToPath, or if on review page,
@@ -175,7 +176,6 @@ export const AddressVerificationPage = ({
                   name="group1"
                   tile
                   value={JSON.stringify(USPSaddress)}
-                  checked={USPSaddress}
                 />
               )}
               <va-radio-option
@@ -185,7 +185,6 @@ export const AddressVerificationPage = ({
                 name="group1"
                 tile
                 value={JSON.stringify(address)}
-                checked={!USPSaddress}
               />
             </va-radio>
           )}

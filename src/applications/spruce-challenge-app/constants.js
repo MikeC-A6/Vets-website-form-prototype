@@ -30,4 +30,5 @@ export const formFields = {
   // mailingAddress
   address: 'mailingAddress',
   viewMailingAddress: 'view:mailingAddress',
+  updateProfileAddress: 'updateProfileAddress',
 };

@@ -15,11 +15,17 @@ function createConfirmationPage(form) {
     suffix: 'Sr',
   };
 
+  let addressAlert = false;
+
   if (typeof data.userFullName.first !== 'undefined') {
     name = data.userFullName;
   }
 
-  return Approved(name);
+  if (data.updateProfileAddress) {
+    addressAlert = true;
+  }
+
+  return Approved(name, addressAlert);
 }
 
 export class ConfirmationPage extends React.Component {
