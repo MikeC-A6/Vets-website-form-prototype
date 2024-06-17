@@ -20,11 +20,21 @@ export default {
     [formFields.veteranSocialSecurityNumber]: {
       ...ssnUI,
       'ui:title': 'Social Security number',
-      'ui:required': form => !form.vaFileNumber,
+      'ui:required': formData => !formData[formFields.departmentOfDefenseID],
+      'ui:errorMessages': {
+        required:
+          'Please enter a Social Security number or a Department of Defense ID number',
+      },
     },
     [formFields.departmentOfDefenseID]: {
       'ui:title': 'Department of Defense ID number',
       'ui:validations': [isAlphaNumeric],
+      'ui:required': formData =>
+        !formData[formFields.veteranSocialSecurityNumber],
+      'ui:errorMessages': {
+        required:
+          'Please enter a Social Security number or a Department of Defense ID number',
+      },
     },
     [formFields.dischargeDate]: {
       ...currentOrPastDateUI('Date of discharge'),
