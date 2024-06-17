@@ -13,7 +13,7 @@ export default function prefillTransformer(pages, formData, metadata) {
       city: null,
       state: null,
       postalCode: null,
-    },
+    } || {},
     primaryPhone = null, // null because these are optional fields and
     emailAddress = null, // '' triggers validation on the value
   } = formData || {};
@@ -24,12 +24,12 @@ export default function prefillTransformer(pages, formData, metadata) {
     [formFields.toursOfDuty]: toursOfDuty,
     [formFields.viewMailingAddress]: {
       [formFields.address]: {
-        country: mailingAddress.country,
-        street: mailingAddress.AddressLine1,
-        street2: mailingAddress.AddressLine2,
-        city: mailingAddress.city,
-        state: mailingAddress.state,
-        postalCode: mailingAddress.zipCode,
+        country: mailingAddress?.country,
+        street: mailingAddress?.AddressLine1,
+        street2: mailingAddress?.AddressLine2,
+        city: mailingAddress?.city,
+        state: mailingAddress?.state,
+        postalCode: mailingAddress?.zipCode,
       },
     },
     [formFields.viewPhoneNumbers]: {

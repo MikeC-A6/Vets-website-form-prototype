@@ -1,41 +1,17 @@
+import { mockPrefillData } from './fixtures/mocks/mock-prefill-data';
+
 /**
  * Setup for the e2e test, including any cleanup and mocking api responses
  * @param {object} cy
  */
-export const setup = cy => {
-  cy.intercept('GET', '/v0/in_progress_forms/24-SPRUCE', {
-    formData: {
-      // actual prefill data goes here
-      userFullName: {
-        first: 'Mark',
-        last: 'Tux',
-      },
-      primaryPhone: '4445551212',
-      emailAddress: 'test2@test1.net',
-      mailingAddress: {
-        country: 'USA',
-        city: 'SAN DIEGO',
-        state: 'CA',
-        zipCode: '09028',
-        AddressLine1: '123 MAIN ST',
-        AddressLine2: 'BEN FRANKLIN VILLAGE',
-      },
-      toursOfDuty: [
-        {
-          serviceBranch: 'Air Force',
-          dateRange: {
-            from: '2001-03-21',
-            to: '2014-07-21',
-          },
-        },
-      ],
-    },
-    metadata: {
-      version: 0,
-      prefill: true,
-      returnUrl: '/applicant/name-information',
-    },
-  });
+export const setup = (cy, data) => {
+  const dataType = data.type;
+
+  cy.intercept(
+    'GET',
+    '/v0/in_progress_forms/24-SPRUCE',
+    mockPrefillData[dataType],
+  );
 
   cy.intercept('PUT', '/v0/in_progress_forms/24-SPRUCE', {
     data: {
@@ -66,7 +42,7 @@ export const setup = cy => {
 
   cy.intercept(
     'GET',
-    '/vetsapi/verifyAddress?AddressLine1=123+MAIN+ST&AddressLine2=BEN+FRANKLIN+VILLAGE&City=SAN+DIEGO&State=CA&ZipCode=09028',
+    '/vetsapi/verifyAddress?AddressLine1=123+MAIN+ST&AddressLine2=BEN+FRANKLIN+VILLAGE&City=SAN+DIEGO&State=CA&ZipCode=09028&Country=USA',
     {
       AddressLine1: '123 MAIN ST',
       AddressLine2: 'BEN FRANKLIN VILLAGE',

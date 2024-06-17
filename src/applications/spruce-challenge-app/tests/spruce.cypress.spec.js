@@ -14,16 +14,25 @@ const testConfig = createTestConfig(
     dataPrefix: 'data',
     useWebComponentFields: true,
 
-    dataSets: ['minimal-test'],
+    dataSets: [
+      // no prefill at all - fill out the entire form
+      'minimal-test',
+      // #118: scenario 1 - no address prefill
+      'service-prefill-test',
+      // #119: scenario 2 - no service history prefill
+      'address-prefill-test',
+      // #120: scenario 3 - all prefilled
+      'all-prefill-test',
+    ],
 
     fixtures: {
       data: path.join(__dirname, 'fixtures', 'data'),
     },
 
     pageHooks: pageHooks(cy),
-    setupPerTest: () => {
+    setupPerTest: data => {
       cy.login(mockUser);
-      setup(cy);
+      setup(cy, data);
     },
 
     // skip: [],

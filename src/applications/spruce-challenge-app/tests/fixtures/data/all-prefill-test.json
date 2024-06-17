@@ -1,0 +1,15 @@
+{
+  "data": {
+    "type": "all",
+    "veteranSocialSecurityNumber": "564987123",
+    "dischargeDate": "1982-06-06",
+    "toursOfDuty": [
+      {
+        "duty": "AFGSC Air Battle Manager"
+      }
+    ],
+    "frameWood": "Cypress",
+    "frameMount": "Table top",
+    "receiveAtAddress": "yes"
+  }
+}

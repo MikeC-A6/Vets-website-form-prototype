@@ -1,11 +1,10 @@
 {
   "data": {
-    "type": "minimal",
+    "type": "service",
     "userFullName": {
       "first": "Mark",
       "last": "Tux"
     },
-    "dateOfBirth": "1950-10-04",
     "veteranSocialSecurityNumber": "564987123",
     "dischargeDate": "1982-06-06",
     "primaryPhone": "4445551212",
@@ -21,11 +20,6 @@
     },
     "toursOfDuty": [
       {
-        "serviceBranch": "Air Force",
-        "dateRange": {
-          "from": "2001-03-21",
-          "to": "2014-07-21"
-        },
         "duty": "AFGSC Air Battle Manager"
       }
     ],
