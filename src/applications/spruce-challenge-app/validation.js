@@ -14,11 +14,6 @@ export const isDateWithinTenYearsOfToday = (errors, date) => {
   }
 };
 
-export function isTenNumeric(str) {
-  const tenNumericRegEx = new RegExp(/^\d{10}$/);
-  return tenNumericRegEx.test(str);
-}
-
 export function isOnlyWhitespace(str) {
   return str && !str.trim().length;
 }

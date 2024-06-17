@@ -6,7 +6,6 @@ import ssnUI from 'platform/forms-system/src/js/definitions/ssn';
 // In a real form this wouldn't be imported here. We'd pull the real schema
 import fullSchema from '../../schema';
 import { formFields } from '../../constants';
-import { isTenNumeric } from '../../validation';
 
 export default {
   uiSchema: {
@@ -26,16 +25,20 @@ export default {
       'ui:title': 'Social Security number',
       'ui:required': formData => !formData[formFields.departmentOfDefenseID],
       'ui:errorMessages': {
+        pattern: 'Social Security numbers follow a ###-##-#### pattern',
         required:
           'Enter a Social Security number or a Department of Defense ID number',
       },
     },
     [formFields.departmentOfDefenseID]: {
       'ui:title': 'Department of Defense ID number',
-      'ui:validations': [isTenNumeric],
+      'ui:options': {
+        widgetClassNames: 'usa-input-medium',
+      },
       'ui:required': formData =>
         !formData[formFields.veteranSocialSecurityNumber],
       'ui:errorMessages': {
+        pattern: 'Department of Defense ID numbers are 10 digits.',
         required:
           'Enter a Social Security number or a Department of Defense ID number',
       },
@@ -61,6 +64,7 @@ export default {
       },
       [formFields.departmentOfDefenseID]: {
         type: 'string',
+        pattern: '^[0-9]{10}$',
       },
       [formFields.dischargeDate]: fullSchema.definitions.date,
     },

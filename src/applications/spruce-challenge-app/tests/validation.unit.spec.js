@@ -1,11 +1,7 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
 
-import {
-  isDateWithinTenYearsOfToday,
-  isOnlyWhitespace,
-  isTenNumeric,
-} from '../validation';
+import { isDateWithinTenYearsOfToday, isOnlyWhitespace } from '../validation';
 
 describe('Schemaform validations', () => {
   describe('isDateWithinTenYearsOfToday', () => {
@@ -29,20 +25,6 @@ describe('Schemaform validations', () => {
 
     it('should detect when there is whitespace', () => {
       expect(isOnlyWhitespace(' ')).to.be.true;
-    });
-  });
-
-  describe('isTenNumeric', () => {
-    it('should detect when text is not only numeric', () => {
-      expect(isTenNumeric('asdfas12df')).to.be.false;
-    });
-
-    it('should detect when there is less than 10 digits', () => {
-      expect(isTenNumeric('123456789')).to.be.false;
-    });
-
-    it('should pass when there are exactly 10 digits', () => {
-      expect(isTenNumeric('1234567890')).to.be.true;
     });
   });
 });
