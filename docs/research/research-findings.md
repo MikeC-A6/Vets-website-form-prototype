@@ -1,4 +1,4 @@
-# Research Findings - Discharge Certificate Frame Form Usability & A11y Testing
+# Research Findings - Discharge Certificate Frame Form Usability Testing
 
 **Veteran Widget Office (VWO), VA Form 24-SPRUCE, Agile Six**
 
