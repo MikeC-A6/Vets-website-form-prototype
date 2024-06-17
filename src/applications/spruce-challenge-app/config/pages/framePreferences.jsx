@@ -14,7 +14,7 @@ export default {
           <p>
             These choices will determine the appearance of the shipped frame.
             You can make selections for the type of wood used as well as the
-            mounting style (wall-mounted or standing)
+            mounting style (wall-mounted or table top).
           </p>
         </>
       ),

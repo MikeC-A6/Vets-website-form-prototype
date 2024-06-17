@@ -134,10 +134,10 @@ export const AddressVerificationPage = ({
         <h2 className="vads-u-font-size--h3">{title}</h2>
 
         {isError && (
-          <va-alert data-id="unable-to-verify" status="info">
+          <va-alert data-id="unable-to-verify" status="warning">
             We were unable to verify your address with the United States Postal
-            Service due to technical issues. You can submit your address as
-            entered without this verification.
+            Service due to technical issues on our end. You can submit your
+            address as entered without this verification.
           </va-alert>
         )}
         {USPSaddress && (
@@ -189,13 +189,12 @@ export const AddressVerificationPage = ({
             </va-radio>
           )}
 
-        {USPSaddress &&
-          !isVerified && (
-            <va-checkbox
-              label="I want to save the selected address as my mailing address for VA letters, bills, and prescriptions"
-              checked={saveAddress}
-            />
-          )}
+        {USPSaddress && (
+          <va-checkbox
+            label="I want to save the selected address as my mailing address for VA letters, bills, and prescriptions"
+            checked={saveAddress}
+          />
+        )}
 
         {onReviewPage ? updateButton : navButtons}
       </fieldset>

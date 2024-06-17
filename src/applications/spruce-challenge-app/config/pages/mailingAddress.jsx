@@ -12,7 +12,7 @@ export default {
           <h2 className="vads-u-font-size--h3">
             Tell us where to ship your frame
           </h2>
-          <p>We'll send your frame of choice to this address.</p>
+          <p>If eligible, we'll send your frame of choice to this address.</p>
         </>
       ),
     },
@@ -33,13 +33,13 @@ export default {
         street: {
           'ui:title': 'Street address',
           'ui:errorMessages': {
-            required: 'Please enter your full street address',
+            required: 'Enter your full street address',
           },
         },
         city: {
           'ui:title': 'City',
           'ui:errorMessages': {
-            required: 'Please enter a valid city',
+            required: 'Enter a valid city',
           },
         },
         state: {
@@ -51,7 +51,7 @@ export default {
         postalCode: {
           'ui:title': 'Postal Code (5-digit)',
           'ui:errorMessages': {
-            required: 'Zip code must be 5 digits',
+            required: 'Postal code must be 5 digits',
           },
         },
       },

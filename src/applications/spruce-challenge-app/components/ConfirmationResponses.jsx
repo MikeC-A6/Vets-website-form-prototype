@@ -47,6 +47,25 @@ export function Approved(name, addressAlert) {
   return (
     <>
       <div>
+        <va-alert
+          close-btn-aria-label="Close notification"
+          status="success"
+          visible
+        >
+          <h2 slot="headline">
+            You’ve submitted your application for a free frame to display your
+            DD-217 certificate
+          </h2>
+          <div className="vads-u-margin-top--1p5">
+            <p className="vads-u-margin-top--0 vads-u-margin-bottom--3">
+              We'll review and process your form. If you are found eligible,
+              we’ll send your frame of choice to your mailing address.
+            </p>
+          </div>
+        </va-alert>
+
+        <ConfirmationReceiptBox name={name} />
+
         {addressAlert && (
           <>
             <va-alert
@@ -61,30 +80,12 @@ export function Approved(name, addressAlert) {
                   prescriptions has changed.
                 </p>
                 <a href="/profile">
-                  View and/or edit your mailing address in your VA profile.
+                  View and/or edit your mailing address in your VA.gov profile.
                 </a>
               </div>
             </va-alert>
-            <br />
           </>
         )}
-        <va-alert
-          close-btn-aria-label="Close notification"
-          status="success"
-          visible
-        >
-          <h2 slot="headline">
-            You’ve submitted your application for a free frame to display your
-            DD-217 certificate
-          </h2>
-          <div className="vads-u-margin-top--1p5">
-            <p className="vads-u-margin-top--0 vads-u-margin-bottom--3">
-              We'll review and process your form. If you are found eligible,
-              we’ll send your frame of choice to your shipping address.
-            </p>
-          </div>
-        </va-alert>
-        <ConfirmationReceiptBox name={name} />
       </div>
       <div className="vads-u-margin-bottom--4">
         <h2>What are my next steps?</h2>

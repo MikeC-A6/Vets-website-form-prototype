@@ -74,6 +74,12 @@ export default {
       'ui:description': (
         <>
           <h2 className="vads-u-font-size--h3">Service periods</h2>
+
+          <p>
+            Only one service period is required for eligibility for the frame.
+            You may add information about multiple service periods if you
+            choose.
+          </p>
         </>
       ),
     },

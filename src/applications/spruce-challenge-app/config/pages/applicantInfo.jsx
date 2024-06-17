@@ -39,7 +39,7 @@ export default {
         'ui:validations': [
           (errors, field) => {
             if (field.length < 3) {
-              errors.addError('Please enter your first name');
+              errors.addError('Enter a first name with 3 or more characters');
             }
             if (!isValidName(field)) {
               if (field[0] === ' ' || field[0] === "'") {
@@ -48,7 +48,7 @@ export default {
                 );
               } else {
                 errors.addError(
-                  'Please enter a valid entry. Acceptable entries are letters, spaces and apostrophes.',
+                  'Enter a valid entry. Acceptable entries are letters, spaces and apostrophes.',
                 );
               }
             }
@@ -61,7 +61,7 @@ export default {
         'ui:validations': [
           (errors, field) => {
             if (field.length < 3) {
-              errors.addError('Please enter your last name');
+              errors.addError('Enter a last name with 3 or more characters');
             }
             if (!isValidName(field)) {
               if (field[0] === ' ' || field[0] === "'" || field[0] === '-') {
@@ -70,7 +70,7 @@ export default {
                 );
               } else {
                 errors.addError(
-                  'Please enter a valid entry. Acceptable entries are letters, spaces, dashes and apostrophes.',
+                  'Enter a valid entry. Acceptable entries are letters, spaces, dashes and apostrophes.',
                 );
               }
             }
@@ -89,7 +89,7 @@ export default {
                 );
               } else {
                 errors.addError(
-                  'Please enter a valid entry. Acceptable entries are letters, spaces and apostrophes.',
+                  'Enter a valid entry. Acceptable entries are letters, spaces and apostrophes.',
                 );
               }
             }

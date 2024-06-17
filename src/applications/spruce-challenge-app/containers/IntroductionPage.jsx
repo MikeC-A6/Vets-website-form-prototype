@@ -25,9 +25,9 @@ class IntroductionPage extends React.Component {
           Free frame application (VA Form 24-SPRUCE)
         </p>
         <p>
-          Complete this form if you want a free frame to display your
-          certificate of honorable service (DD-217). If you’re found eligible,
-          we’ll ship the free frame of your choice directly to you.
+          Complete this form if you want a free frame to display your DD-217
+          certificate. If you’re found eligible, we’ll ship the free frame of
+          your choice directly to you.
         </p>
 
         <h2 className="vads-u-font-size--h3">
@@ -46,10 +46,10 @@ class IntroductionPage extends React.Component {
         </ul>
         <p>
           Your DD-214 is sufficient to fulfill submission requirements for this
-          form.{' '}
+          form. If your DD-214 is lost or damaged,{' '}
           <a href="https://www.va.gov/records/get-military-service-records/">
-            If your DD-214 is lost or damaged, learn how to order a new copy of
-            your DD-214.
+            {' '}
+            learn how to order a new copy of your DD-214.
           </a>
         </p>
         <SaveInProgressIntro
