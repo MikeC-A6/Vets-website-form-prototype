@@ -80,7 +80,7 @@ export function Approved(name, addressAlert) {
                   prescriptions has changed.
                 </p>
                 <a href="/profile">
-                  View and/or edit your mailing address in your VA.gov profile.
+                  Review and/or edit your mailing address in your VA.gov profile
                 </a>
               </div>
             </va-alert>
