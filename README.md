@@ -220,6 +220,35 @@ docker compose up
 | I have read and accept the privacy policy. | Leave unselected | Blocks progress with "You must accept the privacy policy before continuing."
 | I have read and accept the privacy policy. | Check box | Validation passes for this field
 
+### 3. Verify API Error handling
+
+#### 3.0 Ensure that any existing session are closed
+- Close any browser open to the localhost address, e.g. http://localhost:3001/
+- Use Docker Compose to run the container
+```sh
+docker compose down
+```
+
+#### 3.1 Run the container
+- Use Docker Compose to run the container
+```sh
+docker compose up
+```
+
+#### 3.2 Open the application
+- [VA Form 24-SPRUCE](http://localhost:3001/supporting-forms-for-claims/frame-for-certificate-form-24-spruce/introduction)
+
+#### 3.3 Navigate through the form flow up to Step 3 address and follow the instructions in the "Test case" column, click continue to trigger the "Expected validation":
+ - The Address API mock is designed to mock HTTP errors, using the Street address to indicate the desired error code
+
+ | Field      | Test case | Expected validation |
+| ----------- | ----------- | ----------- | 
+| Street address | 401-unauthorized  | Warning "We were unable to verify your address with the United States Postal Service..."
+| Street address | 403-forbidden  |  Warning "We were unable to verify your address with the United States Postal Service..."
+| Street address | 404-not-found  |  Warning "We were unable to verify your address with the United States Postal Service..."
+| Street address | 500-internal-server-error  |  Warning "We were unable to verify your address with the United States Postal Service..."
+| Street address | 503-service-unavailable  |  Warning "We were unable to verify your address with the United States Postal Service..."
+
 
 ## Testing the Alpha End-to-End
 
