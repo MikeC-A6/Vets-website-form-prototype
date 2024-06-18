@@ -1,7 +1,6 @@
 // CustomPage.jsx
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { isEqual } from 'lodash';
 
 import { setData } from 'platform/forms-system/src/js/actions';
 import FormNavButtons from '~/platform/forms-system/src/js/components/FormNavButtons';
@@ -19,10 +18,36 @@ export const verifyAddress = async address => {
       method: 'GET',
     },
   ).then(response => response.json());
-  if (res.errorCode) return false;
+  if (res['Error Code']) return false;
+
+  let verified = true;
+
+  if (res.AddressLine1 !== address.AddressLine1) {
+    verified = false;
+  }
+
+  if (res.AddressLine2 !== address.AddressLine2) {
+    verified = false;
+  }
+
+  if (res.City !== address.City) {
+    verified = false;
+  }
+
+  if (res.State !== address.State) {
+    verified = false;
+  }
+
+  if (res['Zip Code'] !== address.ZipCode) {
+    verified = false;
+  }
+
+  if (address.Country) {
+    res.Country = address.Country;
+  }
 
   // If no error from API + result matches input, verified
-  return { USPSVerifiedAddress: res, equal: isEqual(res, address) };
+  return { USPSVerifiedAddress: res, equal: verified };
 };
 
 // Fires when a checkbox is selected

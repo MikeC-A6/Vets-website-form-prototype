@@ -75,18 +75,18 @@ const responses = {
 
     if (httpStatus > 0) {
       return res.json({
-        errorMessage,
-        errorCode: httpStatus.toString(),
+        'Error Message': errorMessage,
+        'Error Code': httpStatus.toString(),
       });
     }
 
     const { verified, missingParams } = verifyRequiredParams(params);
     if (!verified) {
       return res.json({
-        errorMessage: `Missing required fields to verify address: ${missingParams.join(
+        'Error Message': `Missing required fields to verify address: ${missingParams.join(
           ', ',
         )}.`,
-        errorCode: '400',
+        'Error Code': '400',
       });
     }
 
@@ -96,12 +96,11 @@ const responses = {
     });
 
     return res.json({
-      Country: suggestedResults.Country,
       AddressLine1: suggestedResults.AddressLine1,
       AddressLine2: suggestedResults.AddressLine2,
       City: suggestedResults.City,
       State: suggestedResults.State,
-      ZipCode: suggestedResults.ZipCode,
+      'Zip Code': suggestedResults.ZipCode,
     });
   },
 };

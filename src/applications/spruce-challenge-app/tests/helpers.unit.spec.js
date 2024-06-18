@@ -50,7 +50,7 @@ describe('mapAddress', () => {
       City: 'ANYTOWN',
       Country: 'USA',
       State: 'NY',
-      ZipCode: '12345',
+      'Zip Code': '12345',
     };
 
     const mappedAddress = mapAddress(USPSVerifiedAddress, false);

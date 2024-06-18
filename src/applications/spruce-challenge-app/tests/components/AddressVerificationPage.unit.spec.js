@@ -58,12 +58,13 @@ describe('<AddressVerificationPage />', () => {
     fetchStub.returns(Promise.resolve(response));
 
     const mappedAddress = mapAddress(address);
-    const result = await verifyAddress(mappedAddress);
 
     mappedAddress.AddressLine1 = mappedAddress.AddressLine1.toUpperCase();
     mappedAddress.City = mappedAddress.City.toUpperCase();
 
-    expect(result.USPSVerifiedAddress).to.deep.equal(mappedAddress);
+    const result = await verifyAddress(mappedAddress);
+
+    expect(result.equal).to.be.true;
   });
 
   it('sets the address object when the event target has a value', () => {
