@@ -5,10 +5,19 @@ export const WOOD_CHOICES = ['Cedar', 'Cypress', 'Pine', 'Walnut'];
 export const MOUNT_CHOICES = ['Wall mount', 'Table top'];
 
 export const formFields = {
+  // claimantVerification
+  isClaimant: 'isClaimant',
+  
   // applicantInfo
   userFullName: 'userFullName',
   dateOfBirth: 'dateOfBirth',
   dateOfDeath: 'dateOfDeath',
+
+  // claimantInfo
+  claimantFullName: 'claimantFullName',
+  claimantSocialSecurityNumber: 'claimantSocialSecurityNumber',
+  claimantDateOfBirth: 'claimantDateOfBirth',
+  relationshipToVeteran: 'relationshipToVeteran',
 
   // contactInfo
   email: 'email',
@@ -17,8 +26,8 @@ export const formFields = {
 
   // veteranIdentifyingInfo
   veteranSocialSecurityNumber: 'veteranSocialSecurityNumber',
-  departmentOfDefenseID: 'departmentOfDefenseID',
-  dischargeDate: 'dischargeDate',
+  vaFileNumber: 'vaFileNumber',
+  serviceNumber: 'serviceNumber',
 
   // servicePeriods
   toursOfDuty: 'toursOfDuty',
@@ -32,3 +41,5 @@ export const formFields = {
   viewMailingAddress: 'view:mailingAddress',
   updateProfileAddress: 'updateProfileAddress',
 };
+
+export const RELATIONSHIP_CHOICES = ['', 'SPOUSE', 'PARENT', 'CHILD'];

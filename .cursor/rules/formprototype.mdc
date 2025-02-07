@@ -1,0 +1,17 @@
+---
+description: 
+globs: 
+---
+Directory & Code Boundaries
+
+Only modify code in src/applications/aid-attendance-app and refrain from making changes outside that directory.
+Preserve the existing introduction page and keep it at /aid-attendance-form/introduction. Do not create or remove pages unrelated to the Aid & Attendance application.
+Reuse (do not duplicate) existing components, styling, and structure for contact info and form pages. Confirm any new fields or pages conform to the aid-attendance-app code pattern.
+
+When a workflow is updated, several parts of the codebase need to be revisited to ensure that the changes are fully integrated. First and foremost, review and update the routing configuration. In files like routes.jsx, you’ll need to change the default route or index route to point to the new starting page of your workflow. This includes modifying URL prefixes and paths to match any new page names or reordering of pages in the workflow. If the root URL for your application has changed, make sure that the manifest (for example, in manifest.json) and the entry point (such as aid-attendance-entry.jsx) reflect these updates.
+
+Next, you must update the form configuration—typically found in files like config/form.js. This file defines the chapters and pages that make up your workflow. When the workflow changes, you may need to reorder, remove, or add new pages or chapters. For each page, ensure that both the UI schema and the JSON schema are up to date, which might involve modifying UI components, field validations, and conditional logic. If certain pages become obsolete (for example, a verification page that is no longer needed), remove them from the configuration to avoid routing to blank or unused pages.
+
+In addition to routes and form configuration, update any constants and helper functions that support the workflow. This could mean adjusting field names in your constants file (such as constants.js), updating validation functions, or modifying helper functions like those in helpers.jsx if the data mappings change. The prefill transformer (e.g., config/prefill-transformer.js) is another area where field mapping adjustments may be required if the underlying data structure of the workflow changes.
+
+Finally, don’t forget to update tests and documentation. Unit tests, integration tests, and end-to-end tests (like those in the tests/ directory) must be reviewed and potentially updated so they accurately reflect the new workflow. This includes test cases for routing, page rendering, field validations, and conditional logic. Clear documentation should also be updated to reflect the new structure, ensuring that future developers understand the changes made to support the updated workflow.

@@ -9,9 +9,9 @@ import ConfirmationPage from '../containers/ConfirmationPage';
 // splitting pages into individual schemas for readability & consistency with current forms
 import applicantInfo from './pages/applicantInfo';
 import contactInfo from './pages/contactInfo';
-import veteranIdentifyingInfo from './pages/veteranIdentifyingInfo';
-import servicePeriods from './pages/servicePeriods';
+import claimantInfo from './pages/claimantInfo';
 import mailingAddress from './pages/mailingAddress';
+import servicePeriods from './pages/servicePeriods';
 import AddressVerificationPage from '../components/AddressVerificationPage';
 
 import GetFormHelp from '../components/GetFormHelp';
@@ -20,19 +20,23 @@ import fullSchema from '../schema';
 import manifest from '../manifest.json';
 
 const formConfig = {
-  rootUrl: manifest.rootUrl,
-  urlPrefix: '/',
+  rootUrl: '/aid-attendance-form',
+  urlPrefix: '',
   submitUrl: 'http://localhost:3000/v0/21-2680/submit',
   trackingPrefix: 'aid-attendance-',
 
   formId: '21-2680',
   version: 0,
-  title: 'Aid and Attendance Benefits Application',
+  title: 'Aid & Attendance Benefits Application',
   subTitle: 'Aid and Attendance Application (VA Form 21-2680)',
 
   prefillEnabled: true,
   prefillTransformer,
-  preSubmitInfo,
+  preSubmitInfo: {
+    info: [],
+    required: [],
+    custom: [],
+  },
 
   downtime: {
     requiredForPrefill: true,
@@ -64,51 +68,35 @@ const formConfig = {
   },
 
   chapters: {
-    applicantInformationChapter: {
-      title: 'Personal Information',
+    veteranInformation: {
+      title: 'Veteran & Claimant Information',
       pages: {
-        applicantInformation: {
-          title: 'Personal information',
-          path: 'personal-information',
+        applicantInfo: {
+          title: 'Veteran Information',
+          path: 'veteran-information',
           uiSchema: applicantInfo.uiSchema,
           schema: applicantInfo.schema,
         },
-        identifyingInformation: {
-          title: 'Veteran personal information',
-          path: 'identity-information',
-          uiSchema: veteranIdentifyingInfo.uiSchema,
-          schema: veteranIdentifyingInfo.schema,
+        claimantInfo: {
+          title: 'Claimant Information',
+          path: 'claimant-information',
+          uiSchema: claimantInfo.uiSchema,
+          schema: claimantInfo.schema,
         },
-        phoneEmail: {
-          title: 'Phone numbers and email address',
+        contactInfo: {
+          title: 'Contact Information',
           path: 'contact-information',
           uiSchema: contactInfo.uiSchema,
           schema: contactInfo.schema,
         },
-      },
-    },
-    serviceHistory: {
-      title: 'Service History',
-      pages: {
-        servicePeriods: {
-          title: 'Service periods',
-          path: 'service-periods',
-          uiSchema: servicePeriods.uiSchema,
-          schema: servicePeriods.schema,
-        },
-      },
-    },
-    mailingAddressChapter: {
-      title: 'Mailing Address',
-      pages: {
         mailingAddress: {
-          title: 'Mailing address',
+          title: 'Mailing Address',
           path: 'mailing-address',
           uiSchema: mailingAddress.uiSchema,
           schema: mailingAddress.schema,
         },
-        reviewAddressSchemaless: {
-          title: 'Verify mailing address',
+        reviewAddress: {
+          title: 'Verify Address',
           path: 'verify-address',
           CustomPage: AddressVerificationPage,
           CustomPageReview: null,
@@ -117,6 +105,17 @@ const formConfig = {
             properties: {},
           },
           uiSchema: {},
+        },
+      },
+    },
+    serviceHistory: {
+      title: 'Service History',
+      pages: {
+        servicePeriods: {
+          title: 'Service Periods',
+          path: 'service-periods',
+          uiSchema: servicePeriods.uiSchema,
+          schema: servicePeriods.schema,
         },
       },
     },

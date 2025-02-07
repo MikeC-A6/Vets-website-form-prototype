@@ -18,12 +18,12 @@ export default {
     'view:subHeadings': {
       'ui:description': (
         <>
-          <h2 className="vads-u-font-size--h3">Your personal information</h2>
+          <h2 className="vads-u-font-size--h3">Veteran Information</h2>
           <va-alert status="info" uswds visible>
             <div className="usa-alert-body">
               <p className="vads-u-margin-y--0">
                 <strong>Note: </strong>
-                Since you’re signed in to your account, we can prefill part of
+                Since you're signed in to your account, we can prefill part of
                 your application based on your VA.gov account details.
               </p>
             </div>
@@ -35,7 +35,7 @@ export default {
       ...fullNameUI,
       first: {
         ...fullNameUI.first,
-        'ui:title': 'Your first name',
+        'ui:title': "Veteran's first name",
         'ui:validations': [
           (errors, field) => {
             if (field.length < 3) {
@@ -57,7 +57,7 @@ export default {
       },
       last: {
         ...fullNameUI.last,
-        'ui:title': 'Your last name',
+        'ui:title': "Veteran's last name",
         'ui:validations': [
           (errors, field) => {
             if (field.length < 3) {
@@ -79,7 +79,7 @@ export default {
       },
       middle: {
         ...fullNameUI.middle,
-        'ui:title': 'Your middle name',
+        'ui:title': "Veteran's middle name",
         'ui:validations': [
           (errors, field) => {
             if (!isValidName(field)) {
@@ -97,21 +97,38 @@ export default {
         ],
       },
     },
+    [formFields.veteranSocialSecurityNumber]: {
+      'ui:title': "Veteran's Social Security number",
+      'ui:widget': 'ssn',
+      'ui:errorMessages': {
+        pattern: 'Please enter a valid 9-digit Social Security number (dashes will be added automatically)',
+      },
+    },
+    [formFields.vaFileNumber]: {
+      'ui:title': 'VA file number (if applicable)',
+      'ui:help': 'This number will be on any correspondence VA sent you',
+      'ui:errorMessages': {
+        pattern: 'Please enter a valid VA file number',
+      },
+    },
+    [formFields.serviceNumber]: {
+      'ui:title': 'Service number (if applicable)',
+      'ui:help': 'This is your military service number if different from your Social Security number',
+      'ui:errorMessages': {
+        pattern: 'Please enter a valid service number',
+      },
+    },
     [formFields.dateOfBirth]: {
-      ...currentOrPastDateUI('Your date of birth'),
-      // need to include the standard date validation in addition to our custom check
+      ...currentOrPastDateUI("Veteran's date of birth"),
       'ui:validations': [
         validateCurrentOrPastDate,
         isDateWithinTenYearsOfToday,
       ],
     },
-    // [formFields.dateOfDeath]: {
-    //   ...currentOrPastDateUI('Date of death'),
-    // },
   },
   schema: {
     type: 'object',
-    required: [formFields.dateOfBirth],
+    required: [formFields.userFullName, formFields.veteranSocialSecurityNumber, formFields.dateOfBirth],
     properties: {
       'view:subHeadings': {
         type: 'object',
@@ -127,8 +144,19 @@ export default {
           },
         },
       },
+      [formFields.veteranSocialSecurityNumber]: {
+        type: 'string',
+        pattern: '^[0-9]{9}$',
+      },
+      [formFields.vaFileNumber]: {
+        type: 'string',
+        pattern: '^[0-9]{8,9}$',
+      },
+      [formFields.serviceNumber]: {
+        type: 'string',
+        pattern: '^[0-9A-Za-z]{1,20}$',
+      },
       [formFields.dateOfBirth]: date,
-      // [formFields.dateOfDeath]: date,
     },
   },
 };
