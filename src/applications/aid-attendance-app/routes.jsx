@@ -1,20 +1,15 @@
-import React from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { createRoutesWithSaveInProgress } from 'platform/forms/save-in-progress/helpers';
 import formConfig from './config/form';
 import AidAttendanceApp from './containers/AidAttendanceApp';
 
-const Routes = () => (
-  <Switch>
-    <Route
-      exact
-      path={formConfig.rootUrl}
-      render={() => <Redirect to={`${formConfig.rootUrl}/introduction`} />}
-    />
-    <Route
-      path={`${formConfig.rootUrl}/:page`}
-      render={(props) => <AidAttendanceApp {...props} formConfig={formConfig} />}
-    />
-  </Switch>
-);
+const routes = {
+  path: formConfig.rootUrl,
+  component: AidAttendanceApp,
+  indexRoute: {
+    onEnter: (nextState, replace) =>
+      replace(`${formConfig.rootUrl}/introduction`),
+  },
+  childRoutes: createRoutesWithSaveInProgress(formConfig),
+};
 
-export default Routes;
+export default routes;

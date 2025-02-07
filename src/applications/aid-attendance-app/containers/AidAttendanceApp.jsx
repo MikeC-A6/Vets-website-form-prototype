@@ -10,7 +10,7 @@ import { setData } from 'platform/forms-system/src/js/actions';
 import { toggleValues } from 'platform/site-wide/feature-toggles/selectors';
 import formConfig from '../config/form';
 
-function SpruceApp({
+function AidAttendanceApp({
   children,
   formData,
   location,
@@ -44,9 +44,7 @@ function SpruceApp({
     <>
       <va-breadcrumbs uswds="false">
         <a href="/">VA.gov home</a>
-        <a href="/pension">
-          Pension benefits
-        </a>
+        <a href="/pension">Pension benefits</a>
         <a href="/pension/aid-attendance-housebound">
           VA Aid and Attendance benefits and Housebound allowance
         </a>
@@ -58,7 +56,7 @@ function SpruceApp({
   );
 }
 
-SpruceApp.propTypes = {
+AidAttendanceApp.propTypes = {
   children: PropTypes.object,
   formData: PropTypes.object,
   location: PropTypes.object,
@@ -82,4 +80,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(SpruceApp);
+)(AidAttendanceApp);
