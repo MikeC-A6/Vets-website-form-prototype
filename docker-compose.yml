@@ -12,6 +12,7 @@ services:
       WEB_HOST: 'vets-website'
       WEB_PORT: 3001
       API_HOST: 'vets-website'
+      APP_NAME: 'aid-attendance'
     ports:
       - "3001:3001"
       - "3000:3000"

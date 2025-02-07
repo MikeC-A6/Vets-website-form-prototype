@@ -20,38 +20,28 @@ class IntroductionPage extends React.Component {
 
     return (
       <div className="schemaform-intro">
-        <FormTitle title="Apply for a frame to display your DD-217 certificate" />
+        <FormTitle title="VA Aid and Attendance benefits and Housebound allowance" />
         <p className="vads-u-font-size--h3">
-          Free frame application (VA Form 24-SPRUCE)
+          VA Aid and Attendance or Housebound benefits provide monthly payments added to the amount of a monthly VA pension for qualified Veterans and survivors.
         </p>
         <p>
-          Complete this form if you want a free frame to display your DD-217
-          certificate. If you’re found eligible, we’ll ship the free frame of
-          your choice directly to you.
+          Fill out VA Form 21-2680 (Examination for Housebound Status or Permanent Need for Regular Aid and Attendance). You can have your doctor fill out the examination information section.
         </p>
 
         <h2 className="vads-u-font-size--h3">
           What to know before you start this form
         </h2>
         <p>
-          To complete the form, you’ll need access to your military service
-          information including:
+          To complete this form, you'll need:
         </p>
 
         <ul>
-          <li>Date of discharge</li>
-          <li>Dates of service</li>
-          <li>Duty assignment</li>
-          <li>Major command</li>
+          <li>Information about your daily activities and how you get around</li>
+          <li>Details about any illness, injury, or disability that affects your ability to care for yourself</li>
+          <li>Medical evidence or doctor's reports showing your need for Aid and Attendance or Housebound care</li>
+          <li>If you're in a nursing home, you'll also need to fill out VA Form 21-0779 (Request for Nursing Home Information)</li>
         </ul>
-        <p>
-          Your DD-214 is sufficient to fulfill submission requirements for this
-          form. If your DD-214 is lost or damaged,{' '}
-          <a href="https://www.va.gov/records/get-military-service-records/">
-            {' '}
-            learn how to order a new copy of your DD-214.
-          </a>
-        </p>
+
         <SaveInProgressIntro
           prefillEnabled={route.formConfig.prefillEnabled}
           messages={route.formConfig.savedFormMessages}

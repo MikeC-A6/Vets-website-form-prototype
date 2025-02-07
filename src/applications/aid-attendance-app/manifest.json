@@ -1,0 +1,7 @@
+{
+  "appName": "Aid and Attendance Benefits Application",
+  "entryFile": "./aid-attendance-entry.jsx",
+  "entryName": "aid-attendance",
+  "rootUrl": "/aid-attendance-form",
+  "productId": "aid-attendance-form"
+}

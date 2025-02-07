@@ -1,0 +1,13 @@
+[
+  {
+    "appName": "Aid and Attendance Benefits Application",
+    "entryName": "aid-attendance",
+    "rootUrl": "/aid-attendance-form",
+    "template": {
+      "title": "Aid and Attendance Benefits Application",
+      "layout": "page-react.html",
+      "includeBreadcrumbs": true,
+      "breadcrumbs_override": []
+    }
+  }
+] 

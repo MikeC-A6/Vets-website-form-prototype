@@ -43,12 +43,12 @@ function SpruceApp({
   return (
     <>
       <va-breadcrumbs uswds="false">
-        <a href="/">Home</a>
-        <a href="/supporting-forms-for-claims">
-          Supporting forms for VA claims
+        <a href="/">VA.gov home</a>
+        <a href="/pension">
+          Pension benefits
         </a>
-        <a href="/supporting-forms-for-claims/frame-for-certificate-form-24-spruce">
-          Apply for a frame to display your DD-217 certificate
+        <a href="/pension/aid-attendance-housebound">
+          VA Aid and Attendance benefits and Housebound allowance
         </a>
       </va-breadcrumbs>
       <RoutedSavableApp formConfig={formConfig} currentLocation={location}>

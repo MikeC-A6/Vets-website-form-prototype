@@ -1,5 +1,5 @@
 import 'platform/polyfills';
-import './sass/spruce.scss';
+import './sass/aid-attendance.scss';
 
 import startApp from 'platform/startup';
 

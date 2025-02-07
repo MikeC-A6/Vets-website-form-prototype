@@ -8,6 +8,8 @@ const fetch = require('node-fetch');
 const path = require('path');
 const webpack = require('webpack');
 
+const sourceDir = path.join(__dirname, '../src');
+
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -279,7 +281,9 @@ module.exports = async (env = {}) => {
   const baseConfig = {
     mode: isOptimizedBuild ? 'production' : 'development',
     devtool: false,
-    entry: entryFiles,
+    entry: {
+      ...entryFiles,
+    },
     output: {
       path: path.resolve(buildPath, 'generated'),
       publicPath: '/generated/',

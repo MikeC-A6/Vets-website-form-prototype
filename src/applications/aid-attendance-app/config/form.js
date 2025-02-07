@@ -11,28 +11,24 @@ import applicantInfo from './pages/applicantInfo';
 import contactInfo from './pages/contactInfo';
 import veteranIdentifyingInfo from './pages/veteranIdentifyingInfo';
 import servicePeriods from './pages/servicePeriods';
-import framePreferences from './pages/framePreferences';
 import mailingAddress from './pages/mailingAddress';
 import AddressVerificationPage from '../components/AddressVerificationPage';
 
 import GetFormHelp from '../components/GetFormHelp';
 
-// for a real form, this would likely come from vets-json-schema.
-// for the purposes of this challenge, ours is located at the root of our app
 import fullSchema from '../schema';
-
 import manifest from '../manifest.json';
 
 const formConfig = {
   rootUrl: manifest.rootUrl,
   urlPrefix: '/',
-  submitUrl: 'http://localhost:3000/v0/24-SPRUCE/submit', // endpoint mocked in ../mocks/index.js
-  trackingPrefix: 'spruce-challenge-app-',
+  submitUrl: 'http://localhost:3000/v0/21-2680/submit',
+  trackingPrefix: 'aid-attendance-',
 
-  formId: '24-SPRUCE',
+  formId: '21-2680',
   version: 0,
-  title: 'Apply for a frame to display your DD-217 certificate',
-  subTitle: 'Free frame application (VA Form 24-SPRUCE)',
+  title: 'Aid and Attendance Benefits Application',
+  subTitle: 'Aid and Attendance Application (VA Form 21-2680)',
 
   prefillEnabled: true,
   prefillTransformer,
@@ -43,16 +39,16 @@ const formConfig = {
   },
 
   savedFormMessages: {
-    notFound: 'Please start over to request your DD-217 frame.',
+    notFound: 'Please start over to apply for Aid and Attendance benefits.',
     noAuth: 'Please sign in again to continue your application.',
   },
   saveInProgress: {
     messages: {
       inProgress:
-        'Your discharge certificate frame request (24-SPRUCE) is in progress.',
+        'Your Aid and Attendance benefits application (21-2680) is in progress.',
       expired:
-        'Your saved discharge certificate frame request (24-SPRUCE) has expired. If you want to apply for a complimentary frame, please start a new application.',
-      saved: 'Your discharge certificate frame reques has been saved.',
+        'Your saved Aid and Attendance benefits application (21-2680) has expired. If you want to apply for benefits, please start a new application.',
+      saved: 'Your Aid and Attendance benefits application has been saved.',
     },
   },
 
@@ -61,7 +57,6 @@ const formConfig = {
   footerContent: FormFooter,
   getHelp: GetFormHelp,
 
-  // Fix double headers (only show v3)
   v3SegmentedProgressBar: true,
 
   defaultDefinitions: {
@@ -103,23 +98,12 @@ const formConfig = {
         },
       },
     },
-    frameSelectionChapter: {
-      title: 'Frame Type',
-      pages: {
-        frameOptions: {
-          title: 'Frame selection',
-          path: 'choose-frame-type',
-          uiSchema: framePreferences.uiSchema,
-          schema: framePreferences.schema,
-        },
-      },
-    },
-    shippingAddressChapter: {
+    mailingAddressChapter: {
       title: 'Mailing Address',
       pages: {
         mailingAddress: {
           title: 'Mailing address',
-          path: 'where-to-ship-frame',
+          path: 'mailing-address',
           uiSchema: mailingAddress.uiSchema,
           schema: mailingAddress.schema,
         },
@@ -128,11 +112,8 @@ const formConfig = {
           path: 'verify-address',
           CustomPage: AddressVerificationPage,
           CustomPageReview: null,
-          // This does still need to be here or it'll throw an error
           schema: {
             type: 'object',
-            // props available to page via data
-            // can be empty
             properties: {},
           },
           uiSchema: {},
