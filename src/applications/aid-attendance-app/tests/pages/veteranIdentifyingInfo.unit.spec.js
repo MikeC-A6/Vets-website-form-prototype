@@ -4,7 +4,7 @@ import { DefinitionTester } from 'platform/testing/unit/schemaform-utils';
 import { mount } from 'enzyme';
 import sinon from 'sinon';
 import formConfig from '../../config/form';
-import { formFields } from '../../constants';
+import { formFields } from '../../../aid-attendance-app/constants';
 
 describe('Applicant Info', () => {
   const {

@@ -1,0 +1,7 @@
+{
+  "appName": "Aid Attendance",
+  "entryFile": "./app-entry.jsx",
+  "entryName": "aid-attendance",
+  "rootUrl": "/aid-attendance",
+  "productId": "3e091ad5-61ed-489f-bd42-66e429addc6d"
+}

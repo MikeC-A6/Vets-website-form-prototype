@@ -2,14 +2,12 @@ import { createRoutesWithSaveInProgress } from 'platform/forms/save-in-progress/
 import formConfig from './config/form';
 import AidAttendanceApp from './containers/AidAttendanceApp';
 
-const routes = {
+const route = {
   path: '/',
   component: AidAttendanceApp,
-  indexRoute: {
-    onEnter: (nextState, replace) =>
-      replace(`${formConfig.rootUrl}/introduction`),
-  },
+  indexRoute: { onEnter: (nextState, replace) => replace('/introduction') },
+
   childRoutes: createRoutesWithSaveInProgress(formConfig),
 };
 
-export default routes;
+export default route;

@@ -7,21 +7,17 @@ import IntroductionPage from '../containers/IntroductionPage';
 import ConfirmationPage from '../containers/ConfirmationPage';
 
 // splitting pages into individual schemas for readability & consistency with current forms
-import applicantInfo from './pages/applicantInfo';
-import contactInfo from './pages/contactInfo';
-import claimantInfo from './pages/claimantInfo';
-import mailingAddress from './pages/mailingAddress';
-import servicePeriods from './pages/servicePeriods';
-import AddressVerificationPage from '../components/AddressVerificationPage';
 
+import claimantInfo from '../pages/claimantInfo';
+import veteranIdentifyingInfo from '../pages/veteranIdentifyingInfo';
 import GetFormHelp from '../components/GetFormHelp';
 
 import fullSchema from '../schema';
 import manifest from '../manifest.json';
 
 const formConfig = {
-  rootUrl: '/aid-attendance-form',
-  urlPrefix: '',
+  rootUrl: manifest.rootUrl,
+  urlPrefix: '/',
   submitUrl: 'http://localhost:3000/v0/21-2680/submit',
   trackingPrefix: 'aid-attendance-',
 
@@ -71,11 +67,11 @@ const formConfig = {
     veteranInformation: {
       title: 'Veteran & Claimant Information',
       pages: {
-        applicantInfo: {
+        veteranIdentifyingInfo: {
           title: 'Veteran Information',
           path: 'veteran-information',
-          uiSchema: applicantInfo.uiSchema,
-          schema: applicantInfo.schema,
+          uiSchema: veteranIdentifyingInfo.uiSchema,
+          schema: veteranIdentifyingInfo.schema,
         },
         claimantInfo: {
           title: 'Claimant Information',
@@ -83,41 +79,8 @@ const formConfig = {
           uiSchema: claimantInfo.uiSchema,
           schema: claimantInfo.schema,
         },
-        contactInfo: {
-          title: 'Contact Information',
-          path: 'contact-information',
-          uiSchema: contactInfo.uiSchema,
-          schema: contactInfo.schema,
-        },
-        mailingAddress: {
-          title: 'Mailing Address',
-          path: 'mailing-address',
-          uiSchema: mailingAddress.uiSchema,
-          schema: mailingAddress.schema,
-        },
-        reviewAddress: {
-          title: 'Verify Address',
-          path: 'verify-address',
-          CustomPage: AddressVerificationPage,
-          CustomPageReview: null,
-          schema: {
-            type: 'object',
-            properties: {},
-          },
-          uiSchema: {},
-        },
-      },
-    },
-    serviceHistory: {
-      title: 'Service History',
-      pages: {
-        servicePeriods: {
-          title: 'Service Periods',
-          path: 'service-periods',
-          uiSchema: servicePeriods.uiSchema,
-          schema: servicePeriods.schema,
-        },
-      },
+      },  
+      uiSchema: {},
     },
   },
 };

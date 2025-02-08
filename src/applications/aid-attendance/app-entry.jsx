@@ -1,15 +1,14 @@
 import 'platform/polyfills';
 import './sass/aid-attendance.scss';
 
-import { startAppFromIndex } from '@department-of-veterans-affairs/platform-startup/exports'
+import startApp from 'platform/startup';
 
 import routes from './routes';
 import reducer from './reducers';
 import manifest from './manifest.json';
 
-startAppFromIndex({
-  entryName: manifest.entryName,
+startApp({
   url: manifest.rootUrl,
   reducer,
   routes,
-})
+});

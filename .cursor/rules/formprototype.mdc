@@ -4,7 +4,7 @@ globs:
 ---
 Directory & Code Boundaries
 
-Only modify code in src/applications/aid-attendance-app and refrain from making changes outside that directory.
+Only modify code in src/applications/aid-attendance and refrain from making changes outside that directory.
 Preserve the existing introduction page and keep it at /aid-attendance-form/introduction. Do not create or remove pages unrelated to the Aid & Attendance application.
 Reuse (do not duplicate) existing components, styling, and structure for contact info and form pages. Confirm any new fields or pages conform to the aid-attendance-app code pattern.
 
